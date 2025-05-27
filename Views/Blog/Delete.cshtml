@@ -1,0 +1,20 @@
+﻿@model SmartCookFinal.Models.Blog
+
+@{
+    ViewData["Title"] = "Delete Blog";
+}
+
+<h2>Delete Blog</h2>
+
+<h4>Are you sure you want to delete this blog?</h4>
+<div>
+    <strong>Title:</strong> @Model.Title<br />
+    <strong>Author:</strong> @Model.User?.TenNguoiDung<br />
+    <strong>Created At:</strong> @Model.CreatedAt.ToString("g")
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="BlogId" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

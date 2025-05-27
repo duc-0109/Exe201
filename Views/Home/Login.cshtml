@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<h2>Đăng nhập</h2>
+
+<form method="post" asp-action="Login">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" />
+    </div>
+    <div class="form-group mt-2">
+        <label for="password">Mật khẩu</label>
+        <input type="password" class="form-control" id="password" name="password" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Đăng nhập</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="text-danger mt-2">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}

@@ -1,0 +1,58 @@
+﻿@model List<SmartCookFinal.Models.MonAn>
+
+@{
+    ViewData["Title"] = "Kết quả thực đơn";
+}
+
+
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/smartcook/background.png")');" ;">
+        <div class="container">
+            <div class="page-banner-entry">
+                <h1 class="text-white">Thực Đơn Cá Nhân</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Thực đơn cá nhân</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Kết quả thực đơn</h3>
+
+    @foreach (var mon in Model)
+    {
+        <div class="card mb-3 border rounded p-3">
+            <h4>@mon.TenMon (@mon.LoaiBuaAn)</h4>
+            <p>@mon.MoTa</p>
+            <p><strong>Calo:</strong> @mon.LuongCalo kcal</p>
+            <p><strong>Carbs:</strong> @mon.Carbs g | <strong>Protein:</strong> @mon.Protein g | <strong>Fat:</strong> @mon.Fat g</p>
+            <p class="card-text">
+                <strong>Chi phí:</strong> @(mon.ChiPhiUocTinh ?? 0m).ToString("C") VND
+            </p>
+
+
+
+            @if (!string.IsNullOrEmpty(mon.UrlHinhAnh))
+            {
+                <img src="@mon.UrlHinhAnh" alt="@mon.TenMon" style="max-width:200px;" />
+            }
+
+            @if (!string.IsNullOrEmpty(mon.CachNau))
+            {
+                <details>
+                    <summary><strong>Cách nấu</strong></summary>
+                    <p>@mon.CachNau</p>
+                </details>
+            }
+        </div>
+    }
+
+    </div>
+

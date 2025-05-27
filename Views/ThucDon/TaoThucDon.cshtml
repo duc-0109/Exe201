@@ -1,0 +1,92 @@
+﻿@model SmartCookFinal.ModelDTO.ThucDonViewTongHop
+
+@{
+    ViewBag.Title = "Tao Thuc Don";
+    var buaAnTheoLoai = Model.DanhSachMonAn.GroupBy(m => m.LoaiBuaAn);
+}
+
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    <div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/smartcook/background.png")');" ;">
+        <div class="container">
+            <div class="page-banner-entry">
+                <h1 class="text-white">Thực Đơn Cá Nhân</h1>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb row -->
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="#">Home</a></li>
+                <li>Thực đơn cá nhân</li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <h2 class="mb-4">Kết quả chỉ số của bạn</h2>
+
+    <table class="table table-bordered table-hover text-center align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>BMR (Tỷ lệ trao đổi chất cơ bản)</th>
+                <th>TDEE (Lượng calo tiêu hao hàng ngày)</th>
+                <th>Tổng calo sau khi điều chỉnh theo mục tiêu</th>
+                <th>Calo bữa sáng (20%)</th>
+                <th>Calo bữa trưa (40%)</th>
+                <th>Calo bữa tối (40%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.KetQua.BMR kcal/ngày</td>
+                <td>@Model.KetQua.TDEE kcal/ngày</td>
+                <td>@Model.KetQua.TongCaloDieuChinh kcal/ngày</td>
+                <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.2, 2) kcal</td>
+                <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.4, 2) kcal</td>
+                <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.4, 2) kcal</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2 class="text-center mt-5 mb-4">Kết Quả Thực Đơn</h2>
+
+    @if (Model.DanhSachMonAn == null || !Model.DanhSachMonAn.Any())
+    {
+        <div class="alert alert-warning text-center mt-4">
+            Không tìm thấy món ăn phù hợp với yêu cầu của bạn.
+        </div>
+    }
+    else
+    {
+        @foreach (var group in Model.DanhSachMonAn.GroupBy(m => m.LoaiBuaAn))
+        {
+            <div class="mb-5">
+                <h4 class="text-primary mb-3">@group.Key</h4>
+                <div class="row g-3">
+                    @foreach (var mon in group)
+                    {
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card h-100 shadow-sm border-0">
+                                <img src="@(string.IsNullOrEmpty(mon.UrlHinhAnh) ? "/images/default-food.png" : mon.UrlHinhAnh)" class="card-img-top" alt="@mon.TenMon" style="height:200px; object-fit:cover;">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">@mon.TenMon</h5>
+                                    <p class="card-text mb-1"><strong>Calories:</strong> @mon.LuongCalo kcal</p>
+                                    <p class="card-text mb-0"><strong>Chi phí:</strong> @(mon.ChiPhiUocTinh?.ToString("N0") ?? "0") VND</p>
+                                    <div class="mt-auto">
+                                        <a href="@Url.Action("Details", "MonAns", new { id = mon.Id })" class="btn btn-primary mt-auto">
+                                            Xem chi tiết
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+
+
+</div>

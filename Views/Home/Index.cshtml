@@ -1,0 +1,277 @@
+﻿@model List<SmartCookFinal.Models.MonAn>
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<!-- Content -->
+<div class="page-content bg-white">
+	<!-- Main Slider -->
+	<div class="section-area section-sp1 ovpr-dark bg-fix online-cours" style="background-image: url('@Url.Content("~/assets/images/smartcook/background.png")');" ;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center text-white">
+					<h2>Tìm món ăn bạn muốn nấu</h2>
+					<h5>Làm chủ kỹ năng nấu ăn của bạn ngay hôm nay!</h5>
+					<form class="cours-search" asp-controller="MonAns" asp-action="SearchByName" method="get">
+						<div class="input-group">
+							<input type="text" name="name" class="form-control" placeholder="Hôm nay bạn muốn ăn gì?	">
+							<div class="input-group-append">
+								<button class="btn" type="submit">Tìm Kiếm</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="mw800 m-auto">
+				<div class="row">
+					<div class="col-md-4 col-sm-6">
+						<div class="cours-search-bx m-b30">
+							<div class="icon-box">
+								<h3><i class="ti-receipt"></i><span class="counter">36</span>M</h3>
+							</div>
+							<span class="cours-search-text">Hơn 36 trệu món ăn</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="cours-search-bx m-b30">
+							<div class="icon-box">
+								<h3><i class="ti-book"></i><span class="counter">36</span>K</h3>
+							</div>
+							<span class="cours-search-text">36,000 thực đơn</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-12">
+						<div class="cours-search-bx m-b30">
+							<div class="icon-box">
+								<h3><i class="ti-user"></i><span class="counter">36</span>K</h3>
+							</div>
+							<span class="cours-search-text">Người dùng</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Main Slider -->
+	<div class="content-block">
+		<!-- Popular Courses -->
+		<div class="section-area section-sp2 popular-courses-bx">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 heading-bx left">
+						<h2 class="title-head">Công thức nổi bật <span></span></h2>
+						<p>"Đã từ lâu, việc nấu ăn không chỉ là công thức mà còn là cảm hứng khiến người ta say mê." 🍽️🔥</p>
+					</div>
+				</div>
+				<div class="row">
+					
+					<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
+						@foreach (var item in Model)
+						{
+						<div class="item">
+							<div class="cours-bx">
+								<div class="action-box">
+										<img src="@item.UrlHinhAnh" alt="" style="width:100%; height:200px; object-fit:cover;">
+
+								</div>
+								<div class="info-bx text-center">
+										<h5><a href="#">@item.TenMon</a></h5>
+									<span></span>
+								</div>
+								<div class="cours-more-info">
+									<div class="review">
+										<span>3 Đánh giá</span>
+										<ul class="cours-star">
+											<li class="active"><i class="fa fa-star"></i></li>
+											<li class="active"><i class="fa fa-star"></i></li>
+											<li class="active"><i class="fa fa-star"></i></li>
+											<li><i class="fa fa-star"></i></li>
+											<li><i class="fa fa-star"></i></li>
+										</ul>
+									</div>
+									<div class="price">
+											<h5>@item.ChiPhiUocTinh</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						}
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- Popular Courses END -->
+		<div class="section-area section-sp2 bg-fix ovbl-dark join-bx text-center" style="background-image:url(~/assets/images/smartcook/background.png);">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="join-content-bx text-white">
+							<h2>Học nấu những món ăn ngon <br>theo sở thích của bạn.</h2>
+							<h4><span class="counter">5</span> triệu công thức</h4>
+							<p>Chào mừng bạn đến với Smart Cook – trợ thủ đắc lực giúp bạn dễ dàng tìm kiếm và chế biến những món ăn ngon ngay tại nhà! Với Smart Cook, bạn có thể nhập nguyên liệu sẵn có để tìm công thức phù hợp, lên thực đơn hàng ngày hoặc hàng tuần theo ngân sách mong muốn và nhận gợi ý món ăn theo nhu cầu calo và chỉ số BMI. Dù bạn là người mới học nấu ăn hay một đầu bếp gia đình dày dặn kinh nghiệm, Smart Cook luôn đồng hành để giúp bạn có những bữa ăn ngon miệng và dinh dưỡng! Hãy khám phá ngay hôm nay! 🍽️👩‍🍳</p>
+							<a href="#" class="btn button-md">Đăng ký</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Form END -->
+		<div class="section-area section-sp1">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 m-b30">
+						<h2 class="title-head ">
+							Premium<br> <span class="text-primary">
+								giúp lên thực đơn
+								hàng ngày dễ dàng hơn
+							</span>
+						</h2>
+						<!-- <h4><span class="counter">57,000</span> Online Courses</h4> -->
+						<p>Nâng cấp lên Smart Cook Premium để trải nghiệm đầy đủ tính năng vượt trội! Với gói Premium, bạn sẽ nhận được công thức độc quyền, thực đơn cá nhân hóa theo chế độ dinh dưỡng, gợi ý món ăn nâng cao và không có quảng cáo. Hãy nâng cấp ngay để biến việc nấu ăn trở nên dễ dàng và thú vị hơn bao giờ hết! 🍽️✨</p>
+						<a href="membership.html" class="btn button-md">Mua Ngay</a>
+					</div>
+					<div class="col-lg-6">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+								<div class="feature-container">
+									<div class="feature-md text-white m-b20">
+										<a href="#" class="icon-cell"><img src="~/assets/images/smartcook/icon/icon1.png" alt=""></a>
+									</div>
+									<div class="icon-content">
+										<h5 class="ttr-tilte">Truy cập công thức độc quyền</h5>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+								<div class="feature-container">
+									<div class="feature-md text-white m-b20">
+										<a href="#" class="icon-cell"><img src="~/assets/images/smartcook/icon/icon3.png" alt=""></a>
+									</div>
+									<div class="icon-content">
+										<h5 class="ttr-tilte">Không quảng cáo</h5>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+								<div class="feature-container">
+									<div class="feature-md text-white m-b20">
+										<a href="#" class="icon-cell"><img src="~/assets/images/smartcook/icon/icon2.png" alt=""></a>
+									</div>
+									<div class="icon-content">
+										<h5 class="ttr-tilte">Tính toán calo</h5>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-6 m-b30">
+								<div class="feature-container">
+									<div class="feature-md text-white m-b20">
+										<a href="#" class="icon-cell"><img src="~/assets/images/smartcook/icon/icon4.png" alt=""></a>
+									</div>
+									<div class="icon-content">
+										<h5 class="ttr-tilte">Đề xuất thực đơn phù hợp với mức tài chính</h5>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Testimonials -->
+		<div class="section-area section-sp1 bg-fix ovbl-dark text-white" style="background-image:url(~/assets/images/smartcook/background.png);">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
+						<div class="counter-style-1">
+							<div class="text-white">
+								<span class="counter">36</span><span>M+</span>
+							</div>
+							<span class="counter-text">Công thức</span>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
+						<div class="counter-style-1">
+							<div class="text-white">
+								<span class="counter">36</span><span>K+</span>
+							</div>
+							<span class="counter-text">Thực đơn</span>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
+						<div class="counter-style-1">
+							<div class="text-white">
+								<span class="counter">36</span><span>K+</span>
+							</div>
+							<span class="counter-text">Người Tin Dùng</span>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
+						<div class="counter-style-1">
+							<div class="text-white">
+								<span class="counter">36</span><span>+</span>
+							</div>
+							<span class="counter-text">Chuyên gia tư vấn</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Testimonials END -->
+		<!-- Testimonials ==== -->
+		<div class="section-area section-sp2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 heading-bx left">
+						<h2 class="title-head text-uppercase">Chia sẻ từ các chuyên gia ẩm thực</h2>
+						<p>Sự thật hiển nhiên là một đầu bếp giỏi luôn bị cuốn hút bởi những công thức nấu ăn hấp dẫn và nội dung chất lượng.</p>
+					</div>
+				</div>
+				<div class="testimonial-carousel owl-carousel owl-btn-1 col-12 p-lr0">
+					<div class="item">
+						<div class="testimonial-bx">
+							<div class="testimonial-thumb">
+								<img src="~/assets/images/smartcook/gordonRamsay.jpg" alt="">
+							</div>
+							<div class="testimonial-info">
+								<h5 class="name">Gordon Ramsay</h5>
+								<p>Chef</p>
+							</div>
+							<div class="testimonial-content">
+								<p>
+									"Hãy nếm thử mọi thứ khi bạn nấu. Hương vị là chìa khóa, và nếu bạn không thử món ăn của mình, bạn sẽ không biết cần điều chỉnh gì."
+									<br>
+									(Learn to taste everything as you cook. Flavor is key, and if you don’t taste your food, you’ll never know what it needs.)
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimonial-bx">
+							<div class="testimonial-thumb">
+								<img src="~/assets/images/testimonials/pic2.jpg" alt="">
+							</div>
+							<div class="testimonial-info">
+								<h5 class="name">John Doe</h5>
+								<p>Null</p>
+							</div>
+							<div class="testimonial-content">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Testimonials END ==== -->
+	</div>
+	<!-- contact area END -->
+</div>
+<!-- Content END-->

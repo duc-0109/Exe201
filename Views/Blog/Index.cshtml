@@ -1,0 +1,120 @@
+﻿@model IEnumerable<SmartCookFinal.Models.Blog>
+
+
+
+
+<div class="page-content bg-white">
+	<!-- inner page banner -->
+	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');" ;">
+		<div class="container">
+			<div class="page-banner-entry">
+				<h1 class="text-white">Blog</h1>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumb row -->
+	<div class="breadcrumb-row">
+		<div class="container">
+			<ul class="list-inline">
+				<li><a href="#">Home</a></li>
+				<li>Blog</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Breadcrumb row END -->
+	<!-- contact area -->
+	<div class="content-block">
+		<div class="widget">
+			<div class="search-bx style-1">
+				<form role="search" method="post">
+					<div class="input-group">
+						<input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
+						<span class="input-group-btn">
+							<button type="submit" class="fa fa-search text-primary"></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="section-area section-sp1">
+			<div class="container">
+				<div class="row">
+					<!-- Left part start -->
+					@foreach (var item in Model)
+					{
+						<div class="col-lg-8">
+							<div class="blog-post blog-md clearfix">
+								<div class="ttr-post-media">
+									<a href="#">
+										@if (!string.IsNullOrEmpty(item.UrlImage))
+										{
+											<img src="@item.UrlImage" alt="Image" class="blog-image" />
+										}
+									</a>
+								</div>
+								<div class="ttr-post-info">
+									<ul class="media-post">
+										<li><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
+										<li><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
+									</ul>
+									<h5 class="post-title">@item.Title</h5>
+									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
+									<div class="post-extra">
+										<button type="button" class="btn btn-link" data-toggle="modal" data-target="#blogModal-@item.BlogId">
+											READ MORE
+										</button>
+										<a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>Comments</a>
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="blogModal-@item.BlogId" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@item.BlogId" aria-hidden="true">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="modalLabel-@item.BlogId">@item.Title</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
+											<p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+											@if (!string.IsNullOrEmpty(item.UrlImage))
+											{
+												<img src="@item.UrlImage" alt="Image" class="img-fluid mb-3" />
+											}
+											<p>@item.Content</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+
+						
+
+						
+						<!-- Pagination start -->
+						<div class="pagination-bx rounded-sm gray clearfix">
+							<ul class="pagination">
+								<li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+							</ul>
+						</div>
+						<!-- Pagination END -->
+					</div>
+					<!-- Left part END -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

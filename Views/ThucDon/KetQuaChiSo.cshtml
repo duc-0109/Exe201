@@ -1,0 +1,28 @@
+﻿@model SmartCookFinal.ModelDTO.ThucDonKetQuaViewModel
+
+<h2>Kết quả chỉ số của bạn</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>BMR (Tỷ lệ trao đổi chất cơ bản)</th>
+        <td>@Model.BMR kcal/ngày</td>
+    </tr>
+    <tr>
+        <th>TDEE (Lượng calo tiêu hao hàng ngày)</th>
+        <td>@Model.TDEE kcal/ngày</td>
+    </tr>
+    <tr>
+        <th>Tổng calo sau khi điều chỉnh theo mục tiêu</th>
+        <td>@Model.TongCaloDieuChinh kcal/ngày</td>
+    </tr>
+    <tr>
+        <th>Số bữa ăn mỗi ngày</th>
+        <td>@Model.SoBuaMotNgay</td>
+    </tr>
+    <tr>
+        <th>Lượng calo mỗi bữa ăn</th>
+        <td>@Model.CaloMoiBua kcal</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("NhapChiSo")" class="btn btn-primary">Quay lại</a>

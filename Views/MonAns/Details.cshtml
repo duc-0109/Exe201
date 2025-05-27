@@ -1,0 +1,38 @@
+﻿@model SmartCookFinal.Models.MonAn
+
+@{
+    ViewData["Title"] = "Chi tiết món ăn";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Chi tiết món ăn</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Tên món</dt>
+                <dd class="col-sm-8">@Model.TenMon</dd>
+
+                <dt class="col-sm-4">Mô tả</dt>
+                <dd class="col-sm-8">@Model.MoTa</dd>
+
+                <dt class="col-sm-4">Loại bữa ăn</dt>
+                <dd class="col-sm-8">@Model.LoaiBuaAn</dd>
+
+                <dt class="col-sm-4">Thời gian nấu (phút)</dt>
+                <dd class="col-sm-8">@Model.ThoiGianNau</dd>
+
+                <dt class="col-sm-4">Lượng calo</dt>
+                <dd class="col-sm-8">@Model.LuongCalo</dd>
+
+                <dt class="col-sm-4">Carbs</dt>
+                <dd class="col-sm-8">@Model.Carbs</dd>
+
+                <dt class="col-sm-4">Protein</dt>
+                <dd class="col-sm-8">@Model.Protein</dd>
+
+                <dt class="col-sm-4">Fat</dt>
+                <dd class="col-sm-8">@Model.Fat</dd>
+
+                <dt class="col-sm-4">Chi phí ước tính (VNĐ)</dt>

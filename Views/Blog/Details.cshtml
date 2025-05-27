@@ -1,0 +1,34 @@
+﻿@model SmartCookFinal.Models.Blog
+
+@{
+    ViewData["Title"] = "Blog Details";
+}
+
+<h2>@Model.Title</h2>
+
+<p><strong>Author:</strong> @Model.User?.TenNguoiDung</p>
+<p> @Model.CreatedAt.ToString("g")</p>
+<img src="@Model.UrlImage" alt="Image" class="blog-image" />
+<p style="padding-top:50px;">@Model.Content</p>
+
+<hr />
+
+<h4>Comments</h4>
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li><strong>@comment.User?.TenNguoiDung:</strong> @comment.CommentText</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No comments yet.</p>
+}
+
+<p>
+    @* <a asp-action="Edit" asp-route-id="@Model.BlogId" class="btn btn-primary">Edit</a> *@
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</p>
