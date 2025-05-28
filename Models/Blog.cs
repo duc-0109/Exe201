@@ -7,6 +7,8 @@
         public string Title { get; set; }
         public string? UrlImage { get; set; }
         public string Content { get; set; }
+        public string Detail {  get; set; }
+        public bool isChecked { get; set; }
         public DateTime CreatedAt { get; set; }
 
         // Foreign Key

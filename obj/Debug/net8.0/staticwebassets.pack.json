@@ -1,940 +1,944 @@
 {
   "Files": [
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SmartCookFinal.bundle.scp.css",
-      "PackagePath": "staticwebassets\\SmartCookFinal.bundle.scp.css"
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SmartCookFinal.bundle.scp.css",
+      "PackagePath": "staticwebassets\\SmartCookFinal.a8bw0wbl36.bundle.scp.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\assets.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\assets.css",
       "PackagePath": "staticwebassets\\assets\\css\\assets.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\color\\color-1.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\color\\color-1.css",
       "PackagePath": "staticwebassets\\assets\\css\\color\\color-1.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\accordion.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\accordion.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\accordion.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\alert.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\alert.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\alert.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\breadcrumb.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\breadcrumb.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\breadcrumb.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\button.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\button.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\button.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\divider.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\divider.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\divider.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\form.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\form.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\form.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\icon-box.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\icon-box.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\icon-box.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\layout.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\layout.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\layout.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\list.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\list.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\list.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\overlay.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\overlay.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\overlay.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\owl.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\owl.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\owl.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\pagination.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\pagination.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\pagination.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\pricingtable.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\pricingtable.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\pricingtable.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\separator.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\separator.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\separator.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\shortcodes.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\shortcodes.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\shortcodes.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\shortcodes\\widget.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\shortcodes\\widget.css",
       "PackagePath": "staticwebassets\\assets\\css\\shortcodes\\widget.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\style.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\style.css",
       "PackagePath": "staticwebassets\\assets\\css\\style.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\css\\typography.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\css\\typography.css",
       "PackagePath": "staticwebassets\\assets\\css\\typography.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\about\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\about\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\about\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\adv\\adv.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\adv\\adv.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\adv\\adv.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\background\\bg1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\background\\bg1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\background\\bg1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\background\\bg2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\background\\bg2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\background\\bg2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\banner\\banner1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\banner\\banner1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\banner\\banner1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\banner\\banner2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\banner\\banner2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\banner\\banner2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\banner\\banner3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\banner\\banner3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\banner\\banner3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\default\\thum1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\default\\thum1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\default\\thum1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\default\\thum2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\default\\thum2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\default\\thum2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\default\\thum3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\default\\thum3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\default\\thum3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\default\\thum4.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\default\\thum4.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\default\\thum4.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\grid\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\grid\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\grid\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\grid\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\grid\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\grid\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\grid\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\grid\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\grid\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\latest-blog\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\latest-blog\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\latest-blog\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\latest-blog\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\latest-blog\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\latest-blog\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\latest-blog\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\latest-blog\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\latest-blog\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\recent-blog\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\recent-blog\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\recent-blog\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\recent-blog\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\recent-blog\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\recent-blog\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\blog\\recent-blog\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\blog\\recent-blog\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\blog\\recent-blog\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic4.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic4.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic4.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic5.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic5.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic5.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic6.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic6.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic6.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic7.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic7.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic7.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic8.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic8.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic8.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\courses\\pic9.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\courses\\pic9.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\courses\\pic9.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\event\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\event\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\event\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\event\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\event\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\event\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\event\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\event\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\event\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\event\\pic4.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\event\\pic4.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\event\\pic4.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\exe-logo.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\exe-logo.png",
       "PackagePath": "staticwebassets\\assets\\images\\exe-logo.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\favicon.ico",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\favicon.ico",
       "PackagePath": "staticwebassets\\assets\\images\\favicon.ico"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\favicon.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\favicon.png",
       "PackagePath": "staticwebassets\\assets\\images\\favicon.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\flag\\Flag_of_Vietnam.svg.webp",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\flag\\Flag_of_Vietnam.svg.webp",
       "PackagePath": "staticwebassets\\assets\\images\\flag\\Flag_of_Vietnam.svg.webp"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\flag\\united-kingdom.svg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\flag\\united-kingdom.svg",
       "PackagePath": "staticwebassets\\assets\\images\\flag\\united-kingdom.svg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\flag\\united-states-of-america.svg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\flag\\united-states-of-america.svg",
       "PackagePath": "staticwebassets\\assets\\images\\flag\\united-states-of-america.svg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic4.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic4.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic4.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic5.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic5.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic5.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic6.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic6.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic6.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic7.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic7.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic7.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic8.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic8.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic8.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\gallery\\pic9.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\gallery\\pic9.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\gallery\\pic9.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\icon\\icon1.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\icon\\icon1.png",
       "PackagePath": "staticwebassets\\assets\\images\\icon\\icon1.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\icon\\icon2.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\icon\\icon2.png",
       "PackagePath": "staticwebassets\\assets\\images\\icon\\icon2.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\icon\\icon3.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\icon\\icon3.png",
       "PackagePath": "staticwebassets\\assets\\images\\icon\\icon3.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\icon\\icon4.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\icon\\icon4.png",
       "PackagePath": "staticwebassets\\assets\\images\\icon\\icon4.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\loading.gif",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\loading.gif",
       "PackagePath": "staticwebassets\\assets\\images\\loading.gif"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo-sc.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo-sc.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo-sc.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo-sc2.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo-sc2.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo-sc2.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo-sc3.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo-sc3.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo-sc3.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo-smartcook.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo-smartcook.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo-smartcook.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo-white-2.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo-white-2.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo-white-2.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo-white.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo-white.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo-white.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\logo.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\logo.png",
       "PackagePath": "staticwebassets\\assets\\images\\logo.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\our-services\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\our-services\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\our-services\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\our-services\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\our-services\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\our-services\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\our-services\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\our-services\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\our-services\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_10.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_10.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_10.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_11.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_11.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_11.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_12.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_12.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_12.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_4.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_4.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_4.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_5.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_5.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_5.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_6.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_6.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_6.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_7.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_7.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_7.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_8.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_8.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_8.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\portfolio\\image_9.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\portfolio\\image_9.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\portfolio\\image_9.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\profile\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\profile\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\profile\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\slider\\slide1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\slider\\slide1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\slider\\slide1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\slider\\slide2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\slider\\slide2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\slider\\slide2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\background.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\background.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\background.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\gordonRamsay.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\gordonRamsay.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\gordonRamsay.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\icon\\icon1.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\icon\\icon1.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\icon\\icon1.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\icon\\icon2.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\icon\\icon2.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\icon\\icon2.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\icon\\icon3.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\icon\\icon3.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\icon\\icon3.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\icon\\icon4.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\icon\\icon4.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\icon\\icon4.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\pic1.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\pic1.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\pic1.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\pic2.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\pic2.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\pic2.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\pic3.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\pic3.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\pic3.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\pic4.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\pic4.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\pic4.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\smartcook\\vnd.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\smartcook\\vnd.png",
       "PackagePath": "staticwebassets\\assets\\images\\smartcook\\vnd.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\testimonials\\pic1.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\testimonials\\pic1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\testimonials\\pic1.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\testimonials\\pic2.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\testimonials\\pic2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\testimonials\\pic2.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\images\\testimonials\\pic3.jpg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\images\\testimonials\\pic3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\testimonials\\pic3.jpg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\js\\contact.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\js\\contact.js",
       "PackagePath": "staticwebassets\\assets\\js\\contact.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\js\\functions.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\js\\functions.js",
       "PackagePath": "staticwebassets\\assets\\js\\functions.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\js\\jquery.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\js\\jquery.min.js",
       "PackagePath": "staticwebassets\\assets\\js\\jquery.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\js\\jquery.scroller.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\js\\jquery.scroller.js",
       "PackagePath": "staticwebassets\\assets\\js\\jquery.scroller.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\bootstrap-select\\bootstrap-select.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\bootstrap-select\\bootstrap-select.min.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\bootstrap-select\\bootstrap-select.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\bootstrap-select\\bootstrap-select.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\bootstrap-select\\bootstrap-select.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\bootstrap-select\\bootstrap-select.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\bootstrap-touchspin\\jquery.bootstrap-touchspin.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\bootstrap-touchspin\\jquery.bootstrap-touchspin.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\bootstrap-touchspin\\jquery.bootstrap-touchspin.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\bootstrap\\css\\bootstrap.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\bootstrap\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\bootstrap\\css\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\bootstrap\\js\\bootstrap.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\bootstrap\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\bootstrap\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\bootstrap\\js\\popper.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\bootstrap\\js\\popper.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\bootstrap\\js\\popper.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\counter\\counterup.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\counter\\counterup.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\counter\\counterup.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\counter\\waypoints-min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\counter\\waypoints-min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\counter\\waypoints-min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\css\\font-awesome.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\css\\font-awesome.min.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\css\\font-awesome.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.eot",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.eot",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.eot"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.svg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.svg",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.svg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.ttf",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.ttf",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.ttf"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.woff",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.woff",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.woff"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.woff2",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.woff2",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfont3e6e.woff2"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfontd41d.eot",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfontd41d.eot",
       "PackagePath": "staticwebassets\\assets\\vendors\\fontawesome\\fonts\\fontawesome-webfontd41d.eot"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\imagesloaded\\imagesloaded.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\imagesloaded\\imagesloaded.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\imagesloaded\\imagesloaded.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\magnific-popup\\magnific-popup.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\magnific-popup\\magnific-popup.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\magnific-popup\\magnific-popup.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\magnific-popup\\magnific-popup.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\magnific-popup\\magnific-popup.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\magnific-popup\\magnific-popup.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\masonry\\filter.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\masonry\\filter.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\masonry\\filter.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\masonry\\masonry.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\masonry\\masonry.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\masonry\\masonry.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\owl-carousel\\owl.carousel.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\owl-carousel\\owl.carousel.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\owl-carousel\\owl.carousel.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\owl-carousel\\owl.carousel.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\owl-carousel\\owl.carousel.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\owl-carousel\\owl.carousel.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\assets\\coloredbg.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\assets\\coloredbg.png",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\assets\\coloredbg.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile.png",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\assets\\gridtile.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile_3x3.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile_3x3.png",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\assets\\gridtile_3x3.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile_3x3_white.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile_3x3_white.png",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\assets\\gridtile_3x3_white.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile_white.png",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\assets\\gridtile_white.png",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\assets\\gridtile_white.png"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\assets\\loader.gif",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\assets\\loader.gif",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\assets\\loader.gif"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\css\\closedhand.html",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\css\\closedhand.html",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\css\\closedhand.html"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\css\\layers.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\css\\layers.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\css\\layers.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\css\\navigation.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\css\\navigation.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\css\\navigation.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\css\\openhand.html",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\css\\openhand.html",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\css\\openhand.html"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\css\\settings.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\css\\settings.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\css\\settings.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.eot",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.eot",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.eot"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.svg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.svg",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.svg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.ttf",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.ttf",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.ttf"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.woff",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.woff",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\fonts\\revicons\\revicons90c6.woff"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.actions.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.actions.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.actions.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.carousel.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.carousel.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.carousel.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.kenburn.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.kenburn.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.kenburn.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.layeranimation.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.layeranimation.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.layeranimation.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.migration.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.migration.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.migration.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.navigation.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.navigation.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.navigation.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.parallax.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.parallax.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.parallax.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.slideanims.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.slideanims.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.slideanims.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.video.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.video.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\extensions\\revolution.extension.video.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\jquery.themepunch.revolution.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\jquery.themepunch.revolution.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\jquery.themepunch.revolution.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\revolution\\js\\jquery.themepunch.tools.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\revolution\\js\\jquery.themepunch.tools.min.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\revolution\\js\\jquery.themepunch.tools.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\scroll\\scrollbar.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\scroll\\scrollbar.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\scroll\\scrollbar.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\switcher\\switcher.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\switcher\\switcher.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\switcher\\switcher.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\switcher\\switcher.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\switcher\\switcher.js",
       "PackagePath": "staticwebassets\\assets\\vendors\\switcher\\switcher.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.eot",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.eot",
       "PackagePath": "staticwebassets\\assets\\vendors\\themify\\fonts\\themify9f24.eot"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.svg",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.svg",
       "PackagePath": "staticwebassets\\assets\\vendors\\themify\\fonts\\themify9f24.svg"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.ttf",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.ttf",
       "PackagePath": "staticwebassets\\assets\\vendors\\themify\\fonts\\themify9f24.ttf"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.woff",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\themify\\fonts\\themify9f24.woff",
       "PackagePath": "staticwebassets\\assets\\vendors\\themify\\fonts\\themify9f24.woff"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\themify\\fonts\\themifyd41d.eot",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\themify\\fonts\\themifyd41d.eot",
       "PackagePath": "staticwebassets\\assets\\vendors\\themify\\fonts\\themifyd41d.eot"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\assets\\vendors\\themify\\themify-icons.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\assets\\vendors\\themify\\themify-icons.css",
       "PackagePath": "staticwebassets\\assets\\vendors\\themify\\themify-icons.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\css\\site.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\favicon.ico",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\js\\site.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "D:\\exe201\\SmartCookFinal\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SmartCookFinal.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SmartCookFinal.Microsoft.AspNetCore.StaticWebAssets.props",
