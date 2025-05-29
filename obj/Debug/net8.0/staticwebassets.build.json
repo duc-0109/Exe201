@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RYr9fXFlMYUZpY1XX4/F/MRRt3M0sH7sEI9BoiQ7kp0=",
+  "Hash": "JmXBCg/TmjLoeroFOmt+o1uSxo3/CSc1AeQFp9XkCHc=",
   "Source": "SmartCookFinal",
   "BasePath": "_content/SmartCookFinal",
   "Mode": "Default",
@@ -4950,6 +4950,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\uploads\\2851d31e-c625-47a3-861b-8e0e483f11df.jpg",
+      "SourceId": "SmartCookFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\",
+      "BasePath": "_content/SmartCookFinal",
+      "RelativePath": "uploads/2851d31e-c625-47a3-861b-8e0e483f11df#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rnukt873et",
+      "Integrity": "yZqeYT+sKXXSD8s5yiqPNsNNFQo1CA/jL0McXGjHeyA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2851d31e-c625-47a3-861b-8e0e483f11df.jpg"
     }
   ],
   "Endpoints": [
@@ -24220,6 +24241,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jo+I0SGkHMns7w/sbfqsD3cHzaxJWot3YVXbGgyw9Q8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/2851d31e-c625-47a3-861b-8e0e483f11df.jpg",
+      "AssetFile": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\uploads\\2851d31e-c625-47a3-861b-8e0e483f11df.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "99541"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZqeYT+sKXXSD8s5yiqPNsNNFQo1CA/jL0McXGjHeyA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 12:44:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZqeYT+sKXXSD8s5yiqPNsNNFQo1CA/jL0McXGjHeyA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/2851d31e-c625-47a3-861b-8e0e483f11df.rnukt873et.jpg",
+      "AssetFile": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\uploads\\2851d31e-c625-47a3-861b-8e0e483f11df.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "99541"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yZqeYT+sKXXSD8s5yiqPNsNNFQo1CA/jL0McXGjHeyA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 12:44:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rnukt873et"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/2851d31e-c625-47a3-861b-8e0e483f11df.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yZqeYT+sKXXSD8s5yiqPNsNNFQo1CA/jL0McXGjHeyA="
         }
       ]
     }

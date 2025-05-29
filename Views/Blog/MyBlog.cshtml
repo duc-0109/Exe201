@@ -1,5 +1,5 @@
 ﻿@using Azure.Core
-@model IEnumerable<SmartCookFinal.Models.Blog>
+@model List<SmartCookFinal.Models.Blog>
 
 
 
@@ -9,7 +9,8 @@
 	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');" ;">
 		<div class="container">
 			<div class="page-banner-entry">
-				<h1 class="text-white">Blog List</h1>
+				<h1 class="text-white">My Blog</h1>
+
 			</div>
 		</div>
 	</div>
@@ -17,29 +18,23 @@
 	<div class="breadcrumb-row">
 		<div class="container">
 			<ul class="list-inline">
-				<li><a href="#">Home</a></li>
-				<li>
-					<a asp-controller="Blog" asp-action="MyBlog">My Blog</a>
-				</li>
-
+				<li><a href="/">Home</a></li>
+				<li>My Blog</li>
 			</ul>
+
 		</div>
 	</div>
 	<!-- Breadcrumb row END -->
 	<!-- contact area -->
 	<div class="content-block">
 		<div class="widget">
-			<div class="search-bx style-1">
-				<form method="get" action="@Url.Action("Index", "Blog")" role="search">
-					<div class="input-group">
-						<input type="text" name="searchText" class="form-control" placeholder="Enter your keywords..." value="@ViewBag.SearchText" />
-						<span class="input-group-btn">
-							<button type="submit" class="fa fa-search text-primary"></button>
-						</span>
-					</div>
-				</form>
+			<div class="search-bx style-1 text-right">
+				<a class="btn btn-primary" href="@Url.Action("Create", "Blog")">
+					<i class="fa fa-plus"></i> New Blog
+				</a>
 			</div>
 		</div>
+
 
 		<div class="section-area section-sp1">
 			<div class="container">
@@ -70,13 +65,14 @@
 											@item.Title
 										</a>
 									</h5>
-									
+
 
 									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
 									<div class="post-extra">
-										<button type="button" class="btn btn-link" data-toggle="modal" data-target="#blogModal-@item.BlogId">
-											READ MORE
-										</button>
+										<a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-link">
+											Edit
+										</a>
+
 										<a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>Comments</a>
 									</div>
 								</div>
@@ -113,46 +109,13 @@
 
 
 
-					<!-- Pagination start -->
-					@if (ViewBag.TotalPages > 1)
-					{
-						<div class="pagination-bx rounded-sm gray clearfix">
-							<ul class="pagination">
-
-								@if (ViewBag.CurrentPage > 1)
-								{
-									<li class="previous">
-										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })">
-											<i class="ti-arrow-left"></i> Prev
-										</a>
-									</li>
-								}
-
-								@for (int i = 1; i <= ViewBag.TotalPages; i++)
-								{
-									<li class="@(i == ViewBag.CurrentPage ? "active" : "")">
-										<a href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
-									</li>
-								}
-
-								@if (ViewBag.CurrentPage < ViewBag.TotalPages)
-								{
-									<li class="next">
-										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })">
-											Next <i class="ti-arrow-right"></i>
-										</a>
-									</li>
-								}
-
-							</ul>
-						</div>
-					}
-
-					</div>
-					<!-- Left part END -->
+					
 
 				</div>
+				<!-- Left part END -->
+
 			</div>
 		</div>
 	</div>
+</div>
 </div>
