@@ -1,4 +1,6 @@
-﻿namespace SmartCookFinal.Models
+﻿using System.Data.Entity;
+
+namespace SmartCookFinal.Models
 {
 	public class NguoiDung
 	{
@@ -17,11 +19,14 @@
 		public string? CheDoAn { get; set; }
 		public string? DiUng { get; set; }
 		public string? KhongThich { get; set; }
+        public bool IsActive { get; set; } = false;
 
-		public ICollection<ThucDonNgay> ThucDonNgays { get; set; }
+        public ICollection<ThucDonNgay> ThucDonNgays { get; set; }
 
         public ICollection<Blog> Blogs { get; set; }
         public ICollection<BlogComment> Comments { get; set; }
+
+
     }
 
 }

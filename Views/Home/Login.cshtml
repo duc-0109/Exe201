@@ -7,21 +7,33 @@
 <form method="post" asp-action="Login">
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" />
+        <input type="email" class="form-control" id="email" name="email" required />
     </div>
     <div class="form-group mt-2">
         <label for="password">Mật khẩu</label>
-        <input type="password" class="form-control" id="password" name="password" />
+        <input type="password" class="form-control" id="password" name="password" required />
     </div>
     <button type="submit" class="btn btn-primary mt-3">Đăng nhập</button>
-</form>
 
+</form>
+<div class="mt-2">
+    <a asp-action="ForgotPassword">Quên mật khẩu?</a>
+</div>
+<!-- Thông báo lỗi -->
 @if (!ViewData.ModelState.IsValid)
 {
-    <div class="text-danger mt-2">
+    <div class="alert alert-danger mt-3">
         @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
         {
             <p>@error.ErrorMessage</p>
         }
+    </div>
+}
+
+<!-- Thông báo thành công -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["SuccessMessage"]
     </div>
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Visual Studio\\PRN222SE1816\\Exe201\\SmartCookFinal.csproj": {}
+    "D:\\ProjectExe201\\Exe201\\SmartCookFinal.csproj": {}
   },
   "projects": {
-    "D:\\Visual Studio\\PRN222SE1816\\Exe201\\SmartCookFinal.csproj": {
+    "D:\\ProjectExe201\\Exe201\\SmartCookFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\SmartCookFinal.csproj",
+        "projectUniqueName": "D:\\ProjectExe201\\Exe201\\SmartCookFinal.csproj",
         "projectName": "SmartCookFinal",
-        "projectPath": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\SmartCookFinal.csproj",
-        "packagesPath": "C:\\Users\\tugbt\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\obj\\",
+        "projectPath": "D:\\ProjectExe201\\Exe201\\SmartCookFinal.csproj",
+        "packagesPath": "C:\\Users\\pv\\.nuget\\packages\\",
+        "outputPath": "D:\\ProjectExe201\\Exe201\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\tugbt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,12 +44,20 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.12.1, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.6, )"
@@ -92,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

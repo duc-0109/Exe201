@@ -22,6 +22,58 @@ namespace SmartCookFinal.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EmailConfirmation", b =>
+                {
+                    b.Property<Guid>("ConfirmationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpirationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ConfirmationID");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("EmailConfirmations");
+                });
+
+            modelBuilder.Entity("PasswordResetToken", b =>
+                {
+                    b.Property<Guid>("TokenID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpirationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TokenID");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("PasswordResetTokens");
+                });
+
             modelBuilder.Entity("SmartCookFinal.Models.Blog", b =>
                 {
                     b.Property<int>("BlogId")
@@ -235,6 +287,9 @@ namespace SmartCookFinal.Migrations
                     b.Property<string>("GioiTinh")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("KhongThich")
                         .HasColumnType("nvarchar(max)");
 
@@ -365,6 +420,28 @@ namespace SmartCookFinal.Migrations
                     b.HasIndex("NguoiDungId");
 
                     b.ToTable("ThucDonNgays");
+                });
+
+            modelBuilder.Entity("EmailConfirmation", b =>
+                {
+                    b.HasOne("SmartCookFinal.Models.NguoiDung", "NguoiDung")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("PasswordResetToken", b =>
+                {
+                    b.HasOne("SmartCookFinal.Models.NguoiDung", "NguoiDung")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDung");
                 });
 
             modelBuilder.Entity("SmartCookFinal.Models.Blog", b =>

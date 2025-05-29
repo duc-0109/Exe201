@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Email Confirmation";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+        @if (ViewBag.Success == true)
+        {
+            <div class="alert alert-success" role="alert">
+                Email của bạn đã được xác nhận thành công. Bạn có thể <a asp-action="Login">đăng nhập</a> ngay bây giờ.
+            </div>
+        }
+        else if (ViewBag.Success == false)
+        {
+            <div class="alert alert-danger" role="alert">
+                Xác nhận email không thành công. Liên kết có thể đã hết hạn hoặc không hợp lệ.
+            </div>
+        }
+    </div>
+</div>
