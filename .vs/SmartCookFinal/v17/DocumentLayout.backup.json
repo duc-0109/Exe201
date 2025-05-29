@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -31,32 +27,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Details.cshtml",
-              "RelativeDocumentMoniker": "Views\\Blog\\Details.cshtml",
-              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Details.cshtml",
-              "RelativeToolTip": "Views\\Blog\\Details.cshtml",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAkwGsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T08:14:08.602Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Blog\\Index.cshtml",
               "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Index.cshtml",
               "RelativeToolTip": "Views\\Blog\\Index.cshtml",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAIwJEAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAIwI4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-29T08:04:51.461Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BlogController.cs",
               "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Controllers\\BlogController.cs",
               "RelativeDocumentMoniker": "Controllers\\BlogController.cs",

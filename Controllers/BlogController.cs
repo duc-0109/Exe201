@@ -16,11 +16,36 @@ namespace SmartCookFinal.Controllers
         }
 
         // GET: /Blog
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string searchText, int page = 1)
         {
-            var blogs = await _context.Blogs.Include(b => b.User).ToListAsync();
-            return View(blogs);
+            int pageSize = 4; // Số bài viết mỗi trang
+
+            IQueryable<Blog> blogs = _context.Blogs.Include(b => b.User);
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                blogs = blogs.Where(b => b.Title.Contains(searchText));
+            }
+
+            ViewBag.SearchText = searchText;
+
+            int totalItems = await blogs.CountAsync();
+            var pagedBlogs = await blogs
+                .OrderByDescending(b => b.CreatedAt)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            return View(pagedBlogs);
         }
+
+
+
+
 
         // GET: /Blog/Details/5
         public async Task<IActionResult> Details(int id)
@@ -33,8 +58,18 @@ namespace SmartCookFinal.Controllers
             if (blog == null)
                 return NotFound();
 
+            // Lấy 3 bài viết mới nhất (không tính bài hiện tại)
+            var recentPosts = await _context.Blogs
+                .Where(b => b.BlogId != id)
+                .OrderByDescending(b => b.CreatedAt)
+                .Take(3)
+                .ToListAsync();
+
+            ViewBag.RecentPosts = recentPosts;
+
             return View(blog);
         }
+
 
         // GET: /Blog/Create
         public IActionResult Create()
@@ -121,6 +156,8 @@ namespace SmartCookFinal.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
+       
     }
 
 }

@@ -542,3 +542,4 @@ D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\refint\SmartCookFinal.dll
 D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\SmartCookFinal.pdb
 D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\SmartCookFinal.genruntimeconfig.cache
 D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\ref\SmartCookFinal.dll
+D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

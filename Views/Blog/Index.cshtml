@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SmartCookFinal.Models.Blog>
+﻿@using Azure.Core
+@model IEnumerable<SmartCookFinal.Models.Blog>
 
 
 
@@ -26,9 +27,9 @@
 	<div class="content-block">
 		<div class="widget">
 			<div class="search-bx style-1">
-				<form role="search" method="post">
+				<form method="get" action="@Url.Action("Index", "Blog")" role="search">
 					<div class="input-group">
-						<input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
+						<input type="text" name="searchText" class="form-control" placeholder="Enter your keywords..." value="@ViewBag.SearchText" />
 						<span class="input-group-btn">
 							<button type="submit" class="fa fa-search text-primary"></button>
 						</span>
@@ -36,6 +37,7 @@
 				</form>
 			</div>
 		</div>
+
 		<div class="section-area section-sp1">
 			<div class="container">
 				<div class="row">
@@ -48,7 +50,10 @@
 									<a href="#">
 										@if (!string.IsNullOrEmpty(item.UrlImage))
 										{
-											<img src="@item.UrlImage" alt="Image" class="blog-image" />
+											<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId">
+												<img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
+											</a>
+
 										}
 									</a>
 								</div>
@@ -57,7 +62,13 @@
 										<li><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
 										<li><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
 									</ul>
-									<h5 class="post-title">@item.Title</h5>
+									<h5 class="post-title">
+										<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId" style="text-decoration: none; color: inherit;">
+											@item.Title
+										</a>
+									</h5>
+									>
+
 									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
 									<div class="post-extra">
 										<button type="button" class="btn btn-link" data-toggle="modal" data-target="#blogModal-@item.BlogId">
@@ -96,20 +107,44 @@
 						</div>
 					}
 
-						
 
-						
-						<!-- Pagination start -->
+
+
+					<!-- Pagination start -->
+					@if (ViewBag.TotalPages > 1)
+					{
 						<div class="pagination-bx rounded-sm gray clearfix">
 							<ul class="pagination">
-								<li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-								<li class="active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+
+								@if (ViewBag.CurrentPage > 1)
+								{
+									<li class="previous">
+										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })">
+											<i class="ti-arrow-left"></i> Prev
+										</a>
+									</li>
+								}
+
+								@for (int i = 1; i <= ViewBag.TotalPages; i++)
+								{
+									<li class="@(i == ViewBag.CurrentPage ? "active" : "")">
+										<a href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
+									</li>
+								}
+
+								@if (ViewBag.CurrentPage < ViewBag.TotalPages)
+								{
+									<li class="next">
+										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })">
+											Next <i class="ti-arrow-right"></i>
+										</a>
+									</li>
+								}
+
 							</ul>
 						</div>
-						<!-- Pagination END -->
+					}
+
 					</div>
 					<!-- Left part END -->
 
