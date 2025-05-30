@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "D:\\ProjectExe201\\Exe201\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\projectexe201\\exe201\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -61,6 +62,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\projectexe201\\exe201\\models\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:models\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\myblog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\myblog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> master
     }
   ],
   "DocumentGroupContainers": [
@@ -196,6 +213,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "NguoiDung.cs",
               "DocumentMoniker": "D:\\ProjectExe201\\Exe201\\Models\\NguoiDung.cs",
               "RelativeDocumentMoniker": "Models\\NguoiDung.cs",
@@ -256,10 +274,21 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-28T09:14:28.038Z",
+=======
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Blog\\Edit.cshtml",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Blog\\Edit.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACMAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T12:47:28.109Z",
+>>>>>>> master
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 14,
               "Title": "Blog.cs",
               "DocumentMoniker": "D:\\ProjectExe201\\Exe201\\Models\\Blog.cs",
@@ -267,8 +296,43 @@
               "ToolTip": "D:\\ProjectExe201\\Exe201\\Models\\Blog.cs",
               "RelativeToolTip": "Models\\Blog.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
+=======
+              "DocumentIndex": 1,
+              "Title": "MyBlog.cshtml",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\MyBlog.cshtml",
+              "RelativeDocumentMoniker": "Views\\Blog\\MyBlog.cshtml",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\MyBlog.cshtml",
+              "RelativeToolTip": "Views\\Blog\\MyBlog.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T12:45:21.624Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Blog\\Create.cshtml",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Create.cshtml",
+              "RelativeToolTip": "Views\\Blog\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T12:40:24.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BlogController.cs",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Controllers\\BlogController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BlogController.cs",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Controllers\\BlogController.cs",
+              "RelativeToolTip": "Controllers\\BlogController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAA9wKwAAAA2AAAAAAAAAA==",
+>>>>>>> master
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-28T09:11:54.026Z",
+              "WhenOpened": "2025-05-29T12:25:55.933Z",
               "EditorCaption": ""
             }
           ]

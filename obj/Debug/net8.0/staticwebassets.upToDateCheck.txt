@@ -71,13 +71,22 @@ wwwroot\assets\images\icon\icon2.png
 wwwroot\assets\images\icon\icon3.png
 wwwroot\assets\images\icon\icon4.png
 wwwroot\assets\images\loading.gif
+<<<<<<< HEAD
+=======
+wwwroot\assets\images\logo.png
+>>>>>>> master
 wwwroot\assets\images\logo-sc.png
 wwwroot\assets\images\logo-sc2.png
 wwwroot\assets\images\logo-sc3.png
 wwwroot\assets\images\logo-smartcook.png
+<<<<<<< HEAD
 wwwroot\assets\images\logo-white-2.png
 wwwroot\assets\images\logo-white.png
 wwwroot\assets\images\logo.png
+=======
+wwwroot\assets\images\logo-white.png
+wwwroot\assets\images\logo-white-2.png
+>>>>>>> master
 wwwroot\assets\images\our-services\pic1.jpg
 wwwroot\assets\images\our-services\pic2.jpg
 wwwroot\assets\images\our-services\pic3.jpg
@@ -114,12 +123,21 @@ wwwroot\assets\js\contact.js
 wwwroot\assets\js\functions.js
 wwwroot\assets\js\jquery.min.js
 wwwroot\assets\js\jquery.scroller.js
+<<<<<<< HEAD
 wwwroot\assets\vendors\bootstrap-select\bootstrap-select.min.css
 wwwroot\assets\vendors\bootstrap-select\bootstrap-select.min.js
 wwwroot\assets\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js
 wwwroot\assets\vendors\bootstrap\css\bootstrap.min.css
 wwwroot\assets\vendors\bootstrap\js\bootstrap.min.js
 wwwroot\assets\vendors\bootstrap\js\popper.min.js
+=======
+wwwroot\assets\vendors\bootstrap\css\bootstrap.min.css
+wwwroot\assets\vendors\bootstrap\js\bootstrap.min.js
+wwwroot\assets\vendors\bootstrap\js\popper.min.js
+wwwroot\assets\vendors\bootstrap-select\bootstrap-select.min.css
+wwwroot\assets\vendors\bootstrap-select\bootstrap-select.min.js
+wwwroot\assets\vendors\bootstrap-touchspin\jquery.bootstrap-touchspin.js
+>>>>>>> master
 wwwroot\assets\vendors\counter\counterup.min.js
 wwwroot\assets\vendors\counter\waypoints-min.js
 wwwroot\assets\vendors\fontawesome\css\font-awesome.min.css
@@ -174,6 +192,17 @@ wwwroot\assets\vendors\themify\themify-icons.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\js\site.js
+<<<<<<< HEAD
+=======
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+>>>>>>> master
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
@@ -198,6 +227,7 @@ wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+<<<<<<< HEAD
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
@@ -206,6 +236,8 @@ wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+=======
+>>>>>>> master
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
@@ -219,15 +251,29 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 wwwroot\lib\bootstrap\LICENSE
+<<<<<<< HEAD
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+=======
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\LICENSE.txt
+>>>>>>> master
 wwwroot\lib\jquery-validation\dist\additional-methods.js
 wwwroot\lib\jquery-validation\dist\additional-methods.min.js
 wwwroot\lib\jquery-validation\dist\jquery.validate.js
 wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 wwwroot\lib\jquery-validation\LICENSE.md
+<<<<<<< HEAD
 wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+=======
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\uploads\2851d31e-c625-47a3-861b-8e0e483f11df.jpg
+>>>>>>> master

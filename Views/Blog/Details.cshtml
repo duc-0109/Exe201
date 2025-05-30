@@ -1,34 +1,168 @@
 ﻿@model SmartCookFinal.Models.Blog
 
-@{
-    ViewData["Title"] = "Blog Details";
-}
 
-<h2>@Model.Title</h2>
 
-<p><strong>Author:</strong> @Model.User?.TenNguoiDung</p>
-<p> @Model.CreatedAt.ToString("g")</p>
-<img src="@Model.UrlImage" alt="Image" class="blog-image" />
-<p style="padding-top:50px;">@Model.Content</p>
+<div class="page-wraper">
+	
 
-<hr />
+	
+	<!-- header END ==== -->
+	<!-- Content -->
+	<div class="page-content bg-white">
+		<!-- inner page banner -->
+		<div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
+			<div class="container">
+				<div class="page-banner-entry">
+					<h1 class="text-white">Blog Details</h1>
+				</div>
+			</div>
+		</div>
 
-<h4>Comments</h4>
-@if (Model.Comments != null && Model.Comments.Any())
-{
-    <ul>
-        @foreach (var comment in Model.Comments)
-        {
-            <li><strong>@comment.User?.TenNguoiDung:</strong> @comment.CommentText</li>
-        }
-    </ul>
-}
-else
-{
-    <p>No comments yet.</p>
-}
+		<!-- Breadcrumb row -->
+		<div class="breadcrumb-row">
+			<div class="container">
+				<ul class="list-inline">
+					<li><a href="#">Home</a></li>
+					<li>Blog Details</li>
+				</ul>
+			</div>
+		</div>
 
-<p>
-    @* <a asp-action="Edit" asp-route-id="@Model.BlogId" class="btn btn-primary">Edit</a> *@
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-</p>
+		<!-- Breadcrumb row END -->
+		<div class="content-block">
+			<div class="section-area section-sp1">
+				<div class="container">
+					<div class="row">
+						<!-- Left part start -->
+						<div class="col-lg-8 col-xl-8">
+							<!-- blog start -->
+							<div class="recent-news blog-lg">
+								<div class="action-box blog-lg">
+									<img src="@Model.UrlImage" alt="">
+								</div>
+								<div class="info-bx">
+									
+									<ul class="media-post">
+										<li><a href="#"><i class="fa fa-calendar"></i>@Model.CreatedAt</a></li>
+										
+									</ul>
+									<h5 class="post-title">
+										<a href="#" style="text-decoration: none;">@Model.Title</a>
+									</h5>
+
+									<p>@Model.Content</p>
+									<p>@Model.Detail</p>
+									<div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
+									<div class="widget_tag_cloud">
+										
+									</div>
+									<div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
+									
+									<div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
+								</div>
+							</div>
+							<div class="clear" id="comment-list">
+								<div class="comments-area" id="comments">
+									<h2 class="comments-title">
+										@(Model.Comments?.Count() ?? 0) @((Model.Comments?.Count() ?? 0) == 1 ? "Comment" : "Comments")
+									</h2>
+
+									<div class="clearfix m-b20">
+										<!-- comment list END -->
+
+
+										<ol class="comment-list">
+											@foreach (var comment in Model.Comments)
+											{
+												<li class="comment">
+													<div class="comment-body">
+														<div class="comment-author vcard">
+															<img class="avatar photo" src=" ?? " https: //encrypted-tbn0.gstatic.com/images?q =tbn:ANd9GcSlRM2-AldpZgaraCXCnO5loktGi0wGiNPydQ&s"" alt="@comment.User.TenNguoiDung" />
+															<cite class="fn">@comment.User.TenNguoiDung</cite>
+															<span class="says">says:</span>
+														</div>
+														<div class="comment-meta">
+															<a href="#">@comment.CommentedAt.ToString("MMMM dd, yyyy 'at' hh:mm tt")</a>
+														</div>
+														<p>@comment.CommentText</p>
+														<div class="reply">
+															<a href="#" class="comment-reply-link">Reply</a>
+														</div>
+													</div>
+												</li>
+											}
+										</ol>
+
+										<!-- comment list END -->
+										
+									</div>
+								</div>
+							</div>
+							<!-- blog END -->
+						</div>
+						<!-- Left part END -->
+
+
+						<!-- Side bar start -->
+						<div class="col-lg-4 col-xl-4">
+							<aside class="side-bar sticky-top">
+								<div class="widget">
+									<h6 class="widget-title">Search</h6>
+									<div class="search-bx style-1">
+										<form role="search" method="post">
+											<div class="input-group">
+												<input name="text" class="form-control" placeholder="Enter your keywords..." type="text">
+												<span class="input-group-btn">
+													<button type="submit" class="fa fa-search text-primary"></button>
+												</span>
+											</div>
+										</form>
+									</div>
+								</div>
+
+
+								<div class="widget recent-posts-entry">
+									<h6 class="widget-title">Recent Posts</h6>
+									<div class="widget-post-bx">
+										@foreach (var post in (List<SmartCookFinal.Models.Blog>)ViewBag.RecentPosts)
+										{
+											<div class="widget-post clearfix">
+												<div class="ttr-post-media">
+													<a asp-controller="Blog" asp-action="Details" asp-route-id="@post.BlogId">
+														<img src="@post.UrlImage" width="200" height="143" alt="@post.Title" />
+													</a>
+												</div>
+												<div class="ttr-post-info">
+													<div class="ttr-post-header">
+														<h6 class="post-title">
+															<a asp-controller="Blog" asp-action="Details" asp-route-id="@post.BlogId" style="text-decoration:none; color:inherit;">
+																@post.Title
+															</a>
+														</h6>
+													</div>
+													<ul class="media-post">
+														<li>
+															<a href="#"><i class="fa fa-calendar"></i>@post.CreatedAt.ToString("MMM dd yyyy")</a>
+														</li>
+														
+													</ul>
+												</div>
+											</div>
+										}
+									</div>
+								</div>
+
+								
+								
+							</aside>
+						</div>
+						<!-- Side bar END -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Content END-->
+	
+	
+</div>

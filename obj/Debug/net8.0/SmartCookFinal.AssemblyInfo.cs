@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCookFinal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+705c775a8af1a9a9e7fcf62f7406d8b3ce5f9e44")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84897aa8e1014b63818c5712c7796f8cbba59721")]
+>>>>>>> master
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCookFinal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCookFinal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

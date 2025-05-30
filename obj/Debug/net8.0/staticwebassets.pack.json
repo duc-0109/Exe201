@@ -937,6 +937,10 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\wwwroot\\uploads\\2851d31e-c625-47a3-861b-8e0e483f11df.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2851d31e-c625-47a3-861b-8e0e483f11df.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.SmartCookFinal.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

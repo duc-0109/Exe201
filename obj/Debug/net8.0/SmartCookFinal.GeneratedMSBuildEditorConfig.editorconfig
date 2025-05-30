@@ -48,6 +48,7 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+<<<<<<< HEAD
 [D:/ProjectExe201/Exe201/Views/Home/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -57,6 +58,13 @@ build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3Jnb3RQYXNzd29yZC5j
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/ProjectExe201/Exe201/Views/Home/Index.cshtml]
+=======
+[D:/Visual Studio/PRN222SE1816/Exe201/Views/Blog/MyBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xNeUJsb2cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Visual Studio/PRN222SE1816/Exe201/Views/Home/Index.cshtml]
+>>>>>>> master
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 

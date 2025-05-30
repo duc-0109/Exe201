@@ -542,6 +542,7 @@ D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\refint\SmartCookFinal.dll
 D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\SmartCookFinal.pdb
 D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\SmartCookFinal.genruntimeconfig.cache
 D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\ref\SmartCookFinal.dll
+<<<<<<< HEAD
 D:\ProjectExe201\Exe201\bin\Debug\net8.0\appsettings.Development.json
 D:\ProjectExe201\Exe201\bin\Debug\net8.0\appsettings.json
 D:\ProjectExe201\Exe201\bin\Debug\net8.0\SmartCookFinal.staticwebassets.runtime.json
@@ -818,3 +819,6 @@ D:\ProjectExe201\Exe201\bin\Debug\net8.0\MimeKit.dll
 D:\ProjectExe201\Exe201\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 D:\ProjectExe201\Exe201\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 D:\ProjectExe201\Exe201\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+=======
+D:\Visual Studio\PRN222SE1816\Exe201\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+>>>>>>> master

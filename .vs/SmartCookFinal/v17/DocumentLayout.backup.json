@@ -1,5 +1,6 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "WorkspaceRootPath": "D:\\ProjectExe201\\Exe201\\",
   "Documents": [
     {
@@ -61,6 +62,25 @@
     {
       "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\projectexe201\\exe201\\models\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:models\\blog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+  "WorkspaceRootPath": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:controllers\\blogcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\myblog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\myblog.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|d:\\visual studio\\prn222se1816\\exe201\\views\\blog\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{264D494B-8B27-4C17-AD1E-AA1DEDAF811F}|SmartCookFinal.csproj|solutionrelative:views\\blog\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+>>>>>>> master
     }
   ],
   "DocumentGroupContainers": [
@@ -70,7 +90,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+<<<<<<< HEAD
           "SelectedChildIndex": 10,
+=======
+          "SelectedChildIndex": 4,
+>>>>>>> master
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,6 +102,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 2,
               "Title": "SmartCookFinal",
               "DocumentMoniker": "D:\\ProjectExe201\\Exe201\\SmartCookFinal.csproj",
@@ -100,10 +125,22 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-29T02:34:45.779Z",
+=======
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Blog\\Edit.cshtml",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Blog\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T12:47:28.109Z",
+>>>>>>> master
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 9,
               "Title": "20250525094358_Init.cs",
               "DocumentMoniker": "D:\\ProjectExe201\\Exe201\\Migrations\\20250525094358_Init.cs",
@@ -126,11 +163,23 @@
               "ViewState": "AgIAAAsAAAAAAAAAAAAcwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-29T01:26:49.72Z",
+=======
+              "DocumentIndex": 2,
+              "Title": "MyBlog.cshtml",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\MyBlog.cshtml",
+              "RelativeDocumentMoniker": "Views\\Blog\\MyBlog.cshtml",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\MyBlog.cshtml",
+              "RelativeToolTip": "Views\\Blog\\MyBlog.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwEoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T12:45:21.624Z",
+>>>>>>> master
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+<<<<<<< HEAD
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "D:\\ProjectExe201\\Exe201\\Views\\Home\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\ResetPassword.cshtml",
@@ -191,11 +240,22 @@
               "ViewState": "AgIAAAkAAAAAAAAAAAAAADUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-29T00:36:33.751Z",
+=======
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Blog\\Create.cshtml",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Views\\Blog\\Create.cshtml",
+              "RelativeToolTip": "Views\\Blog\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-29T12:40:24.232Z",
+>>>>>>> master
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "NguoiDung.cs",
               "DocumentMoniker": "D:\\ProjectExe201\\Exe201\\Models\\NguoiDung.cs",
               "RelativeDocumentMoniker": "Models\\NguoiDung.cs",
@@ -269,6 +329,16 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-28T09:11:54.026Z",
+=======
+              "Title": "BlogController.cs",
+              "DocumentMoniker": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Controllers\\BlogController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BlogController.cs",
+              "ToolTip": "D:\\Visual Studio\\PRN222SE1816\\Exe201\\Controllers\\BlogController.cs",
+              "RelativeToolTip": "Controllers\\BlogController.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAIwLIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T12:25:55.933Z",
+>>>>>>> master
               "EditorCaption": ""
             }
           ]
