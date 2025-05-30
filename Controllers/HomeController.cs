@@ -44,8 +44,10 @@ namespace SmartCookFinal.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
             return View();
         }
+
 
         [HttpPost]
         public IActionResult Login(string email, string password)
@@ -64,12 +66,20 @@ namespace SmartCookFinal.Controllers
                 return View();
             }
 
+            // Kiểm tra tài khoản đã xác thực chưa
+            if (!user.IsActive)
+            {
+                ModelState.AddModelError("", "Tài khoản của bạn chưa được xác thực. Vui lòng kiểm tra email để kích hoạt.");
+                return View();
+            }
+
             // Đăng nhập thành công
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserName", user.TenNguoiDung);
 
             return RedirectToAction("Index");
         }
+
 
 
         public IActionResult Logout()
@@ -106,6 +116,15 @@ namespace SmartCookFinal.Controllers
                 return View(model);
             }
 
+            // Kiểm tra định dạng mật khẩu
+            var passwordPattern = @"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(model.Password, passwordPattern))
+            {
+                ModelState.AddModelError("Password", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm cả chữ và số.");
+                return View(model);
+            }
+
+            // Kiểm tra email đã tồn tại chưa
             var existingUser = _context.NguoiDungs.FirstOrDefault(u => u.Email == model.Email);
             if (existingUser != null)
             {
@@ -113,16 +132,15 @@ namespace SmartCookFinal.Controllers
                 return View(model);
             }
 
-            // Mã hóa mật khẩu
+            // Mã hóa mật khẩu và lưu
             model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
-            model.IsActive = false; // Chưa kích hoạt
+            model.IsActive = false;
 
             _context.NguoiDungs.Add(model);
             _context.SaveChanges();
 
             // Tạo token xác thực
             var token = Guid.NewGuid().ToString();
-
             var emailConfirm = new EmailConfirmation
             {
                 Id = model.Id,
@@ -133,12 +151,13 @@ namespace SmartCookFinal.Controllers
             _context.EmailConfirmations.Add(emailConfirm);
             _context.SaveChanges();
 
-            // Gửi mail xác thực
+            // Gửi email xác thực
             SendVerificationEmail(model.Email, token);
 
             ViewBag.Message = "Đăng ký thành công! Vui lòng kiểm tra email để xác thực tài khoản.";
-            return View("Register");  // hoặc chuyển sang trang thông báo
+            return View("Register");
         }
+
 
         // Hàm gửi mail
         private void SendVerificationEmail(string email, string token)
@@ -256,7 +275,7 @@ namespace SmartCookFinal.Controllers
 
         // Action ResetPassword (chỉ ví dụ, bạn cần tạo thêm view và logic xử lý)
         [HttpGet]
-        [HttpGet]
+       
         public IActionResult ResetPassword(int userId, string token)
         {
             var resetToken = _context.PasswordResetTokens
@@ -268,7 +287,6 @@ namespace SmartCookFinal.Controllers
                 return View("Error");
             }
 
-            // Truyền userId và token vào View để form post về lại
             ViewBag.UserId = userId;
             ViewBag.Token = token;
 
@@ -276,9 +294,8 @@ namespace SmartCookFinal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ResetPassword(int userId, string token, string newPassword, string confirmPassword)
+        public IActionResult ResetPassword(int userId, string token, string newPassword, string confirmPassword)
         {
-            // Validate mật khẩu mới trùng nhau
             if (newPassword != confirmPassword)
             {
                 ModelState.AddModelError("", "Mật khẩu xác nhận không trùng khớp.");
@@ -287,7 +304,6 @@ namespace SmartCookFinal.Controllers
                 return View();
             }
 
-            // Validate mật khẩu có ít nhất 8 ký tự, gồm chữ và số
             if (!IsValidPassword(newPassword))
             {
                 ModelState.AddModelError("", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ và số.");
@@ -296,8 +312,8 @@ namespace SmartCookFinal.Controllers
                 return View();
             }
 
-            var resetToken = await _context.PasswordResetTokens
-                               .FirstOrDefaultAsync(t => t.Token == token && t.Id == userId);
+            var resetToken = _context.PasswordResetTokens
+                               .FirstOrDefault(t => t.Token == token && t.Id == userId);
 
             if (resetToken == null || resetToken.IsUsed || resetToken.ExpirationTime < DateTime.UtcNow)
             {
@@ -305,26 +321,22 @@ namespace SmartCookFinal.Controllers
                 return View("Error");
             }
 
-            var user = await _context.NguoiDungs.FindAsync(userId);
+            var user = _context.NguoiDungs.Find(userId);
             if (user == null)
             {
                 ViewBag.Error = "Người dùng không tồn tại.";
                 return View("Error");
             }
 
-            // Hash mật khẩu mới
             user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
-            _context.NguoiDungs.Update(user);
+            // EF6 không có Update, chỉ cần set entity và gọi SaveChanges
+            _context.SaveChanges();
 
-            // Đánh dấu token đã dùng
-            resetToken.IsUsed = true;
-            _context.PasswordResetTokens.Update(resetToken);
+            TempData["SuccessMessage"] = "Đổi mật khẩu thành công! Bạn có thể đăng nhập lại.";
+            return RedirectToAction("Login");
 
-            await _context.SaveChangesAsync();
-
-            ViewBag.Message = "Đổi mật khẩu thành công! Bạn có thể đăng nhập lại.";
-            return View("Login");
         }
+
 
         // Hàm kiểm tra mật khẩu hợp lệ (ít nhất 8 ký tự, gồm chữ và số)
         private bool IsValidPassword(string password)

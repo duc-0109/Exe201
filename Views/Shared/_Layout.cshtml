@@ -91,6 +91,7 @@
 									<option data-icon="flag flag-uk">English UK</option>
 								</select>
 							</li>
+
 							@{
 								var userName = Context.Session.GetString("UserName");
 							}
@@ -98,6 +99,11 @@
 							@if (!string.IsNullOrEmpty(userName))
 							{
 								<li class="list-inline-item">Xin chào, <strong>@userName</strong></li>
+								<li class="list-inline-item">
+									<a href="/User/Profile" class="btn btn-outline-primary btn-sm" style="margin-left: 8px;">
+										<i class="fa fa-user-circle"></i> <strong>Hồ sơ</strong>
+									</a>
+								</li>
 								<li class="list-inline-item"><a href="@Url.Action("Logout", "Home")">Đăng Xuất</a></li>
 							}
 							else
@@ -105,10 +111,9 @@
 								<li class="list-inline-item"><a href="@Url.Action("Login", "Home")">Đăng Nhập</a></li>
 								<li class="list-inline-item"><a href="@Url.Action("Register", "Home")">Đăng Ký</a></li>
 							}
-
 						</ul>
 					</div>
-				</div>
+
 			</div>
 		</div>
 
@@ -130,13 +135,7 @@
 					<!-- Author Nav ==== -->
 					<div class="secondary-menu">
 						<div class="secondary-inner">
-							<ul>
-								<li><a href="javascript:;" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="javascript:;" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="javascript:;" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
-								<!-- Search Button ==== -->
-								<li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
-							</ul>
+							
 						</div>
 					</div>
 					<!-- Search Box ==== -->
@@ -172,12 +171,7 @@
 							</li>
 
 						</ul>
-						<div class="nav-social-link">
-							<a href="javascript:;"><i class="fa fa-facebook"></i></a>
-							<a href="javascript:;"><i class="fa fa-google-plus"></i></a>
-							<a href="javascript:;"><i class="fa fa-linkedin"></i></a>
-						</div>
-					</div>
+						
 					<!-- Navigation Menu END ==== -->
 				</div>
 			</div>

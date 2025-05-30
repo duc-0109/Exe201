@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Đã xảy ra lỗi";
+    Layout = "_Layout"; // hoặc null nếu bạn không dùng layout
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f8f8f8;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+            .error-container h1 {
+                color: #e74c3c;
+            }
+
+            .error-container p {
+                font-size: 16px;
+                color: #333;
+            }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>😢 Đã xảy ra lỗi</h1>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <p>@ViewBag.Error</p>
+        }
+        else if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <p>@ViewBag.Message</p>
+        }
+        else
+        {
+            <p>Xin lỗi, đã có lỗi xảy ra trong quá trình xử lý. Vui lòng thử lại sau.</p>
+        }
+    </div>
+</body>
+</html>

@@ -37,3 +37,7 @@
         @TempData["SuccessMessage"]
     </div>
 }
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage as string))
+{
+    <p style="color: green;">@ViewBag.SuccessMessage</p>
+}
