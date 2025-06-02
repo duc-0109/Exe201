@@ -167,9 +167,9 @@ namespace SmartCookFinal.Controllers
         private void SendVerificationEmail(string email, string token)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("SmartCook", "sadboy4102003@gmail.com"));
+            message.From.Add(new MailboxAddress("An Thực", "sadboy4102003@gmail.com"));
             message.To.Add(MailboxAddress.Parse(email));
-            message.Subject = "Xác thực tài khoản SmartCook";
+            message.Subject = "Xác thực tài khoản An Thực";
 
             var link = Url.Action("ConfirmEmail", "Home", new { token = token }, Request.Scheme);
 
@@ -265,7 +265,7 @@ namespace SmartCookFinal.Controllers
             message.To.Add(email);
 
             message.From = new MailAddress(fromEmail);
-            message.Subject = "Khôi phục mật khẩu SmartCook";
+            message.Subject = "Khôi phục mật khẩu An Thực";
             message.Body = $"Bạn đã yêu cầu đặt lại mật khẩu. Vui lòng nhấp vào liên kết sau để thiết lập mật khẩu mới:\n\n{resetLink}\n\nNếu bạn không yêu cầu, hãy bỏ qua email này.";
             message.IsBodyHtml = false;
 
