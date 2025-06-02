@@ -139,7 +139,6 @@ namespace SmartCookFinal.Controllers
             // Mã hóa mật khẩu và lưu
             model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
             model.IsActive = false;
-
             _context.NguoiDungs.Add(model);
             _context.SaveChanges();
 
@@ -158,8 +157,11 @@ namespace SmartCookFinal.Controllers
             // Gửi email xác thực
             SendVerificationEmail(model.Email, token);
 
-            ViewBag.Message = "Đăng ký thành công! Vui lòng kiểm tra email để xác thực tài khoản.";
-            return View("Register");
+            // Chuyển hướng đến trang login với thông báo thành công
+            TempData["SuccessMessage"] = "Đăng ký thành công! Hãy xác thực email của bạn để tiếp tục đăng nhập.";
+            TempData["UserEmail"] = model.Email; // Có thể dùng để hiển thị email đã đăng ký
+
+            return RedirectToAction("Login", "Home"); // Thay "Account" bằng tên controller chứa action Login
         }
 
 

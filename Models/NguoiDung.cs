@@ -5,6 +5,14 @@ namespace SmartCookFinal.Models
 {
     public class NguoiDung
     {
+        public NguoiDung()
+        {
+            // Khởi tạo collections để tránh lỗi required
+            ThucDonNgays = new List<ThucDonNgay>();
+            Blogs = new List<Blog>();
+            Comments = new List<BlogComment>();
+        }
+
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Tên người dùng là bắt buộc")]
@@ -16,7 +24,6 @@ namespace SmartCookFinal.Models
         public string Email { get; set; }
 
         public string Password { get; set; }
-
         public string? GioiTinh { get; set; }
 
         [Range(1, 120, ErrorMessage = "Tuổi phải từ 1 đến 120")]
@@ -37,6 +44,7 @@ namespace SmartCookFinal.Models
         public string? KhongThich { get; set; }
         public bool IsActive { get; set; } = false;
 
+        // Navigation properties - giữ nullable nhưng đã khởi tạo trong constructor
         public ICollection<ThucDonNgay>? ThucDonNgays { get; set; }
         public ICollection<Blog>? Blogs { get; set; }
         public ICollection<BlogComment>? Comments { get; set; }

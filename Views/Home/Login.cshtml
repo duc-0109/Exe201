@@ -2,42 +2,174 @@
     ViewData["Title"] = "Đăng nhập";
 }
 
-<h2>Đăng nhập</h2>
+<style>
+    .alert-success-custom {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
 
-<form method="post" asp-action="Login">
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" required />
-    </div>
-    <div class="form-group mt-2">
-        <label for="password">Mật khẩu</label>
-        <input type="password" class="form-control" id="password" name="password" required />
-    </div>
-    <button type="submit" class="btn btn-primary mt-3">Đăng nhập</button>
-
-</form>
-<div class="mt-2">
-    <a asp-action="ForgotPassword">Quên mật khẩu?</a>
-</div>
-<!-- Thông báo lỗi -->
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger mt-3">
-        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-        {
-            <p>@error.ErrorMessage</p>
+        .alert-success-custom .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #155724;
+            opacity: 0.7;
         }
-    </div>
-}
 
-<!-- Thông báo thành công -->
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success mt-3">
-        @TempData["SuccessMessage"]
+            .alert-success-custom .close-btn:hover {
+                opacity: 1;
+            }
+
+    .success-icon {
+        color: #28a745;
+        margin-right: 8px;
+        font-size: 18px;
+    }
+
+    .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Đăng nhập</h2>
+
+            <!-- Thông báo thành công từ đăng ký -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert-success-custom" id="successAlert">
+                    <button type="button" class="close-btn" onclick="closeAlert()" title="Đóng">&times;</button>
+                    <div>
+                        <span class="success-icon">✓</span>
+                        <strong>@TempData["SuccessMessage"]</strong>
+                    </div>
+                    @if (TempData["UserEmail"] != null)
+                    {
+                        <div class="mt-2">
+                            <small class="text-muted">
+                                <i class="fas fa-envelope"></i> Email đã đăng ký: <strong>@TempData["UserEmail"]</strong>
+                            </small>
+                        </div>
+                    }
+                    <div class="mt-2">
+                        <small class="text-muted">
+                            Kiểm tra hộp thư đến (và thư mục spam) để xác thực tài khoản.
+                        </small>
+                    </div>
+                </div>
+            }
+
+            <!-- Thông báo thành công khác (nếu có) -->
+            @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage as string))
+            {
+                <div class="alert alert-success mt-3">
+                    <span class="success-icon">✓</span>
+                    @ViewBag.SuccessMessage
+                </div>
+            }
+
+            <!-- Thông báo lỗi -->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger mt-3">
+                    <strong>⚠ Có lỗi xảy ra:</strong>
+                    <ul class="mb-0 mt-2">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <!-- Form đăng nhập -->
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" asp-action="Login">
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Nhập email của bạn" required />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Nhập mật khẩu" required />
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Đăng nhập</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Liên kết phụ -->
+            <div class="text-center mt-4">
+                <div class="mb-2">
+                    <a asp-action="ForgotPassword" class="text-decoration-none">
+                        Quên mật khẩu?
+                    </a>
+                </div>
+                <div>
+                    <span class="text-muted">Chưa có tài khoản? </span>
+                    <a asp-action="Register" class="text-decoration-none">
+                        Đăng ký ngay
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-}
-@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage as string))
-{
-    <p style="color: green;">@ViewBag.SuccessMessage</p>
-}
+</div>
+
+<script>
+    // Hàm đóng thông báo
+    function closeAlert() {
+        const alert = document.getElementById('successAlert');
+        if (alert) {
+            alert.classList.add('fade-out');
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    // Tự động ẩn thông báo thành công sau 12 giây
+    setTimeout(function() {
+        const alert = document.getElementById('successAlert');
+        if (alert) {
+            alert.classList.add('fade-out');
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 500);
+        }
+    }, 12000);
+
+    // Animation khi tải trang
+    document.addEventListener('DOMContentLoaded', function() {
+        const successAlert = document.getElementById('successAlert');
+        if (successAlert) {
+            successAlert.style.opacity = '0';
+            successAlert.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                successAlert.style.transition = 'all 0.5s ease-out';
+                successAlert.style.opacity = '1';
+                successAlert.style.transform = 'translateY(0)';
+            }, 100);
+        }
+    });
+</script>
