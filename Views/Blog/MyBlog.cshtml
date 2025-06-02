@@ -69,11 +69,13 @@
 
 									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
 									<div class="post-extra">
-										<a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-link">
+										<a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-link"
+										   style="text-decoration: none; color: black; font-style: italic; font-weight: bold;">
 											Edit
 										</a>
 
-										<a href="#" class="comments-bx"><i class="fa fa-comments-o"></i>Comments</a>
+
+
 									</div>
 								</div>
 							</div>
@@ -109,7 +111,7 @@
 
 
 
-					
+
 
 				</div>
 				<!-- Left part END -->

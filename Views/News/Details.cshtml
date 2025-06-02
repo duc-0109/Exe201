@@ -13,7 +13,7 @@
 		<div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
 			<div class="container">
 				<div class="page-banner-entry">
-					<h1 class="text-white">Blog Details</h1>
+					<h1 class="text-white">News Details</h1>
 				</div>
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 			<div class="container">
 				<ul class="list-inline">
 					<li><a href="#">Home</a></li>
-					<li>Blog Details</li>
+					<li>News Details</li>
 				</ul>
 			</div>
 		</div>
@@ -60,63 +60,7 @@
 									<div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
 								</div>
 							</div>
-							<div class="clear" id="comment-list">
-								<div class="comments-area" id="comments">
-									<h2 class="comments-title">
-										@(Model.Comments?.Count() ?? 0) @((Model.Comments?.Count() ?? 0) == 1 ? "Comment" : "Comments")
-									</h2>
 
-									<div class="clearfix m-b20">
-										<!-- comment list END -->
-										@{
-											int? currentUserId = Context.Session.GetInt32("UserId");
-										}
-										<ol class="comment-list">
-											@foreach (var comment in Model.Comments)
-											{
-												<li class="comment">
-													<div class="comment-body">
-														<div class="comment-author vcard">
-															<img class="avatar photo" src="https://via.placeholder.com/50" alt="@comment.User.TenNguoiDung" />
-															<cite class="fn">@comment.User.TenNguoiDung</cite>
-															<span class="says">says:</span>
-														</div>
-														<div class="comment-meta">
-															<a href="#">@comment.CommentedAt.ToString("MMMM dd, yyyy 'at' hh:mm tt")</a>
-														</div>
-														<p>@comment.CommentText</p>
-														@if (comment.UserId == currentUserId)
-														{
-															<div class="reply">
-																<!-- edit/delete comment here -->
-															</div>
-														}
-													</div>
-												</li>
-											}
-										</ol>
-
-
-										<!-- comment list END -->
-
-									</div>
-								</div>
-
-								<!-- comment form -->
-								<h3 class="comments-title">Leave a Comment</h3>
-								<form asp-controller="Blog" asp-action="AddComment" method="post">
-									<input type="hidden" name="BlogId" value="@Model.BlogId" />
-									<div class="form-group">
-										<label for="CommentText"></label>
-										<textarea name="CommentText" class="form-control" rows="4" required></textarea>
-									</div>
-									<input type="submit" class="btn btn-primary" value="Post" />
-								</form>
-
-								<!-- comment form -->
-
-
-							</div>
 							<!-- blog END -->
 						</div>
 						<!-- Left part END -->
@@ -139,20 +83,20 @@
 
 
 								<div class="widget recent-posts-entry">
-									<h6 class="widget-title">Recent Posts</h6>
+									<h6 class="widget-title">Recent News</h6>
 									<div class="widget-post-bx">
 										@foreach (var post in (List<SmartCookFinal.Models.Blog>)ViewBag.RecentPosts)
 										{
 											<div class="widget-post clearfix">
 												<div class="ttr-post-media">
-													<a asp-controller="Blog" asp-action="Details" asp-route-id="@post.BlogId">
+													<a asp-controller="News" asp-action="Details" asp-route-id="@post.BlogId">
 														<img src="@post.UrlImage" width="200" height="143" alt="@post.Title" />
 													</a>
 												</div>
 												<div class="ttr-post-info">
 													<div class="ttr-post-header">
 														<h6 class="post-title">
-															<a asp-controller="Blog" asp-action="Details" asp-route-id="@post.BlogId" style="text-decoration:none; color:inherit;">
+															<a asp-controller="News" asp-action="Details" asp-route-id="@post.BlogId" style="text-decoration:none; color:inherit;">
 																@post.Title
 															</a>
 														</h6>

@@ -19,6 +19,11 @@ namespace SmartCookFinal.Controllers
 
         public async Task<IActionResult> Index(string searchText, int page = 1)
         {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home"); // Redirect nếu chưa đăng nhập
+            }
             int pageSize = 4; // Số bài viết mỗi trang
 
             IQueryable<Blog> blogs = _context.Blogs.Include(b => b.User);
@@ -140,43 +145,46 @@ namespace SmartCookFinal.Controllers
             var existingBlog = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(b => b.BlogId == id);
             if (existingBlog == null) return NotFound();
 
-                try
+            try
+            {
+                existingBlog.Title = blog.Title;
+                existingBlog.Content = blog.Content;
+                existingBlog.Detail = blog.Detail;
+                // Upload ảnh nếu có file mới
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    // Upload ảnh nếu có file mới
-                    if (imageFile != null && imageFile.Length > 0)
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                    Directory.CreateDirectory(uploadsFolder); // tạo thư mục nếu chưa có
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-                        Directory.CreateDirectory(uploadsFolder); // tạo thư mục nếu chưa có
-
-                        var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
-                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await imageFile.CopyToAsync(stream);
-                        }
-
-                        blog.UrlImage = "/uploads/" + uniqueFileName;
-                    }
-                    else
-                    {
-                        blog.UrlImage = existingBlog.UrlImage; // giữ ảnh cũ nếu không upload mới
+                        await imageFile.CopyToAsync(stream);
                     }
 
-                    // Giữ lại CreatedAt, isChecked, UserId từ bản gốc
-                    blog.CreatedAt = existingBlog.CreatedAt;
-                    blog.isChecked = existingBlog.isChecked;
-                    blog.UserId = existingBlog.UserId;
-
-                    _context.Update(blog);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("MyBlog");
+                    blog.UrlImage = "/uploads/" + uniqueFileName;
                 }
-                catch
+                else
                 {
-                    return View(blog);
+                    blog.UrlImage = existingBlog.UrlImage; // giữ ảnh cũ nếu không upload mới
                 }
-            
+
+                // Giữ lại CreatedAt, isChecked, UserId từ bản gốc
+                blog.CreatedAt = existingBlog.CreatedAt;
+                blog.isChecked = existingBlog.isChecked;
+                blog.UserId = existingBlog.UserId;
+
+                _context.Update(blog);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("MyBlog");
+            }
+            catch
+            {
+                return View(blog);
+            }
+
 
             //return View(blog);
         }
@@ -217,7 +225,7 @@ namespace SmartCookFinal.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
+                return RedirectToAction("Login", "Home"); // Redirect nếu chưa đăng nhập
             }
 
             var userBlogs = await _context.Blogs
@@ -227,6 +235,53 @@ namespace SmartCookFinal.Controllers
                 .ToListAsync();
 
             return View("MyBlog", userBlogs); // Truyền model đến view MyBlog.cshtml
+        }
+
+
+        //Comment
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int BlogId, string CommentText)
+        {
+            if (string.IsNullOrWhiteSpace(CommentText)) return RedirectToAction("Details", new { id = BlogId });
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
+            }
+
+            var comment = new BlogComment
+            {
+                BlogId = BlogId,
+                CommentText = CommentText,
+                CommentedAt = DateTime.Now,
+                UserId = (int)userId
+            };
+
+            _context.BlogComments.Add(comment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", new { id = BlogId });
+        }
+
+
+        //Edit comment
+        [HttpPost]
+        public async Task<IActionResult> EditComment(int BlogId, int CommentId, string CommentText)
+        {
+            if (string.IsNullOrWhiteSpace(CommentText)) return RedirectToAction("Details", new { id = BlogId });
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null) return RedirectToAction("Login", "Account");
+
+            var comment = await _context.BlogComments.FindAsync(CommentId);
+            if (comment == null || comment.UserId != userId) return Unauthorized();
+
+            comment.CommentText = CommentText;
+            comment.CommentedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Details", new { id = BlogId });
         }
 
     }
