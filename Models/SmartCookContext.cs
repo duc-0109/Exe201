@@ -19,6 +19,7 @@ namespace SmartCookFinal.Models
         public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
         public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
 
         public SmartCookContext(DbContextOptions<SmartCookContext> options) : base(options) { }
 

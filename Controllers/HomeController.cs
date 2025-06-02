@@ -76,10 +76,14 @@ namespace SmartCookFinal.Controllers
             // Đăng nhập thành công
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserName", user.TenNguoiDung);
+            HttpContext.Session.SetString("Email", user.Email);
 
             return RedirectToAction("Index");
         }
-
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
 
         public IActionResult Logout()
@@ -275,23 +279,28 @@ namespace SmartCookFinal.Controllers
 
         // Action ResetPassword (chỉ ví dụ, bạn cần tạo thêm view và logic xử lý)
         [HttpGet]
-       
+
         public IActionResult ResetPassword(int userId, string token)
         {
-            var resetToken = _context.PasswordResetTokens
-                .FirstOrDefault(t => t.Id == userId && t.Token == token);
-
-            if (resetToken == null || resetToken.IsUsed || resetToken.ExpirationTime < DateTime.UtcNow)
+            if (userId <= 0 || string.IsNullOrEmpty(token))
             {
-                ViewBag.Error = "Link đặt lại mật khẩu không hợp lệ hoặc đã hết hạn.";
-                return View("Error");
+                TempData["Error"] = "Link xác thực không hợp lệ hoặc đã hết hạn.";
+                return RedirectToAction("ForgotPassword");
             }
 
-            ViewBag.UserId = userId;
-            ViewBag.Token = token;
+            var resetToken = _context.PasswordResetTokens
+                .FirstOrDefault(p => p.Id == userId && p.Token == token && p.IsUsed == false);
 
-            return View();
+            if (resetToken == null || resetToken.ExpirationTime < DateTime.Now)
+            {
+                TempData["Error"] = "Link xác thực không hợp lệ hoặc đã hết hạn.";
+                return RedirectToAction("ForgotPassword");
+            }
+
+            // Nếu token hợp lệ, hiển thị form reset mật khẩu
+            return View(resetToken);
         }
+
 
         [HttpPost]
         public IActionResult ResetPassword(int userId, string token, string newPassword, string confirmPassword)
