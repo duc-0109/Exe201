@@ -1,29 +1,67 @@
 ﻿@model SmartCookFinal.Models.Contact
 @{
     ViewBag.Title = "Liên hệ";
+    bool isAuthenticated = Context.Session.GetInt32("UserId") != null;
+    string userName = Context.Session.GetString("UserName") ?? "Người dùng";
 }
-
 <div class="container mt-5 mb-5" style="max-width: 600px;">
     <h2 class="mb-4 text-primary">Liên hệ với chúng tôi</h2>
+
+    @if (isAuthenticated)
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i class="fas fa-user-check me-2"></i>
+            <strong>Xin chào @userName!</strong> Thông tin của bạn đã được điền sẵn.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
 
     @if (ViewBag.Message != null)
     {
         <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
             @ViewBag.Message
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            @ViewBag.Error
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
     <form asp-action="SendContact" method="post" novalidate>
         <div class="mb-3">
-            <label asp-for="Name" class="form-label">Họ và tên</label>
-            <input asp-for="Name" class="form-control" placeholder="Nhập họ và tên" />
+            <label asp-for="Name" class="form-label">
+                Họ và tên
+                @if (isAuthenticated)
+                {
+                    <small class="text-muted">(từ tài khoản của bạn)</small>
+                }
+            </label>
+            <input asp-for="Name"
+                   class="form-control @(isAuthenticated ? "bg-light" : "")"
+                   placeholder="Nhập họ và tên"
+                   readonly="@isAuthenticated" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
         <div class="mb-3">
-            <label asp-for="Email" class="form-label">Email</label>
-            <input asp-for="Email" class="form-control" placeholder="example@gmail.com" />
+            <label asp-for="Email" class="form-label">
+                Email
+                @if (isAuthenticated)
+                {
+                    <small class="text-muted">(từ tài khoản của bạn)</small>
+                }
+            </label>
+            <input asp-for="Email"
+                   class="form-control @(isAuthenticated ? "bg-light" : "")"
+                   placeholder="example@gmail.com"
+                   readonly="@isAuthenticated" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
@@ -34,6 +72,8 @@
                 <option value="Hỗ trợ kỹ thuật">Hỗ trợ kỹ thuật</option>
                 <option value="Phản hồi sản phẩm">Phản hồi sản phẩm</option>
                 <option value="Hợp tác kinh doanh">Hợp tác kinh doanh</option>
+                <option value="Góp ý cải thiện">Góp ý cải thiện</option>
+                <option value="Báo lỗi website">Báo lỗi website</option>
                 <option value="Khác">Khác</option>
             </select>
             <span asp-validation-for="Subject" class="text-danger"></span>
@@ -41,14 +81,47 @@
 
         <div class="mb-4">
             <label asp-for="Message" class="form-label">Nội dung</label>
-            <textarea asp-for="Message" class="form-control" rows="6" placeholder="Viết nội dung liên hệ của bạn tại đây..."></textarea>
+            <textarea asp-for="Message"
+                      class="form-control"
+                      rows="6"
+                      placeholder="Viết nội dung liên hệ của bạn tại đây..."></textarea>
             <span asp-validation-for="Message" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary w-100">Gửi yêu cầu</button>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-paper-plane me-2"></i>
+                Gửi yêu cầu
+            </button>
+        </div>
+
+        @if (!isAuthenticated)
+        {
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    <i class="fas fa-info-circle me-1"></i>
+                    <a href="/Account/Login" class="text-decoration-none">
+                        Đăng nhập
+                    </a>
+                    để tự động điền thông tin cá nhân
+                </small>
+            </div>
+        }
     </form>
 </div>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        // Tự động focus vào trường Subject nếu user đã đăng nhập
+        @if (isAuthenticated)
+        {
+                <text>
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelector('select[name="Subject"]').focus();
+                });
+                </text>
+        }
+    </script>
 }
