@@ -5,7 +5,12 @@
     string userName = Context.Session.GetString("UserName") ?? "";
     string userEmail = Context.Session.GetString("UserEmail") ?? "";
 
-    // Ưu tiên thông tin từ session nếu user đã đăng nhập
+    if (ViewBag.IsLoggedIn == true)
+    {
+        userName = ViewBag.LoggedInUserName ?? userName;
+        userEmail = ViewBag.LoggedInUserEmail ?? userEmail;
+    }
+
     string displayName = isAuthenticated ? userName : (Model?.Name ?? "");
     string displayEmail = isAuthenticated ? userEmail : (Model?.Email ?? "");
 }
@@ -16,8 +21,23 @@
     @if (isAuthenticated)
     {
         <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <i class="fas fa-user-check me-2"></i>
-            <strong>Xin chào @userName!</strong> Thông tin của bạn đã được điền sẵn.
+            Thông tin cá nhân của bạn đã được tự động điền.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
@@ -25,7 +45,6 @@
     @if (ViewBag.Message != null)
     {
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle me-2"></i>
             @ViewBag.Message
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -34,21 +53,16 @@
     @if (ViewBag.Error != null)
     {
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fas fa-exclamation-triangle me-2"></i>
             @ViewBag.Error
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     }
 
     <form asp-controller="Contact" asp-action="SendContact" method="post">
+        @Html.AntiForgeryToken()
+
         <div class="mb-3">
-            <label asp-for="Name" class="form-label">
-                Họ và tên
-                @if (isAuthenticated)
-                {
-                    <small class="text-muted">(từ tài khoản của bạn)</small>
-                }
-            </label>
+            <label asp-for="Name" class="form-label">Họ và tên</label>
             <input asp-for="Name"
                    value="@displayName"
                    class="form-control @(isAuthenticated ? "bg-light" : "")"
@@ -58,14 +72,7 @@
         </div>
 
         <div class="mb-3">
-            <label asp-for="Email" class="form-label">
-
-                Email
-                @if (isAuthenticated)
-                {
-                    <small class="text-muted">(từ tài khoản của bạn)</small>
-                }
-            </label>
+            <label asp-for="Email" class="form-label">Email</label>
             <input asp-for="Email"
                    value="@displayEmail"
                    class="form-control @(isAuthenticated ? "bg-light" : "")"
@@ -98,16 +105,14 @@
             <span asp-validation-for="Message" class="text-danger"></span>
         </div>
 
-        <!-- Hidden fields để đảm bảo thông tin user được gửi đi -->
         @if (isAuthenticated)
         {
-            <input type="hidden" name="Name" value="@userName" />
-            <input type="hidden" name="Email" value="@userEmail" />
+            <input type="hidden" name="Name" value="@displayName" />
+            <input type="hidden" name="Email" value="@displayEmail" />
         }
 
         <div class="d-grid">
             <button type="submit" class="btn btn-primary btn-lg">
-                <i class="fas fa-paper-plane me-2"></i>
                 Gửi yêu cầu
             </button>
         </div>
@@ -116,10 +121,7 @@
         {
             <div class="text-center mt-3">
                 <small class="text-muted">
-                    <i class="fas fa-info-circle me-1"></i>
-                    <a href="/Home/Login" class="text-decoration-none">
-                        Đăng nhập
-                    </a>
+                    <a href="/Home/Login" class="text-decoration-none">Đăng nhập</a>
                     để tự động điền thông tin cá nhân
                 </small>
             </div>
@@ -131,22 +133,13 @@
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script>
-        // Tự động focus vào trường Subject nếu user đã đăng nhập
-        @if (isAuthenticated)
-        {
-                <text>
-                document.addEventListener('DOMContentLoaded', function() {
-                    document.querySelector('select[name="Subject"]').focus();
-                });
-                </text>
-        }
-        else
-        {
-                <text>
-                document.addEventListener('DOMContentLoaded', function() {
-                    document.querySelector('input[name="Name"]').focus();
-                });
-                </text>
-        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const focusElement = document.querySelector(
+                '@(isAuthenticated ? "select[name='Subject']" : "input[name='Name']")'
+            );
+            if (focusElement) {
+                focusElement.focus();
+            }
+        });
     </script>
 }

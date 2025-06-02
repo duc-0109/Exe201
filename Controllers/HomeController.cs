@@ -48,7 +48,6 @@ namespace SmartCookFinal.Controllers
             return View();
         }
 
-
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
@@ -73,13 +72,23 @@ namespace SmartCookFinal.Controllers
                 return View();
             }
 
-            // Đăng nhập thành công
+            // ✅ Đăng nhập thành công - lưu session
             HttpContext.Session.SetInt32("UserId", user.Id);
-            HttpContext.Session.SetString("UserName", user.TenNguoiDung);
-            HttpContext.Session.SetString("Email", user.Email);
+            HttpContext.Session.SetString("UserName", user.TenNguoiDung ?? "User");
+            HttpContext.Session.SetString("UserEmail", user.Email ?? "");
 
-            return RedirectToAction("Index");
+            // ✅ Debug (nếu cần)
+            Console.WriteLine($"Login - User: Id={user.Id}, Name={user.TenNguoiDung}, Email={user.Email}");
+            Console.WriteLine($"Session - UserId: {HttpContext.Session.GetInt32("UserId")}");
+            Console.WriteLine($"Session - UserName: {HttpContext.Session.GetString("UserName")}");
+            Console.WriteLine($"Session - UserEmail: {HttpContext.Session.GetString("UserEmail")}");
+
+            // ✅ Thêm TempData thông báo thành công
+            TempData["LoginSuccess"] = $"Chào mừng {user.TenNguoiDung}!";
+
+            return RedirectToAction("Index", "Home");
         }
+
         public IActionResult Contact()
         {
             return View();
@@ -240,11 +249,12 @@ namespace SmartCookFinal.Controllers
                 _context.PasswordResetTokens.Add(resetToken);
                 await _context.SaveChangesAsync();
 
+                
                 var resetLink = Url.Action("ResetPassword", "Home", new { userId = user.Id, token = token }, Request.Scheme);
                 await SendResetEmailAsync(user.Email, resetLink);
             }
 
-            return RedirectToAction("ForgotPassword", new { sent = "true" });
+            return RedirectToAction("ResetPassword", new { sent = "true" });
         }
 
 
@@ -293,7 +303,7 @@ namespace SmartCookFinal.Controllers
             var resetToken = _context.PasswordResetTokens
                 .FirstOrDefault(p => p.Id == userId && p.Token == token && p.IsUsed == false);
 
-            if (resetToken == null || resetToken.ExpirationTime < DateTime.Now)
+            if (resetToken == null || resetToken.ExpirationTime < DateTime.UtcNow)
             {
                 TempData["Error"] = "Link xác thực không hợp lệ hoặc đã hết hạn.";
                 return RedirectToAction("ForgotPassword");
