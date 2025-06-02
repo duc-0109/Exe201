@@ -2,8 +2,14 @@
 @{
     ViewBag.Title = "Liên hệ";
     bool isAuthenticated = Context.Session.GetInt32("UserId") != null;
-    string userName = Context.Session.GetString("UserName") ?? "Người dùng";
+    string userName = Context.Session.GetString("UserName") ?? "";
+    string userEmail = Context.Session.GetString("UserEmail") ?? "";
+
+    // Ưu tiên thông tin từ session nếu user đã đăng nhập
+    string displayName = isAuthenticated ? userName : (Model?.Name ?? "");
+    string displayEmail = isAuthenticated ? userEmail : (Model?.Email ?? "");
 }
+
 <div class="container mt-5 mb-5" style="max-width: 600px;">
     <h2 class="mb-4 text-primary">Liên hệ với chúng tôi</h2>
 
@@ -34,7 +40,7 @@
         </div>
     }
 
-    <form asp-action="SendContact" method="post" novalidate>
+    <form asp-controller="Contact" asp-action="SendContact" method="post">
         <div class="mb-3">
             <label asp-for="Name" class="form-label">
                 Họ và tên
@@ -44,6 +50,7 @@
                 }
             </label>
             <input asp-for="Name"
+                   value="@displayName"
                    class="form-control @(isAuthenticated ? "bg-light" : "")"
                    placeholder="Nhập họ và tên"
                    readonly="@isAuthenticated" />
@@ -52,6 +59,7 @@
 
         <div class="mb-3">
             <label asp-for="Email" class="form-label">
+
                 Email
                 @if (isAuthenticated)
                 {
@@ -59,8 +67,10 @@
                 }
             </label>
             <input asp-for="Email"
+                   value="@displayEmail"
                    class="form-control @(isAuthenticated ? "bg-light" : "")"
                    placeholder="example@gmail.com"
+                   type="email"
                    readonly="@isAuthenticated" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
@@ -88,6 +98,13 @@
             <span asp-validation-for="Message" class="text-danger"></span>
         </div>
 
+        <!-- Hidden fields để đảm bảo thông tin user được gửi đi -->
+        @if (isAuthenticated)
+        {
+            <input type="hidden" name="Name" value="@userName" />
+            <input type="hidden" name="Email" value="@userEmail" />
+        }
+
         <div class="d-grid">
             <button type="submit" class="btn btn-primary btn-lg">
                 <i class="fas fa-paper-plane me-2"></i>
@@ -100,7 +117,7 @@
             <div class="text-center mt-3">
                 <small class="text-muted">
                     <i class="fas fa-info-circle me-1"></i>
-                    <a href="/Account/Login" class="text-decoration-none">
+                    <a href="/Home/Login" class="text-decoration-none">
                         Đăng nhập
                     </a>
                     để tự động điền thông tin cá nhân
@@ -120,6 +137,14 @@
                 <text>
                 document.addEventListener('DOMContentLoaded', function() {
                     document.querySelector('select[name="Subject"]').focus();
+                });
+                </text>
+        }
+        else
+        {
+                <text>
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelector('input[name="Name"]').focus();
                 });
                 </text>
         }

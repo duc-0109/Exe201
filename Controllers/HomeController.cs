@@ -11,7 +11,7 @@ namespace SmartCookFinal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly SmartCookContext _context; // thêm context ?? truy v?n DB
+        private readonly SmartCookContext _context;
 
         private readonly IConfiguration _configuration;
 

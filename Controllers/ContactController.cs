@@ -23,21 +23,28 @@ namespace SmartCookFinal.Controllers
         {
             var model = new Contact();
 
-            // Nếu user đã đăng nhập, tự động điền thông tin từ session hoặc cookie
+            // Nếu user đã đăng nhập, tự động điền thông tin từ session
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
-                int userId = HttpContext.Session.GetInt32("UserId").Value;
-                var user = await _context.NguoiDungs.FindAsync(userId);
+                var userName = HttpContext.Session.GetString("UserName");
+                var userEmail = HttpContext.Session.GetString("UserEmail");
 
-                if (user != null)
+                if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(userEmail))
                 {
-                    model.Name = user.TenNguoiDung;
-                    model.Email = user.Email;
+                    model.Name = userName;
+                    model.Email = userEmail;
+
+                    // Set ViewBag để View có thể sử dụng
+                    ViewBag.IsLoggedIn = true;
+                    ViewBag.LoggedInUserName = userName;
+                    ViewBag.LoggedInUserEmail = userEmail;
                 }
             }
 
             return View(model);
         }
+
+        
         // POST: Contact/SendContact
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,18 +69,21 @@ namespace SmartCookFinal.Controllers
 
                     // Reset form
                     ModelState.Clear();
-                    return View("Index", new Contact());
+                    return View("~/Views/Home/Contact.cshtml", new Contact());
+
                 }
                 catch (Exception ex)
                 {
                     // Log lỗi (nên sử dụng ILogger trong thực tế)
                     ViewBag.Error = "Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại sau.";
-                    return View("Index", contact);
+                    return View("~/Views/Home/Contact.cshtml", new Contact());
+
                 }
             }
 
             // Nếu model không hợp lệ, trả về view với errors
-            return View("Index", contact);
+            return View("~/Views/Home/Contact.cshtml", new Contact());
+
         }
 
         private async Task SendEmailAsync(Contact contact)
@@ -96,8 +106,8 @@ namespace SmartCookFinal.Controllers
 
                     var mailMessage = new MailMessage
                     {
-                        From = new MailAddress(fromEmail, "Smart Cook Website"),
-                        Subject = $"[Smart Cook] Liên hệ mới: {contact.Subject}",
+                        From = new MailAddress(fromEmail, "An Thực Website"),
+                        Subject = $"[An Thực] Liên hệ mới: {contact.Subject}",
                         Body = CreateEmailBody(contact),
                         IsBodyHtml = true
                     };
