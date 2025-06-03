@@ -1,0 +1,156 @@
+﻿@using Azure.Core
+@model IEnumerable<SmartCookFinal.Models.News>
+
+
+
+
+<div class="page-content bg-white">
+	<!-- inner page banner -->
+	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');" ;">
+		<div class="container">
+			<div class="page-banner-entry">
+				<h1 class="text-white">News List</h1>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumb row -->
+	<div class="breadcrumb-row">
+		<div class="container">
+			<ul class="list-inline">
+				<li><a href="#">Home</a></li>
+				
+
+			</ul>
+		</div>
+	</div>
+	<!-- Breadcrumb row END -->
+	<!-- contact area -->
+	<div class="content-block">
+		<div class="widget">
+			<div class="search-bx style-1">
+				<form method="get" action="@Url.Action("Index", "News")" role="search">
+					<div class="input-group">
+						<input type="text" name="searchText" class="form-control" placeholder="Enter your keywords..." value="@ViewBag.SearchText" />
+						<span class="input-group-btn">
+							<button type="submit" class="fa fa-search text-primary"></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="section-area section-sp1">
+			<div class="container">
+				<div class="row">
+					<!-- Left part start -->
+					@foreach (var item in Model)
+					{
+						<div class="col-lg-8">
+							<div class="blog-post blog-md clearfix">
+								<div class="ttr-post-media">
+									<a href="#">
+										@if (!string.IsNullOrEmpty(item.UrlImage))
+										{
+											<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId">
+												<img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
+											</a>
+
+										}
+									</a>
+								</div>
+								<div class="ttr-post-info">
+									<ul class="media-post">
+										<li><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
+										<li><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
+									</ul>
+									<h5 class="post-title">
+										<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: inherit;">
+											@item.Title
+										</a>
+									</h5>
+
+
+									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
+									<div class="post-extra">
+										<button type="button" class="btn btn-link" data-toggle="modal" data-target="#blogModal-@item.NewsId">
+											READ MORE
+										</button>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="blogModal-@item.NewsId" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@item.NewsId" aria-hidden="true">
+								<div class="modal-dialog modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="modalLabel-@item.NewsId">@item.Title</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
+											<p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+											@if (!string.IsNullOrEmpty(item.UrlImage))
+											{
+												<img src="@item.UrlImage" alt="Image" class="img-fluid mb-3" />
+											}
+											<p>@item.Content</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+
+
+
+
+					<!-- Pagination start -->
+					@if (ViewBag.TotalPages > 1)
+					{
+						<div class="pagination-bx rounded-sm gray clearfix">
+							<ul class="pagination">
+
+								@if (ViewBag.CurrentPage > 1)
+								{
+									<li class="previous">
+										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })">
+											<i class="ti-arrow-left"></i> Prev
+										</a>
+									</li>
+								}
+
+								@for (int i = 1; i <= ViewBag.TotalPages; i++)
+								{
+									<li class="@(i == ViewBag.CurrentPage ? "active" : "")">
+										<a href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
+									</li>
+								}
+
+								@if (ViewBag.CurrentPage < ViewBag.TotalPages)
+								{
+									<li class="next">
+										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })">
+											Next <i class="ti-arrow-right"></i>
+										</a>
+									</li>
+								}
+
+							</ul>
+						</div>
+					}
+
+				</div>
+				<!-- Left part END -->
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>

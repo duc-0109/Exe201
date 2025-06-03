@@ -15,6 +15,7 @@ namespace SmartCookFinal.Models
 		public DbSet<ThucDonChiTiet> ThucDonChiTiets { get; set; }
 		public DbSet<DanhMucMonAn> DanhMucMonAns { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<News> News { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
         public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
@@ -56,6 +57,13 @@ namespace SmartCookFinal.Models
                 .WithMany(u => u.Blogs)
                 .HasForeignKey(b => b.UserId)
                 .OnDelete(DeleteBehavior.NoAction); // ← CHUYỂN thành NoAction để chắc chắn
+                                                    // News → User (không cascade khi xóa User để tránh vòng lặp)
+            modelBuilder.Entity<News>()
+                .HasOne(n => n.User)
+                .WithMany(u => u.News)
+                .HasForeignKey(n => n.UserId)
+                .OnDelete(DeleteBehavior.NoAction); // hoặc .Restrict nếu không dùng NoAction
+
         }
 
     }

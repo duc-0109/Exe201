@@ -47,6 +47,7 @@ namespace SmartCookFinal.Models
         // Navigation properties - giữ nullable nhưng đã khởi tạo trong constructor
         public ICollection<ThucDonNgay>? ThucDonNgays { get; set; }
         public ICollection<Blog>? Blogs { get; set; }
+        public ICollection<News>? News { get; set; }
         public ICollection<BlogComment>? Comments { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartCookFinal.Models;
+using System.Security.Claims;
 
 namespace SmartCookFinal.Controllers
 {
@@ -55,6 +56,9 @@ namespace SmartCookFinal.Controllers
         // GET: /Blog/Details/5
         public async Task<IActionResult> Details(int id)
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.CurrentUserId = userId;
+
             var blog = await _context.Blogs
                 .Include(b => b.User)
                 .Include(b => b.Comments).ThenInclude(c => c.User)
@@ -263,27 +267,25 @@ namespace SmartCookFinal.Controllers
 
             return RedirectToAction("Details", new { id = BlogId });
         }
-
-
-        //Edit comment
         [HttpPost]
-        public async Task<IActionResult> EditComment(int BlogId, int CommentId, string CommentText)
+        public IActionResult DeleteComment(int commentId, int blogId)
         {
-            if (string.IsNullOrWhiteSpace(CommentText)) return RedirectToAction("Details", new { id = BlogId });
-
             int? userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null) return RedirectToAction("Login", "Account");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
 
-            var comment = await _context.BlogComments.FindAsync(CommentId);
-            if (comment == null || comment.UserId != userId) return Unauthorized();
+            var comment = _context.BlogComments.FirstOrDefault(c => c.BlogCommentId == commentId);
+            if (comment != null && comment.UserId == userId.Value)
+            {
+                _context.BlogComments.Remove(comment);
+                _context.SaveChanges();
+            }
 
-            comment.CommentText = CommentText;
-            comment.CommentedAt = DateTime.Now;
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Details", new { id = BlogId });
+            return RedirectToAction("Details", new { id = blogId });
         }
 
     }
-
 }
+

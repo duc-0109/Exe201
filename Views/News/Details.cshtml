@@ -1,4 +1,4 @@
-﻿@model SmartCookFinal.Models.Blog
+﻿@model SmartCookFinal.Models.News
 
 
 
@@ -60,10 +60,12 @@
 									<div class="ttr-divider bg-gray"><i class="icon-dot c-square"></i></div>
 								</div>
 							</div>
-
+						
 							<!-- blog END -->
 						</div>
 						<!-- Left part END -->
+
+
 						<!-- Side bar start -->
 						<div class="col-lg-4 col-xl-4">
 							<aside class="side-bar sticky-top">
@@ -83,20 +85,20 @@
 
 
 								<div class="widget recent-posts-entry">
-									<h6 class="widget-title">Recent News</h6>
+									<h6 class="widget-title">Recent Posts</h6>
 									<div class="widget-post-bx">
-										@foreach (var post in (List<SmartCookFinal.Models.Blog>)ViewBag.RecentPosts)
+										@foreach (var post in (List<SmartCookFinal.Models.News>)ViewBag.recentNews)
 										{
 											<div class="widget-post clearfix">
 												<div class="ttr-post-media">
-													<a asp-controller="News" asp-action="Details" asp-route-id="@post.BlogId">
+													<a asp-controller="News" asp-action="Details" asp-route-id="@post.NewsId">
 														<img src="@post.UrlImage" width="200" height="143" alt="@post.Title" />
 													</a>
 												</div>
 												<div class="ttr-post-info">
 													<div class="ttr-post-header">
 														<h6 class="post-title">
-															<a asp-controller="News" asp-action="Details" asp-route-id="@post.BlogId" style="text-decoration:none; color:inherit;">
+															<a asp-controller="News" asp-action="Details" asp-route-id="@post.NewsId" style="text-decoration:none; color:inherit;">
 																@post.Title
 															</a>
 														</h6>
@@ -124,6 +126,4 @@
 		</div>
 	</div>
 	<!-- Content END-->
-
-
 </div>
