@@ -79,11 +79,8 @@
 				<div class="row d-flex justify-content-between align-items-center">
 					<div class="topbar-left col-auto">
 						<ul class="list-inline m-0">
-							<li class="list-inline-item">
-								<a asp-controller="Home" asp-action="Contact"><i class="fa fa-question-circle"></i> Liên hệ</a>
-							</li>
-
-							<li class="list-inline-item"><a href="javascript:;"><i class="fa fa-envelope-o"></i> Support@website.com</a></li>
+							<li class="list-inline-item"><a href="faq-1.html"><i class="fa fa-question-circle"></i> Liên hệ</a></li>
+							<li class="list-inline-item"><a href="#"><i class="fa fa-envelope-o"></i> anthuchealty@gmail.com</a></li>
 						</ul>
 					</div>
 					<div class="topbar-right col-auto">
@@ -117,68 +114,65 @@
 						</ul>
 					</div>
 
-			</div>
-		</div>
-
-
-
-		<div class="sticky-header navbar-expand-lg">
-			<div class="menu-bar clearfix">
-				<div class="container clearfix">
-					<!-- Header Logo ==== -->
-					<div class="menu-logo">
-						<a href="@Url.Action("Index", "Home")"><img src="~/assets/images/exe-logo.png" alt=""></a>
-					</div>
-					<!-- Mobile Nav Button ==== -->
-					<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-					<!-- Author Nav ==== -->
-					<div class="secondary-menu">
-						<div class="secondary-inner">
-							
-						</div>
-					</div>
-					<!-- Search Box ==== -->
-					<div class="nav-search-bar">
-						<form action="#">
-							<input name="search" value="" type="text" class="form-control" placeholder="Type to search">
-							<span><i class="ti-search"></i></span>
-						</form>
-						<span id="search-remove"><i class="ti-close"></i></span>
-					</div>
-					<!-- Navigation Menu ==== -->
-					<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
-						<div class="menu-logo">
-							<a href="@Url.Action("Index", "Home")"><img src="~/assets/images/logo.png" alt=""></a>
-						</div>
-						<ul class="nav navbar-nav">
-							<li class="active">
-								<a href="@Url.Action("Index", "Home")">Home </a>
-							</li>
-							<li class="add-mega-menu">
-								<a href="@Url.Action("Index", "MonAns")">Món ăn</a>
-								
-							</li>
-							<li>
-								<a href="@Url.Action("NhapChiSo", "ThucDon")">Thực Đơn Cá Nhân</a>
-							</li>
-							<li>
-								<a href="@Url.Action("Index", "Blog")">Blog <i class="fa fa-chevron-down"></i></a>
-							</li>
-								<li class="nav-dashboard">
-									<a href="@Url.Action("Premium", "Payment")">Premium</a>
-								</li>
-
-
-						</ul>
-						
-					<!-- Navigation Menu END ==== -->
 				</div>
 			</div>
-		</div>
+
+
+
+			<div class="sticky-header navbar-expand-lg">
+				<div class="menu-bar clearfix">
+					<div class="container clearfix">
+						<!-- Header Logo ==== -->
+						<div class="menu-logo">
+							<a href="@Url.Action("Index", "Home")"><img src="~/assets/images/exe-logo.png" alt=""></a>
+						</div>
+						<!-- Mobile Nav Button ==== -->
+						<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+							<span></span>
+							<span></span>
+							<span></span>
+						</button>
+						<!-- Author Nav ==== -->
+						<div class="secondary-menu">
+							<div class="secondary-inner">
+							</div>
+						</div>
+						<!-- Search Box ==== -->
+						<div class="nav-search-bar">
+							<form action="#">
+								<input name="search" value="" type="text" class="form-control" placeholder="Type to search">
+								<span><i class="ti-search"></i></span>
+							</form>
+							<span id="search-remove"><i class="ti-close"></i></span>
+						</div>
+						<!-- Navigation Menu ==== -->
+						<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
+							<div class="menu-logo">
+								<a href="@Url.Action("Index", "Home")"><img src="~/assets/images/logo.png" alt=""></a>
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active">
+									<a href="@Url.Action("Index", "Home")" style="text-decoration:none; font-size: 18px"><strong>Home</strong></a>
+								</li>
+								<li class="add-mega-menu">
+									<a href="@Url.Action("Index", "MonAns")" style="text-decoration:none; font-size: 18px;"><strong>Món ăn</strong></a>
+								</li>
+								<li>
+									<a href="@Url.Action("NhapChiSo", "ThucDon")" style="text-decoration:none; font-size: 18px;"><strong>Thực Đơn Cá Nhân</strong></a>
+								</li>
+								<li>
+									<a href="#" style="text-decoration:none; font-size: 18px;"><strong>News</strong></a>
+								</li>
+								<li>
+									<a href="@Url.Action("Index", "Blog")" style="text-decoration:none; font-size: 18px;"><strong>Blog</strong></a>
+								</li>
+							</ul>
+
+
+							<!-- Navigation Menu END ==== -->
+						</div>
+					</div>
+				</div>
 	</header>
 	<div class="container">
 		<main role="main" class="pb-3">
@@ -192,7 +186,7 @@
 				<div class="container">
 					<div class="d-flex align-items-stretch">
 						<div class="pt-logo mr-auto">
-							<a href="index.html"><img style="height:120px" src="~/assets/images/exe-logo.png"></a>
+							<a href="#"><img style="height:120px" src="~/assets/images/exe-logo.png"></a>
 						</div>
 						<div class="pt-social-link">
 							<ul class="list-inline m-a0">
@@ -203,8 +197,9 @@
 							</ul>
 						</div>
 						<div class="pt-btn-join">
-							<a href="#" class="btn ">Đăng ký</a>
+							<a href="#" class="btn btn-light">Đăng ký</a>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -212,7 +207,7 @@
 				<div class="row">
 					<div class="col-lg-4 col-md-12 col-sm-12 footer-col-4">
 						<div class="widget">
-							<h5 class="footer-title">Trở thành một đầu bếp giỏi ngay cùng với smart cook</h5>
+							<h5 class="footer-title">Trở thành một đầu bếp giỏi ngay cùng với An Thực</h5>
 							<p class="text-capitalize m-b20">Weekly Breaking news analysis and cutting edge advices on job searching.</p>
 							<div class="subscribe-form m-b20">
 								<form class="subscription-form" action="http://educhamp.themetrades.com/demo/assets/script/mailchamp.php" method="post">
@@ -231,7 +226,7 @@
 						<div class="row">
 							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
 								<div class="widget footer_widget">
-									<h5 class="footer-title">Smart Cook</h5>
+									<h5 class="footer-title">An Thực</h5>
 									<ul>
 										@* <li><a href="index.html">Home</a></li>
 										<li><a href="about-1.html">About us</a></li>
@@ -240,7 +235,7 @@
 									</ul>
 								</div>
 							</div>
-							<!-- <div class="col-4 col-lg-4 col-md-4 col-sm-4">
+							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
 								<div class="widget footer_widget">
 									<h5 class="footer-title">Get In Touch</h5>
 									<ul>
@@ -250,16 +245,21 @@
 										<li><a href="event.html">Event</a></li>
 									</ul>
 								</div>
-							</div> -->
+							</div>
 							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
 								<div class="widget footer_widget">
 									<h5 class="footer-title">Món ăn</h5>
 									<ul>
-										@* <li><a href="courses.html">Món Chính</a></li>
-										<li><a href="courses-details.html">Món Phụ</a></li>
-										<li><a href="membership.html">Món Tráng Miệng</a></li>
-										<li><a href="profile.html">Món ăn vặt</a></li> *@
+										<li><a href="">Buổi Sáng</a></li>
+										<li><a href="">Buổi Trưa</a></li>
+										<li><a href="">Buổi Tối</a></li>
 									</ul>
+								</div>
+							</div>
+							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+								<div class="widget footer_widget">
+									<h5 class="footer-title">Blog</h5>
+
 								</div>
 							</div>
 						</div>
@@ -310,6 +310,11 @@
 	<script src="~/assets/vendors/switcher/switcher.js"></script>
 	<!-- Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!--Validate -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 
 
 

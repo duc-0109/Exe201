@@ -28,25 +28,25 @@
 					<div class="col-md-4 col-sm-6">
 						<div class="cours-search-bx m-b30">
 							<div class="icon-box">
-								<h3><i class="ti-receipt"></i><span class="counter">36</span>M</h3>
+								<h3><i class="ti-receipt"></i></h3>
 							</div>
-							<span class="cours-search-text">Hơn 36 trệu món ăn</span>
+							<span class="cours-search-text">Hàng nghìn món ăn</span>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6">
 						<div class="cours-search-bx m-b30">
 							<div class="icon-box">
-								<h3><i class="ti-book"></i><span class="counter">36</span>K</h3>
+								<h3><i class="ti-book"></i></h3>
 							</div>
-							<span class="cours-search-text">36,000 thực đơn</span>
+							<span class="cours-search-text">hàng trăm thực đơn</span>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-12">
 						<div class="cours-search-bx m-b30">
 							<div class="icon-box">
-								<h3><i class="ti-user"></i><span class="counter">36</span>K</h3>
+								<h3><i class="ti-user"></i></h3>
 							</div>
-							<span class="cours-search-text">Người dùng</span>
+							<span class="cours-search-text">Hàng trăm Người dùng</span>
 						</div>
 					</div>
 				</div>
@@ -60,42 +60,43 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 heading-bx left">
-						<h2 class="title-head">Công thức nổi bật <span></span></h2>
+						<h2 class="title-head"><strong>Công thức nổi bật</strong> <span></span></h2>
 						<p>"Đã từ lâu, việc nấu ăn không chỉ là công thức mà còn là cảm hứng khiến người ta say mê." 🍽️🔥</p>
 					</div>
 				</div>
 				<div class="row">
-					
+
 					<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
 						@foreach (var item in Model)
 						{
-						<div class="item">
-							<div class="cours-bx">
-								<div class="action-box">
+							<div class="item">
+								<div class="cours-bx">
+									<div class="action-box">
 										<img src="@item.UrlHinhAnh" alt="" style="width:100%; height:200px; object-fit:cover;">
 
-								</div>
-								<div class="info-bx text-center">
-										<h5><a href="#">@item.TenMon</a></h5>
-									<span></span>
-								</div>
-								<div class="cours-more-info">
-									<div class="review">
-										<span>3 Đánh giá</span>
-										<ul class="cours-star">
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-										</ul>
 									</div>
-									<div class="price">
-											<h5>@item.ChiPhiUocTinh</h5>
+									<div class="info-bx text-center">
+										<h5><a href="#">@item.TenMon</a></h5>
+										<span></span>
+									</div>
+									<div class="cours-more-info">
+										<div class="review">
+											<span>3 Đánh giá</span>
+											<ul class="cours-star">
+												<li class="active"><i class="fa fa-star"></i></li>
+												<li class="active"><i class="fa fa-star"></i></li>
+												<li class="active"><i class="fa fa-star"></i></li>
+												<li><i class="fa fa-star"></i></li>
+												<li><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+										<div class="price">
+											<h5>@($"{item.ChiPhiUocTinh:N0}") VND</h5>
+
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						}
 
 					</div>
@@ -185,45 +186,7 @@
 			</div>
 		</div>
 
-		<!-- Testimonials -->
-		<div class="section-area section-sp1 bg-fix ovbl-dark text-white" style="background-image:url(~/assets/images/smartcook/background.png);">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
-						<div class="counter-style-1">
-							<div class="text-white">
-								<span class="counter">36</span><span>M+</span>
-							</div>
-							<span class="counter-text">Công thức</span>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
-						<div class="counter-style-1">
-							<div class="text-white">
-								<span class="counter">36</span><span>K+</span>
-							</div>
-							<span class="counter-text">Thực đơn</span>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
-						<div class="counter-style-1">
-							<div class="text-white">
-								<span class="counter">36</span><span>K+</span>
-							</div>
-							<span class="counter-text">Người Tin Dùng</span>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-6 col-sm-6 col-6 m-b30">
-						<div class="counter-style-1">
-							<div class="text-white">
-								<span class="counter">36</span><span>+</span>
-							</div>
-							<span class="counter-text">Chuyên gia tư vấn</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 		<!-- Testimonials END -->
 		<!-- Testimonials ==== -->
 		<div class="section-area section-sp2">

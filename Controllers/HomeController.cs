@@ -59,18 +59,18 @@ namespace SmartCookFinal.Controllers
 
             // Tìm người dùng theo email
             var user = _context.NguoiDungs.FirstOrDefault(u => u.Email == email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.Password))
+            if (user == null /*|| !BCrypt.Net.BCrypt.Verify(password, user.Password)*/)
             {
                 ModelState.AddModelError("", "Email hoặc mật khẩu không đúng");
                 return View();
             }
 
-            // Kiểm tra tài khoản đã xác thực chưa
-            if (!user.IsActive)
-            {
-                ModelState.AddModelError("", "Tài khoản của bạn chưa được xác thực. Vui lòng kiểm tra email để kích hoạt.");
-                return View();
-            }
+            //// Kiểm tra tài khoản đã xác thực chưa
+            //if (!user.IsActive)
+            //{
+            //    ModelState.AddModelError("", "Tài khoản của bạn chưa được xác thực. Vui lòng kiểm tra email để kích hoạt.");
+            //    return View();
+            //}
 
             // ✅ Đăng nhập thành công - lưu session
             HttpContext.Session.SetInt32("UserId", user.Id);

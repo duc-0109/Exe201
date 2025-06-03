@@ -1,101 +1,441 @@
-﻿@model SmartCookFinal.ModelDTO.ThucDonRequestViewModel
+﻿
+@model SmartCookFinal.ModelDTO.ThucDonRequestViewModel
 
 @{
-    ViewData["Title"] = "Nhập chỉ số người dùng";
+    ViewData["Title"] = "Thực Đơn Cá Nhân";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    .step-section {
+        display: none;
+        animation: slideIn 0.4s ease-in-out;
+    }
+
+    .step-section.active {
+        display: block;
+    }
+
+    keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .chedoan-option {
+        position: relative;
+        cursor: pointer;
+        transition: border 0.3s ease;
+        border: 2px solid #ccc;
+    }
+
+        .chedoan-option input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .chedoan-option.selected {
+            border-color: #28a745; /* xanh lá khi chọn */
+            background-color: #f1fff1;
+        }
+
+    .step-section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Chiếm toàn bộ chiều cao trình duyệt */
+    background: url("https://i.pinimg.com/736x/32/d9/72/32d972c0bd7563a4a0802dbaabdffb51.jpg") no-repeat center center/cover;
+    position: relative;
 }
 
 
-<div class="page-content bg-white">
-    <!-- inner page banner -->
-    <div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/smartcook/background.png")');" ;">
-        <div class="container">
-            <div class="page-banner-entry">
-                <h1 class="text-white">Thực Đơn Cá Nhân</h1>
+.step-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    display: none;
+    position: relative; /* đảm bảo giữ vị trí */
+}
+
+.step-section.active {
+    display: block;
+}
+
+#step9 {
+    /* Add custom styles if needed */
+    /* For example, to maintain some layout but avoid step-section styles */
+    display: none;
+    animation: slideIn 0.4s ease-in-out;
+}
+
+#step9.active {
+    display: block;
+}
+
+</style>
+
+<div class="container mt-5">
+    <form asp-controller="ThucDon" asp-action="TaoThucDon" method="post" id="formThucDon">
+
+        <!-- Step 1: Chào mừng -->
+        <div class="step-section-container">
+            <div class="step-section active" id="step1">
+                <div class="text-center">
+                    <h3><strong>Chào mừng bạn đến với hành trình chinh phục sức khỏe và hương vị cuộc sống!</strong></h3>
+                    <p>Mỗi bữa ăn là một chương mới, và hôm nay, chúng ta sẽ cùng nhau viết nên câu chuyện dinh dưỡng riêng biệt cho chính bạn.</p>
+                    <p>Hãy dành vài phút để chia sẻ về thói quen, sở thích và mục tiêu của bạn, để thực đơn không chỉ là món ăn — mà là nguồn cảm hứng, sức mạnh, và sự đổi thay.</p>
+                    <p><strong>Sẵn sàng chưa? Hành trình tuyệt vời này bắt đầu từ đây!</strong></p>
+                    <button type="button" class="btn btn-primary mt-4" onclick="nextStep()">Bắt đầu</button>
+                </div>
+            </div>
+
+
+
+        <!-- Step 2: Thông tin cơ bản -->
+            <div class="step-section" id="step2">
+                <div class="form-group">
+                    <label>Giới tính của bạn là gì?</label>
+                    <select asp-for="GioiTinh" class="form-control" required>
+                        <option>Nam</option>
+                        <option>Nữ</option>
+                        <option>Khác</option>
+                    </select>
+                </div>
+                <div class="form-group mt-3">
+                    <label>Độ tuổi:</label>
+                    <input asp-for="Tuoi" class="form-control" type="number" min="10" max="120" required />
+                </div>
+                <div class="form-group mt-3">
+                    <label>Chiều cao của bạn (cm):</label>
+                    <input asp-for="ChieuCao" class="form-control" type="number" min="50" max="250" required />
+                </div>
+                <div class="form-group mt-3">
+                    <label>Cân nặng hiện tại của bạn (kg):</label>
+                    <input asp-for="CanNang" class="form-control" type="number" min="10" max="200" required />
+                </div>
+                <div class="mt-4">
+                    <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+                </div>
+            </div>
+
+
+        <!-- Step 3: Dị ứng & Ưu tiên thực phẩm -->
+        <div class="step-section" id="step3">
+            <div class="form-group">
+                <label>Bạn có mắc bệnh lý hoặc dị ứng thực phẩm nào không?</label>
+                <input asp-for="DiUng" class="form-control" placeholder="Không / Ghi rõ nếu có" />
+            </div>
+            <div class="form-group mt-3">
+                <label>Bạn có ưu tiên loại thực phẩm nào?</label>
+                <input @* asp-for="UuTien" *@ class="form-control" placeholder="VD: Hải sản, thịt bò, rau củ..." />
+            </div>
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Quay lại</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Thói quen ăn uống -->
+        <div class="step-section" id="step4">
+            <div class="form-group">
+                <label>Bạn thường ăn bao nhiêu bữa chính mỗi ngày?</label>
+                <select @* asp-for="SoBuaAnChinh" *@ class="form-control">
+                    <option>3 bữa</option>
+                    <option>2 bữa</option>
+                    <option>Ăn nhiều bữa nhỏ</option>
+                </select>
+            </div>
+            <div class="form-group mt-3">
+                <label>Bạn có thói quen ăn vặt không?</label>
+                <select @* asp-for="AnVat" *@ class="form-control">
+                    <option>Có</option>
+                    <option>Không</option>
+                </select>
+            </div>
+            <div class="form-group mt-3">
+                <label>Thời gian nấu ăn trung bình mỗi bữa:</label>
+                <select @* asp-for="ThoiGianNau" *@ class="form-control">
+                    <option>Dưới 15 phút</option>
+                    <option>15-30 phút</option>
+                    <option>Hơn 30 phút</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Quay lại</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+            </div>
+        </div
+
+
+        <!-- Step 5: Mục tiêu -->
+        <div class="step-section" id="step5">
+            <div class="form-group">
+                <label>Mục tiêu</label>
+                <select asp-for="MucTieu" class="form-control" required>
+                    <option>Giảm cân</option>
+                    <option>Giữ cân</option>
+                    <option>Tăng cân</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mức độ hoạt động</label>
+                <select asp-for="MucDoHoatDong" class="form-control" required>
+                    <option value="It">Ít hoạt động</option>
+                    <option value="Vua">Hoạt động vừa</option>
+                    <option value="Nhieu">Hoạt động nhiều</option>
+                </select>
+            </div>
+            <div class="form-group mt-3">
+                <label>Mục tiêu cân nặng của bạn là bao nhiêu (kg)?</label>
+                <input @* asp-for="CanNangMucTieu" *@ class="form-control" type="number" />
+            </div>
+            <div class="form-group mt-3">
+                <label>Thời gian mong muốn đạt được mục tiêu:</label>
+                <input @* asp-for="ThoiGianMucTieu" *@ class="form-control" placeholder="VD: 3 tháng" />
+            </div>
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Quay lại</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+            </div>
+        </div>
+
+
+        <!-- Step 6: Chế độ ăn đặc biệt -->
+        <div class="step-section" id="step6">
+            <div class="form-group">
+                <label><strong>Bạn có thói quen ăn uống đặc biệt nào không?</strong></label>
+                <div class="mt-3">
+
+                    <div class="mb-3 chedoan-option-wrapper">
+                        <label class="d-flex align-items-center chedoan-option p-2 rounded">
+                            <input type="radio" name="CheDoAn" value="Không">
+                            <img src="https://i.pinimg.com/736x/20/99/14/2099149bc1a6c96581deab9b35ea2142.jpg" alt="Không" class="img-fluid me-3" style="height:80px; width: 80px; object-fit:cover;">
+                            Không
+                        </label>
+                    </div>
+
+                    <div class="mb-3 chedoan-option-wrapper">
+                        <label class="d-flex align-items-center chedoan-option p-2 rounded">
+                            <input type="radio" name="CheDoAn" value="Ăn chay">
+                            <img src="https://i.pinimg.com/736x/36/3e/0a/363e0a967802b38ec1f70dd98636b410.jpg" alt="Ăn chay" class="img-fluid me-3" style="height:80px; width: 80px; object-fit:cover;">
+                            Chế độ ăn chay
+                        </label>
+                    </div>
+
+                    <div class="mb-3 chedoan-option-wrapper">
+                        <label class="d-flex align-items-center chedoan-option p-2 rounded">
+                            <input type="radio" name="CheDoAn" value="Low Carb">
+                            <img src="https://i.pinimg.com/736x/c2/bd/f2/c2bdf2e39091cea48ce67f9e72203ff0.jpg" alt="Low Carb" class="img-fluid me-3" style="height:80px; width: 80px; object-fit:cover;">
+                            Chế độ Low Carb
+                        </label>
+                    </div>
+
+                    <div class="mb-3 chedoan-option-wrapper">
+                        <label class="d-flex align-items-center chedoan-option p-2 rounded">
+                            <input type="radio" name="CheDoAn" value="Atkins">
+                            <img src="https://i.pinimg.com/736x/4f/21/f1/4f21f180b5021df06e8e7c87a84b15d5.jpg" alt="Atkins" class="img-fluid me-3" style="height:80px; width: 80px; object-fit:cover;">
+                            Chế độ Atkins
+                        </label>
+                    </div>
+
+                    <div class="mb-3 chedoan-option-wrapper">
+                        <label class="d-flex align-items-center chedoan-option p-2 rounded">
+                            <input type="radio" name="CheDoAn" value="Dukan">
+                            <img src="https://i.pinimg.com/736x/32/03/98/320398ac986f146e0fb6d548d517ccb2.jpg" alt="Dukan" class="img-fluid me-3" style="height:80px; width: 80px; object-fit:cover;">
+                            Chế độ Dukan
+                        </label>
+                    </div>
+
+                    <div class="mb-3 chedoan-option-wrapper">
+                        <label class="d-flex align-items-center chedoan-option p-2 rounded">
+                            <input type="radio" name="CheDoAn" value="Keto">
+                            <img src="https://i.pinimg.com/736x/17/30/d1/1730d15133560b55c7da96f8271be28b.jpg" alt="Keto" class="img-fluid me-3" style="height:80px; width: 80px; object-fit:cover;">
+                            Chế độ Keto
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Quay lại</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+            </div>
+        </div>
+
+
+
+        <!-- Step 7: Ngân sách -->
+        <div class="step-section" id="step7">
+            <div class="form-group">
+                <label>Ngân sách dự kiến cho mỗi ngày:</label>
+                <select asp-for="NganSachToiDa" class="form-control">
+                    <option>Dưới 50.000 VNĐ</option>
+                    <option>50.000 – 100.000 VNĐ</option>
+                    <option>100.000 – 200.000 VNĐ</option>
+                    <option>Trên 200.000 VNĐ</option>
+                    <option>Tuỳ món, không giới hạn</option>
+                </select>
+            </div>
+            <div class="mt-4">
+                <button type="button" class="btn btn-secondary" onclick="prevStep()">Quay lại</button>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+            </div>
+        </div>
+
+        <!-- Step 8: Kết thúc -->
+        <div class="step-section" id="step8">
+            <div class="text-center">
+                <h4>Tuyệt lắm!</h4>
+                <p>Bạn vừa ghi dấu bước chân đầu tiên trên con đường chăm sóc bản thân bằng sự thấu hiểu và tận tâm.</p>
+                <p>Thực đơn riêng sẽ được dệt nên từ những điều bạn chia sẻ — chuẩn chỉnh và riêng biệt như chính bạn vậy.</p>
+                <p>Hãy đón chờ những gợi ý đầy hứng khởi, và đừng quên: sức khỏe là hành trình dài, mỗi ngày đều là cơ hội để tiến gần hơn đến phiên bản tốt nhất của bạn.</p>
+                <p><strong>Cùng tiến bước, bạn nhé!</strong></p>
+                <button type="button" class="btn btn-primary" onclick="nextStep()">Tiếp theo</button>
+            </div>
+        </div>
+        </div>
+
+      <!-- Step 9: Kết thúc -->
+<div id="step9">
+    <div class="pricingtable-row">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
+                <div class="pricingtable-wrapper">
+                    <div class="pricingtable-inner">
+                        <div class="pricingtable-main">
+                            <div class="pricingtable-price">
+                                <span class="priceing-doller">đ</span>
+                                <span class="pricingtable-bx">69.000</span>
+                                <span class="pricingtable-type">1 Month</span>
+                            </div>
+                            <div class="pricingtable-title">
+                                <h2>Basic</h2>
+                                <p>We are just getting started</p>
+                            </div>
+                        </div>
+                        <ul class="pricingtable-features" style="text-align: left;">
+                            <li>✓ Đề xuất thực đơn cá nhân hóa dựa trên khẩu vị, chế độ ăn, mục tiêu (giảm cân, duy trì sức khỏe) và ngân sách.</li>
+                            <li>✓ Lập kế hoạch ăn uống hàng tuần tự động cập nhật theo mục tiêu.</li>
+                            <li>✓ Hướng dẫn chi tiết dinh dưỡng (calo, vi chất dinh dưỡng cho mỗi bữa ăn)</li>
+                            <li>✓ Hỗ trợ tư vấn qua chatbot để giải đáp thắc mắc nhanh chóng.</li>
+                        </ul>
+                        <div class="pricingtable-footer">
+                            <button type="submit" class="btn btn-success mt-4">Tạo thực đơn ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
+                <div class="pricingtable-wrapper">
+                    <div class="pricingtable-inner pricingtable-highlight">
+                        <div class="pricingtable-main">
+                            <div class="pricingtable-price">
+                                <span class="priceing-doller">đ</span>
+                                <span class="pricingtable-bx">169.000</span>
+                                <span class="pricingtable-type">3 Month</span>
+                            </div>
+                            <div class="pricingtable-title">
+                                <h2>Medium</h2>
+                                <p>The most popular plan</p>
+                            </div>
+                        </div>
+                        <ul class="pricingtable-features" style="text-align: left;">
+                            <li>✓ Đề xuất thực đơn cá nhân hóa dựa trên khẩu vị, chế độ ăn, mục tiêu (giảm cân, duy trì sức khỏe) và ngân sách.</li>
+                            <li>✓ Lập kế hoạch ăn uống hàng tuần tự động cập nhật theo mục tiêu.</li>
+                            <li>✓ Hướng dẫn chi tiết dinh dưỡng (calo, vi chất dinh dưỡng cho mỗi bữa ăn)</li>
+                            <li>✓ Hỗ trợ tư vấn qua chatbot để giải đáp thắc mắc nhanh chóng.</li>
+                            <li>✓ Tính năng đánh giá công thức và lưu lại thực đơn yêu thích.</li>
+                            <li>✓ Tham gia cộng đồng người dùng để chia sẻ kinh nghiệm, câu chuyện thành công.</li>
+                        </ul>
+                        <div class="pricingtable-footer">
+                            <button type="submit" class="btn btn-success mt-4">Tạo thực đơn ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 col-lg-4 m-b40">
+                <div class="pricingtable-wrapper">
+                    <div class="pricingtable-inner">
+                        <div class="pricingtable-main">
+                            <div class="pricingtable-price">
+                                <span class="priceing-doller">đ</span>
+                                <span class="pricingtable-bx">599.000</span>
+                                <span class="pricingtable-type">12 Month</span>
+                            </div>
+                            <div class="pricingtable-title">
+                                <h2>Advanced</h2>
+                                <p>Experience the best for e-learning</p>
+                            </div>
+                        </div>
+                        <ul class="pricingtable-features" style="text-align: left;">
+                            <li>✓ Đề xuất thực đơn cá nhân hóa dựa trên khẩu vị, chế độ ăn, mục tiêu (giảm cân, duy trì sức khỏe) và ngân sách.</li>
+                            <li>✓ Lập kế hoạch ăn uống hàng tuần tự động cập nhật theo mục tiêu.</li>
+                            <li>✓ Hướng dẫn chi tiết dinh dưỡng (calo, vi chất dinh dưỡng cho mỗi bữa ăn)</li>
+                            <li>✓ Hỗ trợ tư vấn qua chatbot để giải đáp thắc mắc nhanh chóng.</li>
+                            <li>✓ Tính năng đánh giá công thức và lưu lại thực đơn yêu thích.</li>
+                            <li>✓ Tham gia cộng đồng người dùng để chia sẻ kinh nghiệm, câu chuyện thành công.</li>
+                            <li>✓ Thêm tính năng theo dõi tiến trình sức khỏe (số liệu cân nặng, vòng eo, mức năng lượng).</li>
+                        </ul>
+                        <div class="pricingtable-footer">
+                            <button type="submit" class="btn btn-success mt-4">Tạo thực đơn ngay</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Breadcrumb row -->
-    <div class="breadcrumb-row">
-        <div class="container">
-            <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li>Our Courses</li>
-            </ul>
-        </div>
-    </div>
-
-    <h3>Nhập thông tin để tạo thực đơn</h3>
-
-    @if (TempData["Message"] != null)
-    {
-        <div class="alert alert-success">@TempData["Message"]</div>
-    }
-
-    <form asp-controller="ThucDon" asp-action="TaoThucDon" method="post">
-
-        <div class="form-group">
-            <label>Giới tính</label>
-            <select asp-for="GioiTinh" class="form-control">
-                <option>Nam</option>
-                <option>Nữ</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Tuổi</label>
-            <input asp-for="Tuoi" class="form-control" required min="10" max="120" />
-            <span asp-validation-for="Tuoi" class="text-danger"></span>
-
-        </div>
-        <div class="form-group">
-            <label>Chiều cao (cm)</label>
-            <input asp-for="ChieuCao" class="form-control" required min="50" max="250" />
-            <span asp-validation-for="ChieuCao" class="text-danger"></span>
-
-        </div>
-        <div class="form-group">
-            <label>Cân nặng (kg)</label>
-            <input asp-for="CanNang" class="form-control" required min="10" max="200" />
-            <span asp-validation-for="CanNang" class="text-danger"></span>
-
-        </div>
-        <div class="form-group">
-            <label>Mức độ hoạt động</label>
-            <select asp-for="MucDoHoatDong" class="form-control">
-                <option value="It">Ít hoạt động</option>
-                <option value="Vua">Hoạt động vừa</option>
-                <option value="Nhieu">Hoạt động nhiều</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Mục tiêu</label>
-            <select asp-for="MucTieu" class="form-control">
-                <option>Giảm cân</option>
-                <option>Giữ cân</option>
-                <option>Tăng cân</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Chế độ ăn</label>
-            <input asp-for="CheDoAn" class="form-control" placeholder="VD: Chay, Keto, Không Gluten..." />
-        </div>
-        <div class="form-group">
-            <label>Dị ứng với món nào?</label>
-            <input asp-for="DiUng" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>Không thích món nào?</label>
-            <input asp-for="KhongThich" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label>Ngân sách tối đa (VND)</label>
-            <input asp-for="NganSachToiDa" class="form-control" />
-            <span asp-validation-for="NganSachToiDa" class="text-danger"></span>
-
-        </div>
-
-        <button type="submit" class="btn btn-primary">Tạo thực đơn</button>
+</div>
     </form>
+</div>
 
-    </div>
 
+@section Scripts {
+        <script>
+            let currentStep = 1;
+            const totalSteps = 9;
 
+            function showStep(step) {
+                for (let i = 1; i <= totalSteps; i++) {
+                    document.getElementById('step' + i).classList.remove('active');
+                }
+                document.getElementById('step' + step).classList.add('active');
+            }
+
+            function nextStep() {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                }
+            }
+
+            function prevStep() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            }
+        </script>
+
+        <script>
+            // Highlight thẻ được chọn
+            const options = document.querySelectorAll('.chedoan-option');
+
+            options.forEach(option => {
+                option.addEventListener('click', function () {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+        </script>
+}

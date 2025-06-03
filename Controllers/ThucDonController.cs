@@ -5,8 +5,8 @@ using SmartCookFinal.Models;
 
 namespace SmartCookFinal.Controllers
 {
-	public class ThucDonController : Controller
-	{
+    public class ThucDonController : Controller
+    {
 
         private readonly SmartCookContext _context;
         public ThucDonController(SmartCookContext context)
@@ -14,76 +14,84 @@ namespace SmartCookFinal.Controllers
             _context = context;
         }
 
-		[HttpGet]
-		public IActionResult NhapChiSo()
-		{
-			int? userId = HttpContext.Session.GetInt32("UserId");
-			Console.WriteLine("UserId trong session: " + userId);
+        [HttpGet]
+        public IActionResult NhapChiSo()
+        {
+            int? userId = HttpContext.Session.GetInt32("UserId");
+            Console.WriteLine("UserId trong session: " + userId);
 
-			if (userId.HasValue)
-			{
-				// Nếu đã có thực đơn cho người dùng => Chuyển sang trang thực đơn
-				var thucDonDaTao = _context.ThucDonNgays
-					.Include(t => t.ThucDonChiTiets)
-					.ThenInclude(ct => ct.MonAn)
-					.FirstOrDefault(t => t.NguoiDungId == userId.Value);
+            if (userId.HasValue)
+            {
+                // Lấy danh sách thực đơn trong 7 ngày gần nhất của người dùng
+                var thucDonTrongTuan = _context.ThucDonNgays
+                    .Include(t => t.ThucDonChiTiets)
+                        .ThenInclude(ct => ct.MonAn)
+                    .Where(x => x.NguoiDungId == userId && x.Ngay >= DateTime.Today.AddDays(-6))
+                    .OrderBy(x => x.Ngay)
+                    .ToList();
 
-				if (thucDonDaTao != null)
-				{
-					// Tạo lại mô hình để hiển thị thực đơn
-					var danhSachMonAn = thucDonDaTao.ThucDonChiTiets
-						.Select(ct => ct.MonAn)
-						.ToList();
+                if (thucDonTrongTuan.Any())
+                {
+                    var thucDon7Ngay = thucDonTrongTuan.Select(td => new ThucDonTheoNgayViewModel
+                    {
+                        Ngay = td.Ngay,
+                        DanhSachMonAn = td.ThucDonChiTiets.Select(ct => ct.MonAn).ToList()
+                    }).ToList();
 
-					var ketQua = new ThucDonKetQuaViewModel
-					{
-						BMR = 0, // không tính lại vì không còn thông tin đầu vào
-						TDEE = 0,
-						TongCaloDieuChinh = thucDonDaTao.TongCalo,
-						CaloMoiBua = thucDonDaTao.TongCalo / (thucDonDaTao.ThucDonChiTiets?.Count / 1.0 ?? 1),
-						SoBuaMotNgay = thucDonDaTao.ThucDonChiTiets?.Count ?? 3
-					};
+                    var tongCalo = 0;
+                    var tongSoBua = thucDonTrongTuan.Sum(td => td.ThucDonChiTiets?.Count ?? 0);
+                    var soNgay = thucDon7Ngay.Count;
 
-					var viewTongHop = new ThucDonViewTongHop
-					{
-						DanhSachMonAn = danhSachMonAn,
-						KetQua = ketQua
-					};
+                    var ketQua = new ThucDonKetQuaViewModel
+                    {
+                        BMR = 0,
+                        TDEE = 0,
+                        TongCaloDieuChinh = tongCalo,
+                        CaloMoiBua = tongSoBua > 0 ? tongCalo / (tongSoBua * 1.0) : 0,
+                        SoBuaMotNgay = soNgay > 0 ? tongSoBua / soNgay : 0
+                    };
 
-					return View("TaoThucDon", viewTongHop);
-				}
+                    var viewTongHop = new ThucDonViewTongHop
+                    {
+                        ThucDon7Ngay = thucDon7Ngay,
+                        KetQua = ketQua
+                    };
 
-				// Nếu chưa có thực đơn, hiển thị form nhập
-				var user = _context.NguoiDungs.Find(userId.Value);
-				if (user != null)
-				{
-					var model = new ThucDonRequestViewModel
-					{
-						GioiTinh = user.GioiTinh,
-						Tuoi = user.Tuoi ?? 0,
-						ChieuCao = user.ChieuCao ?? 0,
-						CanNang = user.CanNang ?? 0,
-						MucDoHoatDong = user.MucDoHoatDong,
-						MucTieu = user.MucTieu,
-						SoBuaMotNgay = user.SoBuaMotNgay ?? 3,
-						NganSachToiDa = user.NganSachToiDa ?? 0,
-						CheDoAn = user.CheDoAn,
-						DiUng = user.DiUng,
-						KhongThich = user.KhongThich
-					};
+                    return View("TaoThucDon", viewTongHop);
+                }
 
-					return View(model);
-				}
-			}
+                // Nếu chưa có thực đơn
+                var user = _context.NguoiDungs.Find(userId.Value);
+                if (user != null)
+                {
+                    var model = new ThucDonRequestViewModel
+                    {
+                        GioiTinh = user.GioiTinh,
+                        Tuoi = user.Tuoi ?? 0,
+                        ChieuCao = user.ChieuCao ?? 0,
+                        CanNang = user.CanNang ?? 0,
+                        MucDoHoatDong = user.MucDoHoatDong,
+                        MucTieu = user.MucTieu,
+                        SoBuaMotNgay = user.SoBuaMotNgay ?? 3,
+                        NganSachToiDa = user.NganSachToiDa ?? 0,
+                        CheDoAn = user.CheDoAn,
+                        DiUng = user.DiUng,
+                        KhongThich = user.KhongThich
+                    };
 
-			return RedirectToAction("Login", "Home");
-
-		}
-
-
+                    return View(model);
+                }
+            }
 
 
-		[HttpPost]
+            return RedirectToAction("Login", "Home");
+
+        }
+
+
+
+
+        [HttpPost]
         public IActionResult NhapChiSo(ThucDonRequestViewModel model)
         {
             if (ModelState.IsValid)
@@ -91,7 +99,7 @@ namespace SmartCookFinal.Controllers
                 int? userId = HttpContext.Session.GetInt32("UserId");
                 if (!userId.HasValue)
                 {
-					return RedirectToAction("Login", "Home");
+                    return RedirectToAction("Login", "Home");
                 }
 
                 var existingUser = _context.NguoiDungs.Find(userId.Value);
@@ -227,7 +235,7 @@ namespace SmartCookFinal.Controllers
                 var monNgauNhien = danhSach.OrderBy(x => random.Next()).Take(soMon).ToList();
                 var tongCalo = monNgauNhien.Sum(m => m.LuongCalo ?? 0);
 
-                if (tongCalo >= caloMoiBua - 50 && tongCalo <= caloMoiBua + 50)
+                if (tongCalo >= caloMoiBua - 500 && tongCalo <= caloMoiBua + 500)
                 {
                     return monNgauNhien;
                 }
@@ -249,96 +257,111 @@ namespace SmartCookFinal.Controllers
         }
 
 
+        [HttpPost]
         public IActionResult TaoThucDon(ThucDonRequestViewModel model)
-		{
-
-			// Mặc định số bữa là 3 nếu không hợp lệ hoặc <= 0
-			if (model.SoBuaMotNgay <= 0 || model.SoBuaMotNgay > 3)
-			{
-				model.SoBuaMotNgay = 3;
-			}
-
-			double bmr = TinhBMR(model.GioiTinh, model.Tuoi, model.CanNang, model.ChieuCao);
-			double tdee = TinhTDEE(bmr, model.MucDoHoatDong);
-			double tongCalo = DieuChinhTheoMucTieu(tdee, model.MucTieu);
-
-			var danhSachThucDon = new List<MonAn>();
-			var chiTietList = new List<ThucDonChiTiet>();
-
-			// Định nghĩa tỉ lệ calo và số lượng món ăn cho từng bữa
-			var buas = new List<(string TenBua, double TiLeCalo, int SoMon)>
-	{
-		("Sáng", 0.2, 1),
-		("Trưa", 0.4, 2),
-		("Tối", 0.4, 2)
-	};
-
-            foreach (var (tenBua, tiLe, soMon) in buas.Take(model.SoBuaMotNgay))
+        {
+            // Kiểm tra số bữa ăn
+            if (model.SoBuaMotNgay <= 0 || model.SoBuaMotNgay > 3)
             {
-                double caloBua = tongCalo * tiLe;
+                model.SoBuaMotNgay = 3;
+            }
 
-                var monAnTheoBua = TimMonAnPhuHop(
-                    caloBua,
-                    model.CheDoAn,
-                    tenBua,
-                    model.DiUng?.Split(',').ToList() ?? new List<string>(),
-                    model.KhongThich?.Split(',').ToList() ?? new List<string>(),
-                    soMon // truyền số món theo bữa
-                );
+            // Tính BMR, TDEE và tổng calo cần thiết
+            double bmr = TinhBMR(model.GioiTinh, model.Tuoi, model.CanNang, model.ChieuCao);
+            double tdee = TinhTDEE(bmr, model.MucDoHoatDong);
+            double tongCalo = DieuChinhTheoMucTieu(tdee, model.MucTieu);
 
-                foreach (var monAn in monAnTheoBua)
+            var thucDon7Ngay = new List<ThucDonTheoNgayViewModel>();
+
+            for (int ngay = 1; ngay <= 7; ngay++)
+            {
+                var danhSachThucDon = new List<MonAn>();
+                var chiTietList = new List<ThucDonChiTiet>();
+                var buas = new List<(string TenBua, double TiLeCalo, int SoMon)>
+            {
+                ("Sáng", 0.2, 1),
+                ("Trưa", 0.4, 2),
+                ("Tối", 0.4, 2)
+            };
+
+                foreach (var (tenBua, tiLe, soMon) in buas.Take(model.SoBuaMotNgay))
                 {
-                    danhSachThucDon.Add(monAn);
-                    chiTietList.Add(new ThucDonChiTiet
+                    double caloBua = tongCalo * tiLe;
+
+                    var monAnTheoBua = TimMonAnPhuHop(
+                        caloBua,
+                        model.CheDoAn,
+                        tenBua,
+                        model.DiUng?.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList() ?? new List<string>(),
+                        model.KhongThich?.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList() ?? new List<string>(),
+                        soMon
+                    );
+
+                    foreach (var monAn in monAnTheoBua)
                     {
-                        MonAnId = monAn.Id,
-                        LoaiBua = tenBua,
-                        GhiChu = ""
-                    });
+                        danhSachThucDon.Add(monAn);
+                        chiTietList.Add(new ThucDonChiTiet
+                        {
+                            MonAnId = monAn.Id,
+                            LoaiBua = tenBua,
+                            GhiChu = ""
+                        });
+                    }
+                }
+
+                var ngayThucDon = DateTime.Today.AddDays(ngay - 1).Date;
+
+
+                thucDon7Ngay.Add(new ThucDonTheoNgayViewModel
+                {
+                    Ngay = ngayThucDon,
+                    DanhSachMonAn = danhSachThucDon
+                });
+
+                // Lưu thực đơn ngày vào DB
+                int? userId = HttpContext.Session.GetInt32("UserId");
+                if (userId.HasValue)
+                {
+                    var thucDonDb = new ThucDonNgay
+                    {
+                        NguoiDungId = userId.Value,
+                        Ngay = ngayThucDon,
+                        TongCalo = (int)danhSachThucDon.Sum(m => m.LuongCalo ?? 0),
+                        TongCarbs = (float)danhSachThucDon.Sum(m => m.Carbs ?? 0),
+                        TongProtein = (float)danhSachThucDon.Sum(m => m.Protein ?? 0),
+                        TongFat = (float)danhSachThucDon.Sum(m => m.Fat ?? 0),
+                        ThucDonChiTiets = chiTietList
+                    };
+                    _context.ThucDonNgays.Add(thucDonDb);
                 }
             }
 
+            _context.SaveChanges();
 
-            var ketQua = new ThucDonKetQuaViewModel
-			{
-				BMR = Math.Round(bmr, 2),
-				TDEE = Math.Round(tdee, 2),
-				TongCaloDieuChinh = Math.Round(tongCalo, 2),
-				CaloMoiBua = Math.Round(tongCalo / model.SoBuaMotNgay, 2),
-				SoBuaMotNgay = model.SoBuaMotNgay
-			};
+            var viewTongHop = new ThucDonViewTongHop
+            {
+                KetQua = new ThucDonKetQuaViewModel
+                {
+                    BMR = Math.Round(bmr, 2),
+                    TDEE = Math.Round(tdee, 2),
+                    TongCaloDieuChinh = Math.Round(tongCalo, 2),
+                    CaloMoiBua = Math.Round(tongCalo / model.SoBuaMotNgay, 2),
+                    SoBuaMotNgay = model.SoBuaMotNgay
+                },
 
-			var viewTongHop = new ThucDonViewTongHop
-			{
-				DanhSachMonAn = danhSachThucDon,
-				KetQua = ketQua
-			};
+                // Tesst thuc don 7 ngay 
+                ThucDon7Ngay = thucDon7Ngay
+            };
 
-			// Lưu vào database
-			int? userId = HttpContext.Session.GetInt32("UserId");
-			if (userId.HasValue)
-			{
-				var thucDonNgay = new ThucDonNgay
-				{
-					NguoiDungId = userId.Value,
-					Ngay = DateTime.Now,
-					TongCalo = (int)tongCalo,
-					TongCarbs = (float)danhSachThucDon.Sum(m => m.Carbs ?? 0),
-					TongProtein = (float)danhSachThucDon.Sum(m => m.Protein ?? 0),
-					TongFat = (float)danhSachThucDon.Sum(m => m.Fat ?? 0),
-					ThucDonChiTiets = chiTietList
-				};
-				_context.ThucDonNgays.Add(thucDonNgay);
-				_context.SaveChanges();
-			}
-
-			return View("TaoThucDon", viewTongHop);
-		}
+            return View("TaoThucDon", viewTongHop);
+        }
 
 
+        public IActionResult XemThucDon()
+        {
 
-
-
-	}
+            return View("TaoThucDon");
+        }
+    }
 
 }

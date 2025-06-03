@@ -1,19 +1,19 @@
 ﻿@model SmartCookFinal.ModelDTO.ThucDonViewTongHop
 
 @{
-    ViewBag.Title = "Tao Thuc Don";
-    var buaAnTheoLoai = Model.DanhSachMonAn.GroupBy(m => m.LoaiBuaAn);
+    ViewBag.Title = "Tạo Thực Đơn";
 }
 
 <div class="page-content bg-white">
     <!-- inner page banner -->
-    <div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/smartcook/background.png")');" ;">
+    <div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/smartcook/background.png")');">
         <div class="container">
             <div class="page-banner-entry">
                 <h1 class="text-white">Thực Đơn Cá Nhân</h1>
             </div>
         </div>
     </div>
+
     <!-- Breadcrumb row -->
     <div class="breadcrumb-row">
         <div class="container">
@@ -23,7 +23,9 @@
             </ul>
         </div>
     </div>
+
     <br />
+
     <h2 class="mb-4">Kết quả chỉ số của bạn</h2>
 
     <table class="table table-bordered table-hover text-center align-middle">
@@ -49,44 +51,83 @@
         </tbody>
     </table>
 
+    <h2 class="text-center mt-5 mb-4">Kết Quả Thực Đơn Trong 7 Ngày</h2>
 
-    <h2 class="text-center mt-5 mb-4">Kết Quả Thực Đơn</h2>
-
-    @if (Model.DanhSachMonAn == null || !Model.DanhSachMonAn.Any())
+    @if (Model.ThucDon7Ngay == null || !Model.ThucDon7Ngay.Any())
     {
         <div class="alert alert-warning text-center mt-4">
-            Không tìm thấy món ăn phù hợp với yêu cầu của bạn.
+            Không tìm thấy thực đơn phù hợp.
         </div>
     }
     else
     {
-        @foreach (var group in Model.DanhSachMonAn.GroupBy(m => m.LoaiBuaAn))
-        {
-            <div class="mb-5">
-                <h4 class="text-primary mb-3">@group.Key</h4>
-                <div class="row g-3">
-                    @foreach (var mon in group)
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="thucDonTabs" role="tablist">
+            @for (int i = 0; i < Model.ThucDon7Ngay.Count; i++)
+            {
+                var ngayThucDon = Model.ThucDon7Ngay[i];
+                var isActive = (i == 0) ? "active" : "";
+                var tabId = $"ngay{i + 1}";
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link @isActive" id="@($"{tabId}-tab")" data-bs-toggle="tab" data-bs-target="#@tabId" type="button" role="tab" aria-controls="@tabId" aria-selected="@(i == 0 ? "true" : "false")">
+                        @ngayThucDon.Ngay.ToString("dd/MM/yyyy")
+                    </button>
+
+                </li>
+            }
+        </ul>
+
+        <!-- Tab content -->
+        <div class="tab-content mt-4" id="thucDonTabsContent">
+            @for (int i = 0; i < Model.ThucDon7Ngay.Count; i++)
+            {
+                var ngayThucDon = Model.ThucDon7Ngay[i];
+                var isActive = (i == 0) ? "show active" : "";
+                var tabId = $"ngay{i + 1}";
+
+                var groups = ngayThucDon.DanhSachMonAn?
+                .GroupBy(m => m.LoaiBuaAn ?? "Không xác định")
+                .OrderBy(g => g.Key)
+                .ToList() ?? new List<IGrouping<string, SmartCookFinal.Models.MonAn>>();
+
+                <div class="tab-pane fade @isActive" id="@tabId" role="tabpanel" aria-labelledby="@($"{tabId}-tab")">
+                    @foreach (var group in groups)
                     {
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="card h-100 shadow-sm border-0">
-                                <img src="@(string.IsNullOrEmpty(mon.UrlHinhAnh) ? "/images/default-food.png" : mon.UrlHinhAnh)" class="card-img-top" alt="@mon.TenMon" style="height:200px; object-fit:cover;">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">@mon.TenMon</h5>
-                                    <p class="card-text mb-1"><strong>Calories:</strong> @mon.LuongCalo kcal</p>
-                                    <p class="card-text mb-0"><strong>Chi phí:</strong> @(mon.ChiPhiUocTinh?.ToString("N0") ?? "0") VND</p>
-                                    <div class="mt-auto">
-                                        <a href="@Url.Action("Details", "MonAns", new { id = mon.Id })" class="btn btn-primary mt-auto">
-                                            Xem chi tiết
-                                        </a>
+                        <h5 class="text-primary">@group.Key</h5>
+                        <div class="row g-3 mb-4">
+                            @foreach (var mon in group)
+                            {
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="card h-100 shadow-sm border-0">
+                                        <img src="@(string.IsNullOrWhiteSpace(mon.UrlHinhAnh) ? "/images/default-food.png" : mon.UrlHinhAnh)" class="card-img-top" alt="@mon.TenMon" style="height:200px; object-fit:cover;" />
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title">@mon.TenMon</h5>
+                                            <p class="card-text mb-1"><strong>Calories:</strong> @(mon.LuongCalo ?? 0) kcal</p>
+                                            <p class="card-text mb-0"><strong>Chi phí:</strong> @(mon.ChiPhiUocTinh?.ToString("N0") ?? "0") VND</p>
+                                            <div class="mt-auto">
+                                                <a href="@Url.Action("Details", "MonAns", new { id = mon.Id })" class="btn btn-primary mt-auto">
+                                                    Xem chi tiết
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     }
                 </div>
-            </div>
-        }
+            }
+        </div>
     }
-
-
 </div>
+
+
+<script>
+    const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
+    tabs.forEach(tab => {
+        tab.addEventListener('shown.bs.tab', function (event) {
+            console.log("Đang xem tab:", event.target.textContent);
+        });
+    });
+</script>
+
