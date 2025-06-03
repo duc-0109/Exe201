@@ -6,11 +6,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SmartCookFinal.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class DBAdd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "DanhMucMonAns",
                 columns: table => new
@@ -30,19 +47,21 @@ namespace SmartCookFinal.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenNguoiDung = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenNguoiDung = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GioiTinh = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Tuoi = table.Column<int>(type: "int", nullable: false),
-                    ChieuCao = table.Column<float>(type: "real", nullable: false),
-                    CanNang = table.Column<float>(type: "real", nullable: false),
-                    MucDoHoatDong = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MucTieu = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SoBuaMotNgay = table.Column<int>(type: "int", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GioiTinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tuoi = table.Column<int>(type: "int", nullable: true),
+                    ChieuCao = table.Column<float>(type: "real", nullable: true),
+                    CanNang = table.Column<float>(type: "real", nullable: true),
+                    SoBuaMotNgay = table.Column<int>(type: "int", nullable: true),
+                    MucDoHoatDong = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MucTieu = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NganSachToiDa = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: true),
-                    CheDoAn = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DiUng = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KhongThich = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CheDoAn = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DiUng = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    KhongThich = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -79,9 +98,9 @@ namespace SmartCookFinal.Migrations
                     LoaiBuaAn = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThoiGianNau = table.Column<int>(type: "int", nullable: true),
                     LuongCalo = table.Column<int>(type: "int", nullable: true),
-                    Carbs = table.Column<float>(type: "real", nullable: true),
-                    Protein = table.Column<float>(type: "real", nullable: true),
-                    Fat = table.Column<float>(type: "real", nullable: true),
+                    Carbs = table.Column<double>(type: "float", nullable: true),
+                    Protein = table.Column<double>(type: "float", nullable: true),
+                    Fat = table.Column<double>(type: "float", nullable: true),
                     ChiPhiUocTinh = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: true),
                     Chay = table.Column<bool>(type: "bit", nullable: true),
                     AnKeto = table.Column<bool>(type: "bit", nullable: true),
@@ -112,6 +131,8 @@ namespace SmartCookFinal.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UrlImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Detail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isChecked = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -123,6 +144,48 @@ namespace SmartCookFinal.Migrations
                         column: x => x.UserId,
                         principalTable: "NguoiDungs",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmailConfirmations",
+                columns: table => new
+                {
+                    ConfirmationID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpirationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsConfirmed = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmailConfirmations", x => x.ConfirmationID);
+                    table.ForeignKey(
+                        name: "FK_EmailConfirmations_NguoiDungs_Id",
+                        column: x => x.Id,
+                        principalTable: "NguoiDungs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PasswordResetTokens",
+                columns: table => new
+                {
+                    TokenID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpirationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PasswordResetTokens", x => x.TokenID);
+                    table.ForeignKey(
+                        name: "FK_PasswordResetTokens_NguoiDungs_Id",
+                        column: x => x.Id,
+                        principalTable: "NguoiDungs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,6 +311,11 @@ namespace SmartCookFinal.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmailConfirmations_Id",
+                table: "EmailConfirmations",
+                column: "Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MonAnNguyenLieus_MonAnId",
                 table: "MonAnNguyenLieus",
                 column: "MonAnId");
@@ -261,6 +329,11 @@ namespace SmartCookFinal.Migrations
                 name: "IX_MonAns_DanhMucId",
                 table: "MonAns",
                 column: "DanhMucId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PasswordResetTokens_Id",
+                table: "PasswordResetTokens",
+                column: "Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ThucDonChiTiets_MonAnId",
@@ -285,7 +358,16 @@ namespace SmartCookFinal.Migrations
                 name: "BlogComments");
 
             migrationBuilder.DropTable(
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
+                name: "EmailConfirmations");
+
+            migrationBuilder.DropTable(
                 name: "MonAnNguyenLieus");
+
+            migrationBuilder.DropTable(
+                name: "PasswordResetTokens");
 
             migrationBuilder.DropTable(
                 name: "ThucDonChiTiets");

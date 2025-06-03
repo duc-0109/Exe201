@@ -12,18 +12,70 @@ using SmartCookFinal.Models;
 namespace SmartCookFinal.Migrations
 {
     [DbContext(typeof(SmartCookContext))]
-    [Migration("20250525094358_Init")]
-    partial class Init
+    [Migration("20250603115106_DBAdd")]
+    partial class DBAdd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EmailConfirmation", b =>
+                {
+                    b.Property<Guid>("ConfirmationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpirationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ConfirmationID");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("EmailConfirmations");
+                });
+
+            modelBuilder.Entity("PasswordResetToken", b =>
+                {
+                    b.Property<Guid>("TokenID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpirationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TokenID");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("PasswordResetTokens");
+                });
 
             modelBuilder.Entity("SmartCookFinal.Models.Blog", b =>
                 {
@@ -40,6 +92,10 @@ namespace SmartCookFinal.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,6 +105,9 @@ namespace SmartCookFinal.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
 
                     b.HasKey("BlogId");
 
@@ -87,6 +146,38 @@ namespace SmartCookFinal.Migrations
                     b.ToTable("BlogComments");
                 });
 
+            modelBuilder.Entity("SmartCookFinal.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
             modelBuilder.Entity("SmartCookFinal.Models.DanhMucMonAn", b =>
                 {
                     b.Property<int>("Id")
@@ -121,8 +212,8 @@ namespace SmartCookFinal.Migrations
                     b.Property<string>("CachNau")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("Carbs")
-                        .HasColumnType("real");
+                    b.Property<double?>("Carbs")
+                        .HasColumnType("float");
 
                     b.Property<bool?>("Chay")
                         .HasColumnType("bit");
@@ -137,8 +228,8 @@ namespace SmartCookFinal.Migrations
                     b.Property<string>("DinhDuongChiTiet")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("Fat")
-                        .HasColumnType("real");
+                    b.Property<double?>("Fat")
+                        .HasColumnType("float");
 
                     b.Property<string>("LoaiBuaAn")
                         .HasColumnType("nvarchar(max)");
@@ -152,8 +243,8 @@ namespace SmartCookFinal.Migrations
                     b.Property<string>("NguyenLieuChinh")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("Protein")
-                        .HasColumnType("real");
+                    b.Property<double?>("Protein")
+                        .HasColumnType("float");
 
                     b.Property<string>("TenMon")
                         .HasColumnType("nvarchar(max)");
@@ -212,18 +303,16 @@ namespace SmartCookFinal.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("CanNang")
+                    b.Property<float?>("CanNang")
                         .HasColumnType("real");
 
                     b.Property<string>("CheDoAn")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("ChieuCao")
+                    b.Property<float?>("ChieuCao")
                         .HasColumnType("real");
 
                     b.Property<string>("DiUng")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -231,33 +320,37 @@ namespace SmartCookFinal.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GioiTinh")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("KhongThich")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MucDoHoatDong")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MucTieu")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("NganSachToiDa")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("SoBuaMotNgay")
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SoBuaMotNgay")
                         .HasColumnType("int");
 
                     b.Property<string>("TenNguoiDung")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("Tuoi")
+                    b.Property<int?>("Tuoi")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -363,6 +456,28 @@ namespace SmartCookFinal.Migrations
                     b.HasIndex("NguoiDungId");
 
                     b.ToTable("ThucDonNgays");
+                });
+
+            modelBuilder.Entity("EmailConfirmation", b =>
+                {
+                    b.HasOne("SmartCookFinal.Models.NguoiDung", "NguoiDung")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDung");
+                });
+
+            modelBuilder.Entity("PasswordResetToken", b =>
+                {
+                    b.HasOne("SmartCookFinal.Models.NguoiDung", "NguoiDung")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NguoiDung");
                 });
 
             modelBuilder.Entity("SmartCookFinal.Models.Blog", b =>
