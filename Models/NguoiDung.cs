@@ -42,6 +42,7 @@ namespace SmartCookFinal.Models
         public string? CheDoAn { get; set; }
         public string? DiUng { get; set; }
         public string? KhongThich { get; set; }
+        public string Role { get; set; } = "User";
         public bool IsActive { get; set; } = false;
 
         // Navigation properties - giữ nullable nhưng đã khởi tạo trong constructor

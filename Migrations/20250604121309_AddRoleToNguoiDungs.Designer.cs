@@ -12,8 +12,8 @@ using SmartCookFinal.Models;
 namespace SmartCookFinal.Migrations
 {
     [DbContext(typeof(SmartCookContext))]
-    [Migration("20250603115106_DBAdd")]
-    partial class DBAdd
+    [Migration("20250604121309_AddRoleToNguoiDungs")]
+    partial class AddRoleToNguoiDungs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -295,6 +295,42 @@ namespace SmartCookFinal.Migrations
                     b.ToTable("MonAnNguyenLieus");
                 });
 
+            modelBuilder.Entity("SmartCookFinal.Models.News", b =>
+                {
+                    b.Property<int>("NewsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NewsId"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UrlImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("NewsId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("News");
+                });
+
             modelBuilder.Entity("SmartCookFinal.Models.NguoiDung", b =>
                 {
                     b.Property<int>("Id")
@@ -339,6 +375,10 @@ namespace SmartCookFinal.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -538,6 +578,17 @@ namespace SmartCookFinal.Migrations
                     b.Navigation("NguyenLieu");
                 });
 
+            modelBuilder.Entity("SmartCookFinal.Models.News", b =>
+                {
+                    b.HasOne("SmartCookFinal.Models.NguoiDung", "User")
+                        .WithMany("News")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SmartCookFinal.Models.ThucDonChiTiet", b =>
                 {
                     b.HasOne("SmartCookFinal.Models.MonAn", "MonAn")
@@ -590,6 +641,8 @@ namespace SmartCookFinal.Migrations
                     b.Navigation("Blogs");
 
                     b.Navigation("Comments");
+
+                    b.Navigation("News");
 
                     b.Navigation("ThucDonNgays");
                 });

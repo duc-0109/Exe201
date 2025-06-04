@@ -1,0 +1,77 @@
+﻿@model List<SmartCookFinal.Models.NguoiDung>
+
+@{
+    ViewData["Title"] = "Quản lý Người dùng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 1;
+    string search = ViewBag.Search ?? "";
+}
+
+<div class="min-h-screen bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-gray-800">📋 Quản lý Người dùng</h2>
+            <form method="get" class="flex space-x-2">
+                <input name="search" value="@search"
+                       placeholder="🔍 Tìm theo tên hoặc email"
+                       class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300" />
+                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow transition">
+                    Tìm kiếm
+                </button>
+            </form>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-sm text-left border border-gray-300 rounded-lg overflow-hidden">
+                <thead class="bg-gradient-to-r from-indigo-200 to-purple-200 text-gray-800 uppercase tracking-wider text-xs">
+                    <tr>
+                        <th class="py-3 px-5">👤 Tên người dùng</th>
+                        <th class="py-3 px-5">📧 Email</th>
+                        <th class="py-3 px-5">✅ Kích hoạt</th>
+                        <th class="py-3 px-5">🔐 Quyền</th>
+                        <th class="py-3 px-5 text-center">⚙️ Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @foreach (var user in Model)
+                    {
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="py-3 px-5 font-medium text-gray-900">@user.TenNguoiDung</td>
+                            <td class="py-3 px-5">@user.Email</td>
+                            <td class="py-3 px-5">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold
+                                        @(user.IsActive ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700")">
+                                    @(user.IsActive ? "Đã kích hoạt" : "Chưa kích hoạt")
+                                </span>
+                            </td>
+                            <td class="py-3 px-5">@user.Role</td>
+                            <td class="py-3 px-5 text-center space-x-2">
+                                <a asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.Id"
+                                   class="inline-flex items-center bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1.5 rounded shadow transition">
+                                    ✏️ Sửa
+                                </a>
+                                <a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id"
+                                   onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');"
+                                   class="inline-flex items-center bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1.5 rounded shadow transition">
+                                    🗑️ Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PHÂN TRANG -->
+        <div class="mt-6 flex justify-center items-center space-x-2">
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                <a asp-action="UserManage" asp-route-page="@i" asp-route-search="@search"
+                   class="px-4 py-2 border rounded-lg @(i == currentPage ? "bg-indigo-600 text-white" : "bg-white hover:bg-gray-100 text-indigo-600") transition">
+                    @i
+                </a>
+            }
+        </div>
+    </div>
+</div>

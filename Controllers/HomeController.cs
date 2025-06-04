@@ -76,18 +76,24 @@ namespace SmartCookFinal.Controllers
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserName", user.TenNguoiDung ?? "User");
             HttpContext.Session.SetString("UserEmail", user.Email ?? "");
+            HttpContext.Session.SetString("UserRole", user.Role ?? "User");
 
-            // ✅ Debug (nếu cần)
-            Console.WriteLine($"Login - User: Id={user.Id}, Name={user.TenNguoiDung}, Email={user.Email}");
-            Console.WriteLine($"Session - UserId: {HttpContext.Session.GetInt32("UserId")}");
-            Console.WriteLine($"Session - UserName: {HttpContext.Session.GetString("UserName")}");
-            Console.WriteLine($"Session - UserEmail: {HttpContext.Session.GetString("UserEmail")}");
+            // ✅ Ghi log (nếu cần)
+            Console.WriteLine($"Login - User: Id={user.Id}, Name={user.TenNguoiDung}, Role={user.Role}");
 
-            // ✅ Thêm TempData thông báo thành công
             TempData["LoginSuccess"] = $"Chào mừng {user.TenNguoiDung}!";
 
-            return RedirectToAction("Index", "Home");
+            // ✅ Điều hướng theo Role
+            if (user.Role != null && user.Role.ToLower() == "admin")
+            {
+                return RedirectToAction("Dashboard", "Admin");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
+
 
         public IActionResult Contact()
         {

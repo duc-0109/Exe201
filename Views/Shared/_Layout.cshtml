@@ -79,7 +79,9 @@
 				<div class="row d-flex justify-content-between align-items-center">
 					<div class="topbar-left col-auto">
 						<ul class="list-inline m-0">
-							<li class="list-inline-item"><a href="faq-1.html"><i class="fa fa-question-circle"></i> Liên hệ</a></li>
+							<li class="list-inline-item">
+								<a asp-controller="Home" asp-action="Contact"><i class="fa fa-question-circle"></i> Liên hệ</a>
+							</li>
 							<li class="list-inline-item"><a href="#"><i class="fa fa-envelope-o"></i> anthuchealty@gmail.com</a></li>
 						</ul>
 					</div>
@@ -166,6 +168,13 @@
 								<li>
 									<a href="@Url.Action("Index", "Blog")" style="text-decoration:none; font-size: 18px;"><strong>Blog</strong></a>
 								</li>
+								@if (User.IsInRole("Admin"))
+								{
+									<li>
+										<a href="@Url.Action("Index", "Dashboard")" style="font-size:18px;"><strong>Dashboard</strong></a>
+									</li>
+								}
+
 							</ul>
 
 
