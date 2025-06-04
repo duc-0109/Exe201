@@ -1,0 +1,37 @@
+﻿@model SmartCookFinal.Models.News
+
+@{
+    ViewData["Title"] = "Create News";
+}
+
+<div class="container mt-5">
+    <h2>Create News</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="ImageFile">Upload Image</label>
+            <input type="file" name="ImageFile" class="form-control" accept="image/*" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Content" class="control-label"></label>
+            <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Detail" class="control-label"></label>
+            <textarea asp-for="Detail" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Detail" class="text-danger"></span>
+        </div>
+
+        <input type="submit" value="Create" class="btn btn-success" />
+        <a asp-action="MyBlog" class="btn btn-secondary">Back</a>
+    </form>
+</div>

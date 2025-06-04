@@ -1,0 +1,204 @@
+﻿@model List<SmartCookFinal.Models.News>
+
+@{
+    ViewData["Title"] = "Quản lý tin tức";
+}
+
+<style>
+    .admin-posts-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+        .admin-posts-table td.actions-column {
+            width: 160px; /* Đặt chiều rộng cố định vừa đủ */
+            white-space: nowrap; /* Không cho nội dung xuống dòng */
+            padding: 12px 8px; /* Có thể giảm padding trái phải cho vừa hơn */
+        }
+
+            .admin-posts-table td.actions-column > div {
+                display: flex;
+                gap: 8px; /* Khoảng cách giữa 2 nút */
+            }
+
+        .admin-posts-table th, .admin-posts-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .admin-posts-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .admin-posts-table td img {
+            width: 100px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+    .action-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-right: 6px;
+        display: inline-block;
+    }
+
+        .action-button:hover {
+            background-color: #2980b9;
+        }
+
+    .delete-button {
+        background-color: #e74c3c;
+    }
+
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
+
+    h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .alert {
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    form input[type="text"] {
+        padding: 6px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-right: 8px;
+    }
+
+    form button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: #3498db;
+        color: white;
+        cursor: pointer;
+    }
+
+        form button:hover {
+            background-color: #2980b9;
+        }
+
+    .action-button.new-button {
+        background-color: #2ecc71; /* xanh lá */
+    }
+
+        .action-button.new-button:hover {
+            background-color: #27ae60;
+        }
+
+</style>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h2>Danh sách tin tức cần quản lý</h2>
+
+<form method="get" asp-action="Index" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+    <a href="@Url.Action("Create", "ManageNews")" class="action-button" style="background-color: #2ecc71;">New</a>
+    <div>
+        <input type="text" name="search" value="@ViewBag.CurrentSearch" placeholder="Tìm kiếm tin tức..." />
+        <button type="submit">Tìm kiếm</button>
+    </div>
+</form>
+
+
+
+<table class="admin-posts-table">
+    <thead>
+        <tr>
+            <th>Tiêu đề</th>
+            <th>Nội dung</th>
+            <th>Ngày tạo</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var news in Model)
+        {
+            <tr>
+                <td>@news.Title</td>
+                <td>@(news.Content.Length > 100 ? news.Content.Substring(0, 100) + "..." : news.Content)</td>
+                <td>@news.CreatedAt.ToString("dd/MM/yyyy")</td>
+
+                <td class="actions-column">
+                    <div>
+                        <a class="action-button" asp-action="Edit" asp-route-id="@news.NewsId">Edit</a>
+
+                        <form asp-action="Delete" asp-route-id="@news.NewsId" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa tin tức này?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="action-button delete-button">Delete</button>
+                        </form>
+                    </div>
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="margin-top: 20px;">
+    @if (ViewBag.TotalPages > 1)
+    {
+        <div>
+            Trang:
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                if (i == ViewBag.CurrentPage)
+                {
+                    <strong>@i</strong>
+                }
+                else
+                {
+                    <a asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-search="@ViewBag.CurrentSearch">@i</a>
+                }
+
+                if (i < ViewBag.TotalPages)
+                {
+                    <span>|</span>
+                }
+            }
+        </div>
+    }
+</div>

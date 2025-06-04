@@ -17,7 +17,6 @@ namespace SmartCookFinal.Controllers
         }
 
         // GET: /Blog
-
         public async Task<IActionResult> Index(string searchText, int page = 1)
         {
             int? userId = HttpContext.Session.GetInt32("UserId");
@@ -25,9 +24,13 @@ namespace SmartCookFinal.Controllers
             {
                 return RedirectToAction("Login", "Home"); // Redirect nếu chưa đăng nhập
             }
+
             int pageSize = 4; // Số bài viết mỗi trang
 
-            IQueryable<Blog> blogs = _context.Blogs.Include(b => b.User);
+            // Chỉ lấy các bài viết đã được duyệt
+            IQueryable<Blog> blogs = _context.Blogs
+                .Include(b => b.User)
+                .Where(b => b.isChecked == true);
 
             if (!string.IsNullOrEmpty(searchText))
             {
@@ -52,7 +55,7 @@ namespace SmartCookFinal.Controllers
 
 
 
-
+      
         // GET: /Blog/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -67,9 +70,9 @@ namespace SmartCookFinal.Controllers
             if (blog == null)
                 return NotFound();
 
-            // Lấy 3 bài viết mới nhất (không tính bài hiện tại)
+            // Lấy 3 bài viết mới nhất đã được duyệt (không tính bài hiện tại)
             var recentPosts = await _context.Blogs
-                .Where(b => b.BlogId != id)
+                .Where(b => b.BlogId != id && b.isChecked == true)  // chỉ lấy bài đã duyệt
                 .OrderByDescending(b => b.CreatedAt)
                 .Take(3)
                 .ToListAsync();
@@ -78,6 +81,7 @@ namespace SmartCookFinal.Controllers
 
             return View(blog);
         }
+
 
 
         // GET: /Blog/Create
@@ -121,7 +125,7 @@ namespace SmartCookFinal.Controllers
 
             blog.UserId = userId.Value;
             blog.CreatedAt = DateTime.Now;
-            blog.isChecked = true;
+            blog.isChecked = false;
 
             _context.Add(blog);
             await _context.SaveChangesAsync();

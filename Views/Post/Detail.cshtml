@@ -1,0 +1,95 @@
+﻿@model SmartCookFinal.Models.Blog
+
+@{
+    ViewData["Title"] = "Chi tiết bài viết";
+}
+
+<style>
+    .detail-container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+        .detail-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .detail-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .detail-container label {
+            font-weight: bold;
+        }
+
+        .detail-container textarea {
+            width: 100%;
+            min-height: 100px;
+            margin-bottom: 15px;
+        }
+
+    .button-group {
+        margin-top: 20px;
+    }
+
+        .button-group button,
+        .button-group a {
+            margin-right: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            color: white;
+            background-color: #3498db;
+            cursor: pointer;
+        }
+
+        .button-group a {
+            background-color: #95a5a6;
+        }
+
+        .button-group button:hover {
+            background-color: #2980b9;
+        }
+
+        .button-group a:hover {
+            background-color: #7f8c8d;
+        }
+</style>
+
+<div class="detail-container">
+    <h2>@Model.Title</h2>
+    <img src="@Model.UrlImage" alt="Ảnh bài viết" />
+
+    <form method="post">
+        <input type="hidden" name="id" value="@Model.BlogId" />
+
+        <p><label>Tiêu đề:</label> @Model.Title</p>
+        <p><label>Nội dung:</label> @Model.Content</p>
+        <p><label>Chi tiết:</label></p>
+        <textarea readonly>@Model.Detail</textarea>
+
+        <p><label>Người đăng:</label> @Model.User.TenNguoiDung</p>
+        <p><label>Ngày tạo:</label> @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+
+        <p>
+            <label>Trạng thái:</label>
+            <select name="isChecked">
+                <option value="true" selected="@Model.isChecked">Duyệt</option>
+                <option value="false" selected="@(Model.isChecked == false)">Từ chối</option>
+            </select>
+        </p>
+
+        <div class="button-group">
+            <button type="submit">Update</button>
+            <a asp-action="Index">Cancel</a>
+        </div>
+    </form>
+</div>
