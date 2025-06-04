@@ -1,76 +1,371 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Admin Dashboard";
+    ViewBag.Title = "Bảng Điều Khiển Quản Trị";
 }
 
+<style>
+    /* Font chính */
+    body, .sidebar, main, .card, .btn-view {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        background: linear-gradient(180deg, #4A235A, #6C3483); /* tím đậm chuyển tím nhạt */
+        min-height: 100vh;
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 4px 0 15px rgba(74,35,90,0.6);
+        transition: background-color 0.5s ease;
+        user-select: none;
+    }
+
+        .sidebar h4 {
+            color: #E8DAEF; /* tím nhạt sáng */
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            margin-bottom: 3rem;
+            font-size: 1.4rem;
+            text-align: center;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px rgba(232,218,239,0.7);
+        }
+
+        .sidebar .nav-link {
+            color: #D7BDE2; /* tím nhạt pastel */
+            font-weight: 600;
+            font-size: 1.15rem;
+            padding: 14px 26px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background-color: transparent;
+            transition: background-color 0.4s ease, color 0.4s ease, transform 0.2s ease;
+            box-shadow: inset 0 0 0 0 transparent;
+        }
+
+            .sidebar .nav-link i {
+                font-size: 1.5rem;
+                opacity: 0.75;
+                transition: opacity 0.3s ease;
+            }
+
+            .sidebar .nav-link:hover {
+                background-color: #9B59B6; /* tím nhạt */
+                color: #fff;
+                font-weight: 700;
+                transform: translateX(6px);
+                box-shadow: inset 4px 0 8px #BB8FCE;
+            }
+
+                .sidebar .nav-link:hover i {
+                    opacity: 1;
+                }
+
+            .sidebar .nav-link.active {
+                background-color: #5B2C6F; /* tím đậm */
+                color: #fff;
+                font-weight: 700;
+                box-shadow: 0 0 12px rgba(91, 44, 111, 0.7);
+                transform: translateX(6px);
+            }
+
+    .sidebar-footer {
+        margin-top: auto;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #76448A;
+        font-size: 0.9rem;
+        color: #D2B4DE;
+        text-align: center;
+        letter-spacing: 0.12em;
+        user-select: none;
+    }
+
+    /* Main Content */
+    main {
+        background-color: #F4F6F7; /* nền sáng nhẹ */
+        min-height: 100vh;
+        padding: 3rem 2.5rem 3rem 3rem;
+        color: #1C2833; /* xanh đen dịu */
+        overflow-x: hidden;
+    }
+
+    h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #5B2C6F; /* tím đậm */
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+
+    /* Cards Grid */
+    .row.g-4 {
+        gap: 2rem 2rem !important;
+    }
+
+    /* Card */
+    .card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 12px 28px rgba(107, 81, 151, 0.15); /* tím nhạt bóng */
+        transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 24px 48px rgba(155, 89, 182, 0.3);
+        }
+
+    .card-body {
+        padding: 2rem 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        flex-grow: 1;
+    }
+
+    .card-title {
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: #8E44AD; /* tím trung bình */
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        user-select: none;
+    }
+
+        .card-title i {
+            font-size: 3rem;
+            opacity: 0.85;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+    .card:hover .card-title i {
+        color: #BB8FCE; /* tím nhạt */
+    }
+
+    .card-text {
+        color: #566573; /* xanh đen nhẹ */
+        font-size: 1.1rem;
+        line-height: 1.6;
+        flex-grow: 1;
+        user-select: none;
+    }
+
+    /* Buttons */
+    .btn-view {
+        align-self: flex-start;
+        padding: 0.5rem 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        border-radius: 50px;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.3s ease;
+        user-select: none;
+    }
+
+    .btn-outline-primary {
+        color: #27AE60; /* xanh lá */
+        border: 2.5px solid #27AE60;
+        background-color: transparent;
+    }
+
+        .btn-outline-primary:hover {
+            background-color: #27AE60;
+            color: #ffffff;
+            box-shadow: 0 10px 24px rgba(39, 174, 96, 0.4);
+        }
+
+    .btn-outline-success {
+        color: #D68910; /* vàng cam */
+        border: 2.5px solid #D68910;
+        background-color: transparent;
+    }
+
+        .btn-outline-success:hover {
+            background-color: #D68910;
+            color: #ffffff;
+            box-shadow: 0 10px 24px rgba(214, 137, 16, 0.4);
+        }
+
+    .btn-outline-warning {
+        color: #F39C12; /* cam */
+        border: 2.5px solid #F39C12;
+        background-color: transparent;
+    }
+
+        .btn-outline-warning:hover {
+            background-color: #F39C12;
+            color: #000;
+            box-shadow: 0 10px 24px rgba(243, 156, 18, 0.4);
+        }
+
+    /* Alert */
+    .alert-info {
+        background-color: #E8DAEF; /* tím nhạt rất nhẹ */
+        color: #5B2C6F; /* tím đậm */
+        border-radius: 20px;
+        font-weight: 700;
+        font-size: 1.15rem;
+        letter-spacing: 0.07em;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.2rem 1.8rem;
+        box-shadow: 0 6px 16px rgba(91, 44, 111, 0.18);
+        user-select: none;
+        margin-top: 3rem;
+    }
+
+        .alert-info i {
+            font-size: 2rem;
+        }
+
+    /* Pagination */
+    .pagination .page-item.active .page-link {
+        background-color: #5B2C6F;
+        border-color: #5B2C6F;
+        box-shadow: 0 4px 12px rgba(91, 44, 111, 0.4);
+        font-weight: 700;
+    }
+
+    .pagination .page-link {
+        border-radius: 50px;
+        padding: 0.75rem 1.3rem;
+        font-weight: 700;
+        color: #5B2C6F;
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        user-select: none;
+    }
+
+        .pagination .page-link:hover {
+            background-color: #5B2C6F;
+            color: white;
+            box-shadow: 0 8px 20px rgba(91, 44, 111, 0.3);
+        }
+
+</style>
+
 <div class="container-fluid mt-4">
-    <div class="row">
+    <div class="row gx-0">
         <!-- Sidebar -->
-        <div class="col-md-3 col-lg-2 bg-dark text-white sidebar p-3 rounded">
-            <h4 class="text-center">Admin Panel</h4>
-            <hr />
-            <ul class="nav flex-column">
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-white" href="/Admin/UserManage">
-                        <i class="bi bi-people"></i> User Manage
+        <nav class="col-md-3 col-lg-2 sidebar d-flex flex-column">
+            <h4>BẢNG QUẢN TRỊ</h4>
+            <ul class="nav flex-column px-3">
+                <li class="nav-item">
+                    <a href="/Admin/UserManage" class="nav-link d-flex align-items-center gap-3">
+                        <i class="bi bi-people-fill"></i> Quản Lý Người Dùng
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-white" href="/Admin/BlogManage">
-                        <i class="bi bi-journal-text"></i> Blog Manage
+                <li class="nav-item">
+                    <a href="/Admin/BlogManage" class="nav-link d-flex align-items-center gap-3">
+                        <i class="bi bi-journal-text"></i> Quản Lý Blog
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-white" href="/Admin/NewsManage">
-                        <i class="bi bi-newspaper"></i> News Manage
+                <li class="nav-item">
+                    <a href="/Admin/NewsManage" class="nav-link d-flex align-items-center gap-3">
+                        <i class="bi bi-newspaper"></i> Quản Lý Tin Tức
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/Admin/ContactList" class="nav-link d-flex align-items-center gap-3">
+                        <i class="bi bi-chat-left-text-fill"></i> Quản Lý Liên Hệ
                     </a>
                 </li>
             </ul>
-        </div>
+            <div class="sidebar-footer">
+                © 2025 An Thực
+            </div>
+        </nav>
 
-        <!-- Main content -->
-        <div class="col-md-9 col-lg-10">
-            <h2 class="mb-4">Welcome to Admin Dashboard</h2>
-            <div class="row">
-                <!-- Card 1 -->
-                <div class="col-md-4">
-                    <div class="card text-white bg-primary mb-3">
+        <!-- Main Content -->
+        <main class="col-md-9 col-lg-10 px-5 py-5">
+            <h2 >Chào mừng đến với Bảng Điều Khiển Quản Trị</h2>
+
+            <div class="row g-4">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">User Management</h5>
-                            <p class="card-text">Manage all users in the system.</p>
-                            <a href="/Admin/UserManage" class="btn btn-light btn-sm">Go to Users</a>
+                            <h5 class="card-title">
+                                <i class="bi bi-people-fill"></i> Quản Lý Người Dùng
+                            </h5>
+                            <p class="card-text">
+                                Thêm, sửa, xóa, và quản lý quyền hạn của người dùng hệ thống một cách dễ dàng.
+                            </p>
+                            <a href="/Admin/UserManage" class="btn btn-outline-primary btn-view">
+                                Xem Chi Tiết <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="col-md-4">
-                    <div class="card text-white bg-success mb-3">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Blog Management</h5>
-                            <p class="card-text">Create, edit, or delete blogs.</p>
-                            <a href="/Admin/BlogManage" class="btn btn-light btn-sm">Go to Blogs</a>
+                            <h5 class="card-title">
+                                <i class="bi bi-journal-text"></i> Quản Lý Blog
+                            </h5>
+                            <p class="card-text">
+                                Tạo mới, chỉnh sửa, và quản lý các bài viết blog một cách chuyên nghiệp.
+                            </p>
+                            <a href="/Admin/BlogManage" class="btn btn-outline-success btn-view">
+                                Xem Chi Tiết <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="col-md-4">
-                    <div class="card text-white bg-warning mb-3">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">News Management</h5>
-                            <p class="card-text">Update and manage news content.</p>
-                            <a href="/Admin/NewsManage" class="btn btn-light btn-sm">Go to News</a>
+                            <h5 class="card-title">
+                                <i class="bi bi-newspaper"></i> Quản Lý Tin Tức
+                            </h5>
+                            <p class="card-text">
+                                Đăng tải và cập nhật các tin tức mới nhất đến người dùng.
+                            </p>
+                            <a href="/Admin/NewsManage" class="btn btn-outline-warning btn-view">
+                                Xem Chi Tiết <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="bi bi-chat-left-text-fill"></i> Quản Lý Liên Hệ
+                            </h5>
+                            <p class="card-text">
+                                Xem và phản hồi các yêu cầu liên hệ từ người dùng nhanh chóng.
+                            </p>
+                            <a href="/Admin/ContactList" class="btn btn-outline-primary btn-view">
+                                Xem Chi Tiết <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <hr />
-
-            <div class="alert alert-info mt-4">
-                <i class="bi bi-info-circle"></i> This is your centralized dashboard to manage the system.
+            <div class="alert alert-info mt-5 d-flex align-items-center">
+                <i class="bi bi-info-circle-fill"></i>
+                <span>Hãy luôn giữ thông tin hệ thống được cập nhật và bảo mật an toàn.</span>
             </div>
-        </div>
+        </main>
     </div>
 </div>

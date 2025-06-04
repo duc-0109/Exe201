@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SmartCookFinal.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SmartCookFinal.Models;
 
 public class AdminController : Controller
 {
@@ -17,30 +18,29 @@ public class AdminController : Controller
     }
 
     public IActionResult UserManage(string search, int page = 1, int pageSize = 10)
+{
+    var query = _context.NguoiDungs.AsQueryable();
+
+    if (!string.IsNullOrEmpty(search))
     {
-        var query = _context.NguoiDungs.AsQueryable();
-
-        if (!string.IsNullOrEmpty(search))
-        {
-            query = query.Where(u => u.TenNguoiDung.Contains(search) || u.Email.Contains(search));
-        }
-
-        int totalUsers = query.Count();
-        var totalPages = (int)Math.Ceiling(totalUsers / (double)pageSize);
-
-        var users = query
-            .OrderBy(u => u.Id)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
-
-        ViewBag.CurrentPage = page;
-        ViewBag.TotalPages = totalPages;
-        ViewBag.Search = search;
-
-        return View(users);
+        query = query.Where(u => u.TenNguoiDung.Contains(search) || u.Email.Contains(search));
     }
 
+    int totalUsers = query.Count();
+    var totalPages = (int)Math.Ceiling(totalUsers / (double)pageSize);
+
+    var users = query
+        .OrderBy(u => u.Id)
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToList();
+
+    ViewBag.CurrentPage = page;
+    ViewBag.TotalPages = totalPages;
+    ViewBag.Search = search;
+
+    return View(users);
+}
 
     public IActionResult EditUser(int id)
     {

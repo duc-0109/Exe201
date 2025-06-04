@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+ï»¿using Microsoft.EntityFrameworkCore;
 using SmartCookFinal.Models;
 
 namespace SmartCookFinal
@@ -7,28 +7,35 @@ namespace SmartCookFinal
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            // Thêm DbContext
             builder.Services.AddDbContext<SmartCookContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Thêm session và HttpContextAccessor
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30); // session timeout
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
 
             builder.Services.AddHttpContextAccessor();
 
+            // ThÃªm Authentication service
+            builder.Services.AddAuthentication("MyCookieAuth")
+                .AddCookie("MyCookieAuth", options =>
+                {
+                    options.Cookie.Name = "MyCookieAuth";
+                    options.LoginPath = "/Home/Login";
+                    options.AccessDeniedPath = "/Home/AccessDenied";
+                });
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -40,17 +47,22 @@ namespace SmartCookFinal
 
             app.UseRouting();
 
-            app.UseSession(); 
+            app.UseSession();
+
+            app.UseAuthentication();  // pháº£i cÃ³
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapControllerRoute(
-    name: "resetPassword",
-    pattern: "reset-password/{userId:int}/{token}",
-    defaults: new { controller = "Home", action = "ResetPassword" });
+                name: "resetPassword",
+                pattern: "reset-password/{userId:int}/{token}",
+                defaults: new { controller = "Home", action = "ResetPassword" });
+
             app.Run();
+
         }
     }
 }
