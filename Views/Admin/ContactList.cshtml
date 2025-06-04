@@ -1,0 +1,184 @@
+﻿@model List<SmartCookFinal.Models.Contact>
+
+@{
+    ViewData["Title"] = "Danh sách Liên hệ";
+    int currentPage = ViewBag.CurrentPage ?? 1;
+    int totalPages = ViewBag.TotalPages ?? 1;
+    string search = ViewBag.Search ?? "";
+    int pageSize = ViewBag.PageSize ?? 10;
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f0f4f8;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 30px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    form input[type="text"] {
+        padding: 8px 12px;
+        width: 250px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    form button {
+        padding: 8px 14px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        margin-left: 8px;
+        cursor: pointer;
+    }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table th {
+            background-color: #e8efff;
+        }
+
+    .status-true {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-false {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .pagination {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .pagination a {
+            display: inline-block;
+            margin: 0 4px;
+            padding: 6px 12px;
+            background-color: #eee;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+
+            .pagination a.active {
+                background-color: #007bff;
+                color: white;
+            }
+
+            .pagination a:hover {
+                background-color: #0056b3;
+                color: white;
+            }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 8px 14px;
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+        .back-button:hover {
+            background-color: #495057;
+        }
+</style>
+
+<div class="container">
+    <h2>📬 Danh sách liên hệ</h2>
+
+    <form method="get">
+        <input type="text" name="search" placeholder="Tìm theo tên hoặc email" value="@search" />
+        <button type="submit">Tìm kiếm</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Tiêu đề</th>
+                <th>Nội dung</th>
+                <th>Ngày gửi</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                var item = Model[i];
+                <tr>
+                    <td>@((currentPage - 1) * pageSize + i + 1)</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Subject</td>
+                    <td>@item.Message</td>
+                    <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>
+                        <span class="status-@(item.IsReplied.ToString().ToLower())">
+                            @(item.IsReplied ? "Đã trả lời" : "Chưa trả lời")
+                        </span>
+                    </td>
+                    <td>
+                        <form method="post" asp-action="ToggleReplyStatus" asp-controller="Admin">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" style="padding: 6px 10px; border: none; border-radius: 4px; background-color: @(item.IsReplied ? "#ffc107" : "#28a745"); color: white; cursor: pointer;">
+                                @(item.IsReplied ? "Đánh dấu chưa trả lời" : "Đánh dấu đã trả lời")
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            if (i == currentPage)
+            {
+                <a class="active" href="?page=@i&search=@search">@i</a>
+            }
+            else
+            {
+                <a href="?page=@i&search=@search">@i</a>
+            }
+        }
+    </div>
+
+    <a href="/Admin/Dashboard" class="back-button">⬅️ Quay lại Dashboard</a>
+</div>

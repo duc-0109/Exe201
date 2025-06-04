@@ -47,7 +47,23 @@ public class AdminController : Controller
         var user = _context.NguoiDungs.Find(id);
         if (user == null)
             return NotFound();
-        return View(user);
+
+        return View("UserDetail", user);
+    }
+
+    [HttpPost]
+    public IActionResult UpdateUserDetail(NguoiDung updatedUser)
+    {
+        var existingUser = _context.NguoiDungs.Find(updatedUser.Id);
+        if (existingUser == null)
+            return NotFound();
+
+        // Cập nhật thông tin
+        _context.Entry(existingUser).CurrentValues.SetValues(updatedUser);
+        _context.SaveChanges();
+        TempData["SuccessMessage"] = "Cập nhật người dùng thành công!";
+        return RedirectToAction("UserManage");
+        
     }
 
     public IActionResult DeleteUser(int id)
@@ -71,5 +87,42 @@ public class AdminController : Controller
 
         return RedirectToAction("UserManage");
     }
+    public IActionResult ContactList(string search, int page = 1, int pageSize = 10)
+    {
+        var query = _context.Contacts.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(c => c.Name.Contains(search) || c.Email.Contains(search) || c.Subject.Contains(search));
+        }
+
+        int totalContacts = query.Count();
+        var totalPages = (int)Math.Ceiling(totalContacts / (double)pageSize);
+
+        var contacts = query
+            .OrderByDescending(c => c.CreatedAt)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        ViewBag.CurrentPage = page;
+        ViewBag.TotalPages = totalPages;
+        ViewBag.Search = search;
+
+        return View(contacts);
+    }
+    [HttpPost]
+    public IActionResult ToggleReplyStatus(int id)
+    {
+        var contact = _context.Contacts.FirstOrDefault(c => c.Id == id);
+        if (contact != null)
+        {
+            contact.IsReplied = !contact.IsReplied;
+            _context.SaveChanges();
+        }
+        return RedirectToAction("ContactList");
+    }
 
 }
+
+

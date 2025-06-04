@@ -8,6 +8,8 @@
     string search = ViewBag.Search ?? "";
     bool isFirstPage = currentPage == 1;
     bool isLastPage = currentPage == totalPages;
+    var successMessage = TempData["SuccessMessage"] as string;
+
 }
 
 <style>
@@ -223,11 +225,55 @@
             </a>
         </div>
     </div>
+
     <div style="margin-bottom: 20px;">
         <a asp-controller="Admin" asp-action="Dashboard" class="btn-add-user" style="background-color:#3182ce;">
             🔙 Quay về bảng kiểm soát
         </a>
     </div>
+     @if (!string.IsNullOrEmpty(successMessage))
+    {
+        <div id="success-alert" role="alert" aria-live="assertive" aria-atomic="true">
+            @successMessage
+        </div>
+
+        <style>
+            #success-alert {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background-color: #38a169; /* xanh lá */
+                color: white;
+                padding: 14px 24px;
+                border-radius: 8px;
+                font-weight: 700;
+                box-shadow: 0 4px 12px rgba(56, 161, 105, 0.5);
+                opacity: 1;
+                transition: opacity 0.6s ease-out;
+                z-index: 9999;
+                font-size: 1rem;
+                user-select: none;
+                pointer-events: auto;
+                cursor: default;
+            }
+            #success-alert.hide {
+                opacity: 0;
+                pointer-events: none;
+            }
+        </style>
+
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    const alert = document.getElementById('success-alert');
+                    if (alert) {
+                        alert.classList.add('hide');
+                        setTimeout(() => alert.style.display = 'none', 600);
+                    }
+                }, 5000);
+            });
+        </script>
+    }
     <div style="overflow-x:auto;">
         <table class="user-table" role="grid" aria-label="Danh sách người dùng">
             <thead>
@@ -257,9 +303,10 @@
                         </td>
                         <td>@user.Role</td>
                         <td style="text-align:center;">
-                            <a asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.Id" class="action-btn edit" title="Sửa người dùng">
-                                ✏️ Sửa
+                            <a asp-controller="Admin" asp-action="EditUser" asp-route-id="@user.Id" class="action-btn edit" title="Chi tiết người dùng">
+                                ✏️ Chi tiết
                             </a>
+
                             <a asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id" onclick="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');" class="action-btn delete" title="Xóa người dùng">
                                 🗑️ Xóa
                             </a>

@@ -1,0 +1,185 @@
+﻿@model SmartCookFinal.Models.NguoiDung
+@{
+    ViewData["Title"] = "Chi tiết người dùng";
+}
+
+<style>
+    form {
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fafafa;
+        font-family: Arial, sans-serif;
+    }
+
+        form div.form-group {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+            form div.form-group label {
+                width: 180px;
+                font-weight: 600;
+                color: #333;
+            }
+
+            form div.form-group input,
+            form div.form-group select {
+                flex: 1;
+                padding: 8px 10px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+                form div.form-group input[type="checkbox"] {
+                    width: auto;
+                    margin-left: 0;
+                    transform: scale(1.2);
+                    cursor: pointer;
+                }
+
+    .btn-group {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    button, a.btn {
+        padding: 8px 18px;
+        font-size: 15px;
+        border-radius: 5px;
+        margin: 0 8px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        button.btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+        }
+
+            button.btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        button.btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            color: white;
+        }
+
+            button.btn-secondary:hover {
+                background-color: #565e64;
+            }
+
+    a.btn-danger {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+
+        a.btn-danger:hover {
+            background-color: #a71d2a;
+        }
+</style>
+
+<h2>Chi tiết người dùng</h2>
+
+<form asp-action="UpdateUserDetail" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="TenNguoiDung"></label>
+        <input asp-for="TenNguoiDung" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GioiTinh"></label>
+        <input asp-for="GioiTinh" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Tuoi"></label>
+        <input asp-for="Tuoi" type="number" min="0" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ChieuCao"></label>
+        <input asp-for="ChieuCao" type="number" step="0.1" min="0" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CanNang"></label>
+        <input asp-for="CanNang" type="number" step="0.1" min="0" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MucDoHoatDong"></label>
+        <input asp-for="MucDoHoatDong" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MucTieu"></label>
+        <input asp-for="MucTieu" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SoBuaMotNgay"></label>
+        <input asp-for="SoBuaMotNgay" type="number" min="0" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NganSachToiDa"></label>
+        <input asp-for="NganSachToiDa" type="number" min="0" step="1000" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CheDoAn"></label>
+        <input asp-for="CheDoAn" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiUng"></label>
+        <input asp-for="DiUng" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="KhongThich"></label>
+        <input asp-for="KhongThich" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="text" />
+    </div>
+
+    <div class="form-group" style="align-items: center;">
+        <label asp-for="IsActive"></label>
+        <input asp-for="IsActive" type="checkbox" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Role"></label>
+        <select asp-for="Role" class="form-control">
+            <option value="User Free" selected="@Model.Role == " User Free"">User Free</option>
+            <option value="User Premium" selected="@Model.Role == " User Premium"">User Premium</option>
+            <option value="Admin" selected="@Model.Role == " Admin"">Admin</option>
+        </select>
+    </div>
+
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+        <button type="reset" class="btn btn-secondary">Huỷ</button>
+        <a asp-action="UserManage" class="btn btn-danger">Quay về</a>
+    </div>
+</form>
