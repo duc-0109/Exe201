@@ -115,6 +115,24 @@
             background-color: #27ae60;
         }
 
+    /* Add user button */
+    .btn-add-user {
+        background-color: #38a169; /* green-500 */
+        color: white;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 2px 6px rgb(56 161 105 / 0.4);
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-add-user:hover {
+            background-color: #2f855a;
+            box-shadow: 0 3px 8px rgb(47 133 90 / 0.7);
+        }
+
 </style>
 
 @if (TempData["SuccessMessage"] != null)
@@ -129,6 +147,12 @@
         @TempData["ErrorMessage"]
     </div>
 }
+
+<div style="margin-bottom: 20px;">
+    <a asp-controller="Admin" asp-action="Dashboard" class="btn-add-user" style="background-color:#3182ce;">
+        🔙 Quay về bảng kiểm soát
+    </a>
+</div>
 
 <h2>Danh sách tin tức cần quản lý</h2>
 
