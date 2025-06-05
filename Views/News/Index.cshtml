@@ -1,156 +1,328 @@
-﻿@using Azure.Core
-@model IEnumerable<SmartCookFinal.Models.News>
-
-
-
+﻿@model IEnumerable<SmartCookFinal.Models.News>
 
 <div class="page-content bg-white">
 	<!-- inner page banner -->
-	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');" ;">
+	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');">
 		<div class="container">
-			<div class="page-banner-entry">
-				<h1 class="text-white">News List</h1>
+			<div class="page-banner-entry text-center">
+				<h1 class="text-white banner-title">News List</h1>
 			</div>
 		</div>
 	</div>
-	<!-- Breadcrumb row -->
-	<div class="breadcrumb-row">
-		<div class="container">
-			<ul class="list-inline">
-				<li><a href="#">Home</a></li>
-				
 
+	<!-- Breadcrumb -->
+	<div class="breadcrumb-row bg-light py-3">
+		<div class="container">
+			<ul class="breadcrumb-list list-inline mb-0">
+				<li><a href="#" class="breadcrumb-link">Home</a></li>
+				<li class="active">News List</li>
 			</ul>
 		</div>
 	</div>
-	<!-- Breadcrumb row END -->
-	<!-- contact area -->
-	<div class="content-block">
-		<div class="widget">
-			<div class="search-bx style-1">
-				<form method="get" action="@Url.Action("Index", "News")" role="search">
-					<div class="input-group">
-						<input type="text" name="searchText" class="form-control" placeholder="Enter your keywords..." value="@ViewBag.SearchText" />
-						<span class="input-group-btn">
-							<button type="submit" class="fa fa-search text-primary"></button>
-						</span>
-					</div>
+
+	<!-- Search Box -->
+	<div class="content-block py-5">
+		<div class="container">
+			<div class="search-bx style-1 mb-5">
+				<form method="get" action="@Url.Action("Index", "News")" role="search" class="search-form d-flex">
+					<input type="text" name="searchText" class="form-control search-input" placeholder="Enter your keywords..." value="@ViewBag.SearchText" />
+					<button type="submit" class="btn btn-primary search-btn">
+						<i class="fa fa-search"></i>
+					</button>
 				</form>
 			</div>
-		</div>
 
-		<div class="section-area section-sp1">
-			<div class="container">
-				<div class="row">
-					<!-- Left part start -->
+			<div class="row">
+				<!-- News List -->
+				<div class="col-lg-8">
 					@foreach (var item in Model)
 					{
-						<div class="col-lg-8">
-							<div class="blog-post blog-md clearfix">
-								<div class="ttr-post-media">
-									<a href="#">
+						<div class="blog-post blog-md mb-5 shadow-sm rounded hover-shadow transition">
+							<div class="ttr-post-media position-relative overflow-hidden rounded-top">
+								@if (!string.IsNullOrEmpty(item.UrlImage))
+								{
+									<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="d-block">
+										<img src="@item.UrlImage" alt="@item.Title" class="img-fluid w-100 news-image transition-scale" />
+										<div class="overlay-hover d-flex align-items-center justify-content-center">
+											<span class="text-white h4 mb-0">View Details</span>
+										</div>
+									</a>
+								}
+							</div>
+
+							<div class="ttr-post-info p-4 bg-white rounded-bottom">
+								<ul class="media-post list-inline text-muted mb-2 small">
+									<li class="list-inline-item"><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
+									<li class="list-inline-item ml-3"><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
+								</ul>
+
+								<h5 class="post-title mb-3">
+									<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="text-dark font-weight-bold text-decoration-none hover-text-primary">
+										@item.Title
+									</a>
+								</h5>
+
+								<p class="post-excerpt text-secondary">
+									@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)
+								</p>
+
+								<button type="button" class="btn btn-outline-primary btn-sm mt-3 read-more-btn" data-toggle="modal" data-target="#blogModal-@item.NewsId">
+									READ MORE
+								</button>
+							</div>
+						</div>
+
+						<!-- Modal -->
+						<div class="modal fade" id="blogModal-@item.NewsId" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@item.NewsId" aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+								<div class="modal-content rounded shadow-lg">
+									<div class="modal-header border-bottom-0">
+										<h5 class="modal-title font-weight-bold" id="modalLabel-@item.NewsId">@item.Title</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true" class="h4">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
+										<p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
 										@if (!string.IsNullOrEmpty(item.UrlImage))
 										{
-											<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId">
-												<img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
-											</a>
-
+											<img src="@item.UrlImage" alt="Image" class="img-fluid mb-3 rounded" />
 										}
-									</a>
-								</div>
-								<div class="ttr-post-info">
-									<ul class="media-post">
-										<li><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
-										<li><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
-									</ul>
-									<h5 class="post-title">
-										<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" style="text-decoration: none; color: inherit;">
-											@item.Title
-										</a>
-									</h5>
-
-
-									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
-									<div class="post-extra">
-										<button type="button" class="btn btn-link" data-toggle="modal" data-target="#blogModal-@item.NewsId">
-											READ MORE
-										</button>
-
+										<p class="text-justify">@item.Content</p>
 									</div>
-								</div>
-							</div>
-
-							<!-- Modal -->
-							<div class="modal fade" id="blogModal-@item.NewsId" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@item.NewsId" aria-hidden="true">
-								<div class="modal-dialog modal-lg" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="modalLabel-@item.NewsId">@item.Title</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
-											<p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
-											@if (!string.IsNullOrEmpty(item.UrlImage))
-											{
-												<img src="@item.UrlImage" alt="Image" class="img-fluid mb-3" />
-											}
-											<p>@item.Content</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-										</div>
+									<div class="modal-footer border-top-0">
+										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Đóng</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					}
-
-
-
-
-					<!-- Pagination start -->
-					@if (ViewBag.TotalPages > 1)
-					{
-						<div class="pagination-bx rounded-sm gray clearfix">
-							<ul class="pagination">
-
-								@if (ViewBag.CurrentPage > 1)
-								{
-									<li class="previous">
-										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })">
-											<i class="ti-arrow-left"></i> Prev
-										</a>
-									</li>
-								}
-
-								@for (int i = 1; i <= ViewBag.TotalPages; i++)
-								{
-									<li class="@(i == ViewBag.CurrentPage ? "active" : "")">
-										<a href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
-									</li>
-								}
-
-								@if (ViewBag.CurrentPage < ViewBag.TotalPages)
-								{
-									<li class="next">
-										<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })">
-											Next <i class="ti-arrow-right"></i>
-										</a>
-									</li>
-								}
-
-							</ul>
-						</div>
-					}
-
 				</div>
-				<!-- Left part END -->
+
+				<!-- You can add a right sidebar here if needed -->
 
 			</div>
+
+			<!-- Pagination -->
+			@if (ViewBag.TotalPages > 1)
+			{
+				<nav aria-label="Page navigation" class="mt-4">
+					<ul class="pagination justify-content-center">
+						@if (ViewBag.CurrentPage > 1)
+						{
+							<li class="page-item">
+								<a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })" aria-label="Previous">
+									<span aria-hidden="true">&laquo; Prev</span>
+								</a>
+							</li>
+						}
+						@for (int i = 1; i <= ViewBag.TotalPages; i++)
+						{
+							<li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+								<a class="page-link" href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
+							</li>
+						}
+						@if (ViewBag.CurrentPage < ViewBag.TotalPages)
+						{
+							<li class="page-item">
+								<a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })" aria-label="Next">
+									<span aria-hidden="true">Next &raquo;</span>
+								</a>
+							</li>
+						}
+					</ul>
+				</nav>
+			}
 		</div>
 	</div>
 </div>
-</div>
+
+<style>
+	/* Banner */
+	.page-banner {
+		position: relative;
+		background-size: cover;
+		background-position: center center;
+		padding: 100px 0;
+	}
+
+	.banner-title {
+		font-size: 3rem;
+		font-weight: 700;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+	}
+
+	/* Breadcrumb */
+	.breadcrumb-list {
+		padding: 0;
+		margin: 0;
+	}
+
+		.breadcrumb-list li {
+			display: inline;
+			font-size: 0.9rem;
+			color: #555;
+		}
+
+			.breadcrumb-list li + li::before {
+				content: " / ";
+				padding: 0 8px;
+				color: #999;
+			}
+
+	.breadcrumb-link {
+		color: #007bff;
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+		.breadcrumb-link:hover {
+			color: #0056b3;
+			text-decoration: underline;
+		}
+
+	/* Search Box */
+	.search-form {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.search-input {
+		flex: 1;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border: 2px solid #007bff;
+		padding: 10px 15px;
+		font-size: 1rem;
+		transition: box-shadow 0.3s ease;
+	}
+
+		.search-input:focus {
+			box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+			border-color: #0056b3;
+			outline: none;
+		}
+
+	.search-btn {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		padding: 0 20px;
+		font-size: 1.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.3s ease;
+	}
+
+		.search-btn:hover {
+			background-color: #0056b3;
+			color: #fff;
+		}
+
+	/* Blog post */
+	.blog-post {
+		background: #fff;
+		border-radius: 10px;
+		overflow: hidden;
+	}
+
+		.blog-post:hover {
+			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+			transition: box-shadow 0.4s ease;
+		}
+
+	.ttr-post-media {
+		position: relative;
+	}
+
+	.news-image {
+		transition: transform 0.3s ease;
+		border-bottom: 4px solid #007bff;
+	}
+
+	.ttr-post-media:hover .news-image {
+		transform: scale(1.05);
+	}
+
+	.overlay-hover {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 123, 255, 0.5);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.ttr-post-media:hover .overlay-hover {
+		opacity: 1;
+		cursor: pointer;
+	}
+
+	.post-title a {
+		transition: color 0.3s ease;
+	}
+
+		.post-title a.hover-text-primary:hover {
+			color: #007bff;
+			text-decoration: underline;
+		}
+
+	.post-excerpt {
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.read-more-btn {
+		transition: all 0.3s ease;
+	}
+
+		.read-more-btn:hover {
+			background-color: #007bff;
+			color: #fff;
+		}
+
+	/* Pagination */
+	.pagination .page-item .page-link {
+		color: #007bff;
+		border-radius: 50%;
+		width: 38px;
+		height: 38px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	.pagination .page-item.active .page-link {
+		background-color: #007bff;
+		color: #fff;
+		border-color: #007bff;
+	}
+
+	.pagination .page-item .page-link:hover {
+		background-color: #0056b3;
+		color: #fff;
+		text-decoration: none;
+	}
+
+	/* Modal */
+	.modal-content {
+		border-radius: 15px;
+	}
+
+	.modal-header {
+		border-bottom: none;
+	}
+
+	.modal-title {
+		color: #007bff;
+	}
+
+	.modal-footer {
+		border-top: none;
+	}
+
+</style>

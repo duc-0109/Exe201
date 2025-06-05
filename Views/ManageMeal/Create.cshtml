@@ -1,0 +1,119 @@
+﻿@model SmartCookFinal.Models.MonAn
+
+@{
+    ViewData["Title"] = "Create Meal";
+}
+
+<div class="container mt-5">
+    <h2>Create Meal</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="TenMon" class="control-label"></label>
+            <input asp-for="TenMon" class="form-control" />
+            <span asp-validation-for="TenMon" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MoTa" class="control-label"></label>
+            <textarea asp-for="MoTa" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="MoTa" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LoaiBuaAn" class="control-label"></label>
+            <input asp-for="LoaiBuaAn" class="form-control" />
+            <span asp-validation-for="LoaiBuaAn" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ThoiGianNau" class="control-label"></label>
+            <input asp-for="ThoiGianNau" class="form-control" />
+            <span asp-validation-for="ThoiGianNau" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LuongCalo" class="control-label"></label>
+            <input asp-for="LuongCalo" class="form-control" />
+            <span asp-validation-for="LuongCalo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Carbs" class="control-label"></label>
+            <input asp-for="Carbs" class="form-control" />
+            <span asp-validation-for="Carbs" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Protein" class="control-label"></label>
+            <input asp-for="Protein" class="form-control" />
+            <span asp-validation-for="Protein" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Fat" class="control-label"></label>
+            <input asp-for="Fat" class="form-control" />
+            <span asp-validation-for="Fat" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ChiPhiUocTinh" class="control-label"></label>
+            <input asp-for="ChiPhiUocTinh" class="form-control" />
+            <span asp-validation-for="ChiPhiUocTinh" class="text-danger"></span>
+        </div>
+
+        <div class="form-check">
+            <input asp-for="Chay" class="form-check-input" />
+            <label asp-for="Chay" class="form-check-label"></label>
+        </div>
+
+        <div class="form-check">
+            <input asp-for="AnKeto" class="form-check-input" />
+            <label asp-for="AnKeto" class="form-check-label"></label>
+        </div>
+
+        <div class="form-check">
+            <input asp-for="AnKhongGluten" class="form-check-input" />
+            <label asp-for="AnKhongGluten" class="form-check-label"></label>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="NguyenLieuChinh" class="control-label"></label>
+            <input asp-for="NguyenLieuChinh" class="form-control" />
+            <span asp-validation-for="NguyenLieuChinh" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DinhDuongChiTiet" class="control-label"></label>
+            <textarea asp-for="DinhDuongChiTiet" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="DinhDuongChiTiet" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="imageFile">Upload Image</label>
+            <input type="file" name="imageFile" class="form-control" accept="image/*" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CachNau" class="control-label"></label>
+            <textarea asp-for="CachNau" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="CachNau" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="DanhMucId" class="control-label"></label>
+            <select asp-for="DanhMucId" asp-items="ViewBag.DanhMucList" class="form-control">
+                <option value="">-- Select Category --</option>
+            </select>
+            <span asp-validation-for="DanhMucId" class="text-danger"></span>
+        </div>
+
+        <div class="form-check">
+            <input asp-for="TrangThai" class="form-check-input" />
+            <label asp-for="TrangThai" class="form-check-label"></label>
+        </div>
+
+        <input type="submit" value="Create" class="btn btn-success mt-3" />
+        <a asp-action="Index" class="btn btn-secondary mt-3">Back</a>
+    </form>
+</div>

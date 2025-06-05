@@ -1,0 +1,175 @@
+﻿@model List<SmartCookFinal.Models.MonAn>
+
+@{
+    ViewData["Title"] = "Quản lý món ăn";
+}
+
+<h2>Danh sách món ăn</h2>
+
+<style>
+    .admin-meals-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+        .admin-meals-table th, .admin-meals-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .admin-meals-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .admin-meals-table td img {
+            width: 80px;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .admin-meals-table td.actions-column {
+            width: 160px;
+            white-space: nowrap;
+        }
+
+            .admin-meals-table td.actions-column > div {
+                display: flex;
+                gap: 8px;
+            }
+
+    .action-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .action-button:hover {
+            background-color: #2980b9;
+        }
+
+    .delete-button {
+        background-color: #e74c3c;
+    }
+
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
+
+    .new-button {
+        background-color: #2ecc71;
+    }
+
+        .new-button:hover {
+            background-color: #27ae60;
+        }
+
+    .alert {
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<form method="get" asp-action="Index" style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+    <a href="@Url.Action("Create", "ManageMeal")" class="action-button new-button">+ Thêm món mới</a>
+    <div>
+        <input type="text" name="search" value="@ViewBag.CurrentSearch" placeholder="Tìm kiếm món ăn..." />
+        <button type="submit" class="action-button">Tìm kiếm</button>
+    </div>
+</form>
+
+<table class="admin-meals-table">
+    <thead>
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tên món</th>
+            <th>Loại bữa ăn</th>
+            <th>Thời gian nấu (phút)</th>
+            <th>Calo</th>
+            <th>Chế độ</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var meal in Model)
+        {
+            <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(meal.UrlHinhAnh))
+                    {
+                        <img src="@meal.UrlHinhAnh" alt="Hình món ăn" />
+                    }
+                </td>
+                <td>@meal.TenMon</td>
+                <td>@meal.LoaiBuaAn</td>
+                <td>@meal.ThoiGianNau phút</td>
+                <td>@meal.LuongCalo calo</td>
+                <td>
+                    @(meal.Chay == true ? "Chay, " : "")
+                    @(meal.AnKeto == true ? "Keto, " : "")
+                    @(meal.AnKhongGluten == true ? "Không Gluten" : "")
+                </td>
+                <td class="actions-column">
+                    <div>
+                        <a class="action-button" asp-action="Edit" asp-route-id="@meal.Id">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@meal.Id" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa món ăn này?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="action-button delete-button">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (ViewBag.TotalPages > 1)
+{
+    <div style="margin-top: 20px;">
+        Trang:
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <strong>@i</strong>
+            }
+            else
+            {
+                <a asp-action="Index" asp-route-page="@i" asp-route-search="@ViewBag.CurrentSearch">@i</a>
+            }
+
+            if (i < ViewBag.TotalPages)
+            {
+                <span>|</span>
+            }
+        }
+    </div>
+}
