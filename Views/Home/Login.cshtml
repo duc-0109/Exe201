@@ -1,143 +1,625 @@
 ﻿@{
     ViewData["Title"] = "Đăng nhập";
+    Layout = null;
 }
 
 <style>
-    .alert-success-custom {
-        background-color: #d4edda;
-        border: 1px solid #c3e6cb;
-        color: #155724;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        position: relative;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        --danger-gradient: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        --home-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow-color: rgba(0, 0, 0, 0.1);
     }
 
-        .alert-success-custom .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            color: #155724;
-            opacity: 0.7;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--primary-gradient);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Home button - positioned at top left */
+    .home-button {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 20;
+        background: var(--home-gradient);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 24px;
+        color: white;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        opacity: 0;
+        transform: translateX(-50px);
+        animation: slideInLeft 0.8s ease-out 0.5s forwards;
+    }
+
+    @@keyframes slideInLeft {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .home-button:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(79, 172, 254, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+
+    .home-button:active {
+        transform: translateY(-1px) scale(1.02);
+    }
+
+    .home-icon {
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .home-button:hover .home-icon {
+        transform: rotate(-15deg) scale(1.1);
+    }
+
+    /* Animated background particles */
+    .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @@keyframes float {
+        0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+            opacity: 1;
         }
 
-            .alert-success-custom .close-btn:hover {
-                opacity: 1;
-            }
-
-    .success-icon {
-        color: #28a745;
-        margin-right: 8px;
-        font-size: 18px;
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+            opacity: 0.5;
+        }
     }
 
+    /* Glassmorphism container */
+    .glass-container {
+        backdrop-filter: blur(20px);
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
+        width: 100%;
+        max-width: 440px;
+        position: relative;
+        z-index: 10;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: slideInUp 0.8s ease-out forwards;
+    }
+
+    @@keyframes slideInUp {
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Success Alert */
+    .alert-success-custom {
+        background: var(--success-gradient);
+        border: none;
+        color: white;
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 24px;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);
+        transform: scale(0.95);
+        opacity: 0;
+        animation: popIn 0.6s ease-out 0.3s forwards;
+    }
+
+    @@keyframes popIn {
+        0% {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        80% {
+            transform: scale(1.05);
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .alert-success-custom .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+        .alert-success-custom .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+    .success-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        margin-right: 12px;
+        animation: checkmark 0.6s ease-in-out 0.8s both;
+    }
+
+    @@keyframes checkmark {
+        0% {
+            transform: scale(0) rotate(45deg);
+        }
+
+        50% {
+            transform: scale(1.2) rotate(45deg);
+        }
+
+        100% {
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    /* Error Alert */
+    .alert-danger {
+        background: var(--danger-gradient);
+        border: none;
+        color: white;
+        border-radius: 16px;
+        padding: 20px;
+        animation: shakeIn 0.6s ease-out;
+    }
+
+    @@keyframes shakeIn {
+        0% {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+
+        60% {
+            transform: translateX(10px);
+        }
+
+        100% {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Title */
+    .login-title {
+        color: white;
+        font-weight: 700;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        animation: fadeInDown 0.8s ease-out 0.2s both;
+    }
+
+    @@keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Form styling */
+    .form-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 16px 20px;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        width: 100%;
+    }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+    .form-label {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    /* Checkbox styling */
+    .form-check {
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .form-check-input {
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 6px;
+        margin-right: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+        .form-check-input:checked {
+            background: var(--success-gradient);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+            .form-check-input:checked::before {
+                content: '✓';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                font-weight: bold;
+                font-size: 12px;
+            }
+
+    .form-check-label {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-check:hover .form-check-label {
+        color: white;
+    }
+
+    /* Button styling */
+    .btn-login {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        border: none;
+        border-radius: 12px;
+        padding: 16px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: white;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .btn-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+            .btn-login:hover::before {
+                left: 100%;
+            }
+
+        .btn-login:active {
+            transform: translateY(-1px);
+        }
+
+    /* Links */
+    .auth-links {
+        text-align: center;
+        margin-top: 2rem;
+        animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+
+        .auth-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+            .auth-links a::before {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -2px;
+                left: 50%;
+                background: white;
+                transition: all 0.3s ease;
+            }
+
+            .auth-links a:hover {
+                color: white;
+                transform: translateY(-2px);
+            }
+
+                .auth-links a:hover::before {
+                    width: 100%;
+                    left: 0;
+                }
+
+    /* Fade animations */
     .fade-out {
         opacity: 0;
-        transition: opacity 0.5s ease-out;
+        transform: translateY(-20px);
+        transition: all 0.5s ease-out;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .home-button {
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+        }
+
+        .glass-container {
+            margin: 20px;
+            padding: 2rem;
+        }
+
+        .login-title {
+            font-size: 2rem;
+        }
+    }
+
+    /* Loading animation for form */
+    .form-loading .btn-login {
+        pointer-events: none;
+    }
+
+        .form-loading .btn-login::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            margin: auto;
+            border: 2px solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
     }
 </style>
 
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="text-center mb-4">Đăng nhập</h2>
+<!-- Home Button -->
+<a href="@Url.Action("Index", "Home")" class="home-button">
+    <span class="home-icon">🏠</span>
+    <span>Trang chủ</span>
+</a>
 
-            <!-- Thông báo thành công từ đăng ký -->
-            @if (TempData["SuccessMessage"] != null)
-            {
-                <div class="alert-success-custom" id="successAlert">
-                    <button type="button" class="close-btn" onclick="closeAlert()" title="Đóng">&times;</button>
-                    <div>
-                        <span class="success-icon">✓</span>
-                        <strong>@TempData["SuccessMessage"]</strong>
-                    </div>
-                    @if (TempData["UserEmail"] != null)
-                    {
-                        <div class="mt-2">
-                            <small class="text-muted">
-                                <i class="fas fa-envelope"></i> Email đã đăng ký: <strong>@TempData["UserEmail"]</strong>
-                            </small>
-                        </div>
-                    }
-                    <div class="mt-2">
-                        <small class="text-muted">
-                            Kiểm tra hộp thư đến (và thư mục spam) để xác thực tài khoản.
-                        </small>
-                    </div>
-                </div>
-            }
+<!-- Animated background particles -->
+<div class="particles" id="particles"></div>
 
-            <!-- Thông báo thành công khác (nếu có) -->
-            @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage as string))
-            {
-                <div class="alert alert-success mt-3">
-                    <span class="success-icon">✓</span>
-                    @ViewBag.SuccessMessage
-                </div>
-            }
+<div class="glass-container">
+    <h1 class="login-title">Đăng nhập</h1>
 
-            <!-- Thông báo lỗi -->
-            @if (!ViewData.ModelState.IsValid)
-            {
-                <div class="alert alert-danger mt-3">
-                    <strong>⚠ Có lỗi xảy ra:</strong>
-                    <ul class="mb-0 mt-2">
-                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                        {
-                            <li>@error.ErrorMessage</li>
-                        }
-                    </ul>
-                </div>
-            }
-
-            <!-- Form đăng nhập -->
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" asp-action="Login">
-                        <div class="form-group mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="Nhập email của bạn" required />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Nhập mật khẩu" required />
-                        </div>
-
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">Đăng nhập</button>
-                        </div>
-                    </form>
-                </div>
+    <!-- Thông báo thành công từ đăng ký -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert-success-custom" id="successAlert">
+            <button type="button" class="close-btn" onclick="closeAlert()" title="Đóng">&times;</button>
+            <div>
+                <span class="success-icon">✓</span>
+                <strong>@TempData["SuccessMessage"]</strong>
             </div>
-
-            <!-- Liên kết phụ -->
-            <div class="text-center mt-4">
-                <div class="mb-2">
-                    <a asp-action="ForgotPassword" class="text-decoration-none">
-                        Quên mật khẩu?
-                    </a>
+            @if (TempData["UserEmail"] != null)
+            {
+                <div class="mt-2">
+                    <small style="opacity: 0.9;">
+                        Email đã đăng ký: <strong>@TempData["UserEmail"]</strong>
+                    </small>
                 </div>
-                <div>
-                    <span class="text-muted">Chưa có tài khoản? </span>
-                    <a asp-action="Register" class="text-decoration-none">
-                        Đăng ký ngay
-                    </a>
-                </div>
+            }
+            <div class="mt-2">
+                <small style="opacity: 0.8;">
+                    Kiểm tra hộp thư đến (và thư mục spam) để xác thực tài khoản.
+                </small>
             </div>
+        </div>
+    }
+
+    <!-- Thông báo thành công khác (nếu có) -->
+    @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage as string))
+    {
+        <div class="alert alert-success mt-3">
+            <span class="success-icon">✓</span>
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+    <!-- Thông báo lỗi -->
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger mt-3">
+            <strong>⚠ Có lỗi xảy ra:</strong>
+            <ul class="mb-0 mt-2">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <!-- Form đăng nhập -->
+    <form method="post" asp-action="Login" id="loginForm">
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email"
+                   placeholder="Nhập địa chỉ email của bạn" required />
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" id="password" name="password"
+                   placeholder="Nhập mật khẩu của bạn" required />
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+            <label class="form-check-label" for="rememberMe">
+                Ghi nhớ tài khoản
+            </label>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn-login">
+                Đăng nhập
+            </button>
+        </div>
+    </form>
+
+    <div class="auth-links">
+        <div class="mb-3">
+            <a asp-action="ForgotPassword" class="text-decoration-none">
+                Quên mật khẩu?
+            </a>
+        </div>
+        <div>
+            <span style="color: rgba(255, 255, 255, 0.7);">Chưa có tài khoản? </span>
+            <a asp-action="Register" class="text-decoration-none">
+                Đăng ký ngay
+            </a>
         </div>
     </div>
 </div>
 
 <script>
-    // Hàm đóng thông báo
+    // Create animated particles
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Close alert function
     function closeAlert() {
         const alert = document.getElementById('successAlert');
         if (alert) {
@@ -148,28 +630,89 @@
         }
     }
 
-    // Tự động ẩn thông báo thành công sau 12 giây
+    // Handle form submission with loading animation
+    function handleSubmit(event) {
+        const form = document.getElementById('loginForm');
+        const button = form.querySelector('.btn-login');
+        const rememberMe = document.getElementById('rememberMe').checked;
+        const email = document.getElementById('email').value;
+
+        // Save or remove email based on remember me checkbox
+        if (rememberMe && email) {
+            localStorage.setItem('rememberedEmail', email);
+        } else {
+            localStorage.removeItem('rememberedEmail');
+        }
+
+        // Add loading state
+        form.classList.add('form-loading');
+        button.innerHTML = 'Đang xử lý...';
+
+        // Let the form submit naturally to the server
+        return true;
+    }
+
+    // Load remembered email on page load
+    function loadRememberedEmail() {
+        const rememberedEmail = localStorage.getItem('rememberedEmail');
+        if (rememberedEmail) {
+            document.getElementById('email').value = rememberedEmail;
+            document.getElementById('rememberMe').checked = true;
+        }
+    }
+
+    // Add input focus animations
+    document.querySelectorAll('.form-control').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+        });
+
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+
+    // Auto hide success alert after 12 seconds
     setTimeout(function() {
         const alert = document.getElementById('successAlert');
-        if (alert) {
-            alert.classList.add('fade-out');
-            setTimeout(() => {
-                alert.style.display = 'none';
-            }, 500);
+        if (alert && alert.style.display !== 'none') {
+            closeAlert();
         }
     }, 12000);
 
-    // Animation khi tải trang
+    // Initialize particles when page loads
     document.addEventListener('DOMContentLoaded', function() {
-        const successAlert = document.getElementById('successAlert');
-        if (successAlert) {
-            successAlert.style.opacity = '0';
-            successAlert.style.transform = 'translateY(-20px)';
-            setTimeout(() => {
-                successAlert.style.transition = 'all 0.5s ease-out';
-                successAlert.style.opacity = '1';
-                successAlert.style.transform = 'translateY(0)';
-            }, 100);
-        }
+        createParticles();
+        loadRememberedEmail(); // Load remembered email
+
+        // Add stagger animation to form elements
+        const formElements = document.querySelectorAll('.form-group, .form-check, .btn-login');
+        formElements.forEach((element, index) => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.animation = `fadeInUp 0.6s ease-out ${0.8 + index * 0.1}s forwards`;
+        });
+
+        // Add form submit handler
+        document.getElementById('loginForm').addEventListener('submit', handleSubmit);
+    });
+
+    // Add floating animation to container on mouse move
+    document.addEventListener('mousemove', function(e) {
+        const container = document.querySelector('.glass-container');
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        const moveX = x / rect.width * 10;
+        const moveY = y / rect.height * 10;
+
+        container.style.transform = `translate(${moveX}px, ${moveY}px) rotateX(${moveY * 0.1}deg) rotateY(${moveX * 0.1}deg)`;
+    });
+
+    // Reset container position when mouse leaves
+    document.addEventListener('mouseleave', function() {
+        const container = document.querySelector('.glass-container');
+        container.style.transform = 'translate(0, 0) rotateX(0) rotateY(0)';
     });
 </script>

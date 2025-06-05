@@ -1,59 +1,562 @@
 ﻿@model SmartCookFinal.Models.NguoiDung
-
 @{
     ViewData["Title"] = "Đăng ký";
+    Layout = null;
 }
 
-<h2>Đăng ký</h2>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-<!-- THÔNG BÁO -->
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger mt-3">
-        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-        {
-            <p>@error.ErrorMessage</p>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+    }
+
+    .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+    }
+
+        .particle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
         }
-    </div>
-}
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success mt-3">
-        @TempData["SuccessMessage"]
-    </div>
-}
+        .particle:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            left: 20%;
+            animation-delay: 2s;
+        }
 
-<!-- FORM -->
-<form asp-action="Register" method="post">
-    <div class="form-group">
-        <label for="TenNguoiDung">Tên người dùng</label>
-        <input name="TenNguoiDung" class="form-control" required
-               oninvalid="this.setCustomValidity('Vui lòng nhập tên người dùng')"
-               oninput="setCustomValidity('')" />
-    </div>
-    <div class="form-group">
-        <label for="Email">Email</label>
-        <input name="Email" class="form-control" type="email" required
-               oninvalid="this.setCustomValidity('Vui lòng nhập email hợp lệ')"
-               oninput="setCustomValidity('')" />
-    </div>
-    <div class="form-group">
-        <label for="Password">Mật khẩu</label>
-        <input name="Password" class="form-control" type="password" required
-               oninvalid="this.setCustomValidity('Vui lòng nhập mật khẩu')"
-               oninput="setCustomValidity('')" />
-    </div>
-    <button type="submit" class="btn btn-primary mt-3">Đăng ký</button>
-</form>
+        .particle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            left: 35%;
+            animation-delay: 4s;
+        }
 
-<div class="mt-2">
-    <a asp-action="Login">Đã có tài khoản? Đăng nhập</a>
+        .particle:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            left: 70%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(6) {
+            width: 110px;
+            height: 110px;
+            left: 85%;
+            animation-delay: 5s;
+        }
+
+    /* Keyframes */
+    @@keyframes float {
+        0%, 100% {
+            transform: translateY(100vh) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(-20px) rotate(180deg);
+        }
+    }
+
+    @@keyframes slideInUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @@keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    @@keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-5px);
+        }
+
+        75% {
+            transform: translateX(5px);
+        }
+    }
+
+    @@keyframes slideInDown {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @@keyframes inputError {
+        0%, 100% {
+            transform: translateX(0);
+        }
+
+        25% {
+            transform: translateX(-3px);
+        }
+
+        75% {
+            transform: translateX(3px);
+        }
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @@keyframes ripple {
+        0% {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate(-50%, -50%) scale(4);
+            opacity: 0;
+        }
+    }
+
+    .signup-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+        position: relative;
+        animation: slideInUp 0.8s ease-out;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .signup-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        border-radius: 20px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s ease-in-out infinite;
+        box-shadow: 0 10px 25px rgba(238, 90, 36, 0.3);
+        font-size: 2.5rem;
+        color: white;
+        font-weight: bold;
+    }
+
+    .signup-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .signup-subtitle {
+        color: #7f8c8d;
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid #e0e6ed;
+        border-radius: 12px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+        outline: none;
+    }
+
+        .form-input:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+    .signup-btn {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+        .signup-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .signup-btn:hover::before {
+            left: 100%;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .signup-btn:active {
+            transform: translateY(0);
+        }
+
+    .login-link {
+        text-align: center;
+        color: #7f8c8d;
+        font-size: 0.95rem;
+    }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+            .login-link a:hover {
+                color: #764ba2;
+                text-decoration: underline;
+            }
+
+    .error-messages {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        animation: shake 0.5s ease-in-out;
+    }
+
+    .success-message {
+        background: linear-gradient(135deg, #00b894, #00a085);
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        animation: slideInDown 0.5s ease-out;
+    }
+
+    .form-input.error {
+        border-color: #ff6b6b;
+        animation: inputError 0.3s ease;
+    }
+
+    .signup-btn.loading {
+        pointer-events: none;
+        opacity: 0.8;
+    }
+
+        .signup-btn.loading::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+    .floating-label {
+        position: relative;
+        margin-bottom: 25px;
+    }
+
+        .floating-label .form-input {
+            padding: 20px 20px 8px 20px;
+            border: 2px solid #e0e6ed;
+        }
+
+        .floating-label label {
+            position: absolute;
+            left: 20px;
+            top: 18px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color: #7f8c8d;
+            font-weight: 400;
+        }
+
+        .floating-label .form-input:focus + label,
+        .floating-label .form-input:not(:placeholder-shown) + label {
+            top: 5px;
+            font-size: 0.75rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+    /* Media Queries */
+    @@media (max-width: 480px) {
+        .signup-container {
+            margin: 20px;
+            padding: 30px 25px;
+        }
+
+        .signup-title {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+
+<div class="bg-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
 </div>
+
+<div class="signup-container">
+    <div class="signup-header">
+        <div class="logo">
+            AT
+        </div>
+        <h1 class="signup-title">Đăng ký</h1>
+        <p class="signup-subtitle">Tạo tài khoản An Thực của bạn</p>
+    </div>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="error-messages">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <div>@error.ErrorMessage</div>
+            }
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="success-message">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form method="post">
+        <div class="floating-label">
+            <div class="input-wrapper">
+                <input type="text" class="form-input" asp-for="TenNguoiDung" placeholder=" " required>
+                <label asp-for="TenNguoiDung">Tên người dùng</label>
+            </div>
+            <span asp-validation-for="TenNguoiDung" class="text-danger"></span>
+        </div>
+
+        <div class="floating-label">
+            <div class="input-wrapper">
+                <input type="email" class="form-input" asp-for="Email" placeholder=" " required>
+                <label asp-for="Email">Email</label>
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="floating-label">
+            <div class="input-wrapper">
+                <input type="password" class="form-input" asp-for="Password" placeholder=" " required>
+                <label asp-for="Password">Mật khẩu</label>
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="signup-btn" id="signupBtn">
+            <span>Đăng ký</span>
+        </button>
+    </form>
+
+    <div class="login-link">
+        Đã có tài khoản? <a asp-action="Login">Đăng nhập</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const submitBtn = document.getElementById('signupBtn');
+        const inputs = document.querySelectorAll('.form-input');
+
+        // Add floating label functionality
+        inputs.forEach(input => {
+            if (input.value) {
+                input.classList.add('has-value');
+            }
+
+            input.addEventListener('blur', function() {
+                if (this.value) {
+                    this.classList.add('has-value');
+                } else {
+                    this.classList.remove('has-value');
+                }
+            });
+        });
+
+        // Form submission with loading state
+        form.addEventListener('submit', function(e) {
+            submitBtn.classList.add('loading');
+            submitBtn.innerHTML = '<span>Đang đăng ký...</span>';
+        });
+
+        // Real-time validation
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.remove('error');
+
+                if (this.type === 'email' && this.value) {
+                    const emailRegex = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/;
+                    if (!emailRegex.test(this.value)) {
+                        this.classList.add('error');
+                    }
+                }
+
+                if (this.type === 'password' && this.value) {
+                    if (this.value.length < 6) {
+                        this.classList.add('error');
+                    }
+                }
+            });
+
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+
+        // Click effect
+        document.addEventListener('click', function(e) {
+            createClickEffect(e.clientX, e.clientY);
+        });
+
+        function createClickEffect(x, y) {
+            const ripple = document.createElement('div');
+            ripple.style.position = 'fixed';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.style.width = '10px';
+            ripple.style.height = '10px';
+            ripple.style.background = 'rgba(102, 126, 234, 0.6)';
+            ripple.style.borderRadius = '50%';
+            ripple.style.transform = 'translate(-50%, -50%)';
+            ripple.style.animation = 'ripple 0.6s ease-out';
+            ripple.style.pointerEvents = 'none';
+            ripple.style.zIndex = '1000';
+
+            document.body.appendChild(ripple);
+
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    document.body.removeChild(ripple);
+                }
+            }, 600);
+        }
+    });
+</script>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-
