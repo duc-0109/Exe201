@@ -161,6 +161,8 @@
             <th>Tiêu đề</th>
             <th>Nội dung</th>
             <th>Ngày tạo</th>
+            <th>Lượt Bình luận</th>
+            <th>Lượt xem</th>
             <th>Trạng thái</th>
             <th>Hành động</th>
         </tr>
@@ -173,6 +175,10 @@
                 <td>@blog.Title</td>
                 <td>@(blog.Content.Length > 100 ? blog.Content.Substring(0, 100) + "..." : blog.Content)</td>
                 <td>@blog.CreatedAt.ToString("dd/MM/yyyy")</td>
+                <td>@(blog.Comments != null ? blog.Comments.Count : 0)</td>
+
+                <td>@blog.ViewCount</td>
+
                 <td>
                     @if (blog.isChecked)
                     {

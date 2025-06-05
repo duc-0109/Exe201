@@ -9,6 +9,9 @@
         public string Detail { get; set; }      
         public DateTime CreatedAt { get; set; }
 
+        public int ViewCount { get; set; } = 0;
+
+
         // Foreign Key
         public int UserId { get; set; }
 

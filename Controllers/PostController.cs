@@ -32,6 +32,7 @@ namespace SmartCookFinal.Controllers
 
             var query = _context.Blogs
                 .Include(b => b.User)
+                 .Include(b => b.Comments)
                 .OrderByDescending(b => b.CreatedAt)
                 .AsQueryable();
 

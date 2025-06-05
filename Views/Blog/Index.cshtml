@@ -600,11 +600,20 @@
                                                 Html.Raw(item.Content.Substring(0, 200) + "...") :
                                                 Html.Raw(item.Content ?? ""))
                                         </div>
-                                        <div class="post-extra">
-                                            <button type="button" class="btn-link" data-bs-toggle="modal" data-bs-target="#blogModal-@item.BlogId">
+                                        <div class="post-extra d-flex align-items-center">
+                                            <button type="button" class="btn-link me-3" data-bs-toggle="modal" data-bs-target="#blogModal-@item.BlogId">
                                                 ĐỌC THÊM
                                             </button>
+                                            <div class="comment-count text-muted" style="display: inline-block; margin-right: 20px;">
+                                                @(item.Comments?.Count ?? 0) Comments
+                                            </div>
+                                            <div class="view-count text-muted" style="display: inline-block;">
+                                                <i class="fa fa-eye"></i> @item.ViewCount lượt xem
+                                            </div>
+
                                         </div>
+
+
                                     </div>
                                 </div>
 
