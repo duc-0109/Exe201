@@ -184,7 +184,7 @@ namespace SmartCookFinal.Controllers
         private void SendVerificationEmail(string email, string token)
         {
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("An Thực", "sadboy4102003@gmail.com"));
+            message.From.Add(new MailboxAddress("An Thực", "anthuc2025@gmail.com"));
             message.To.Add(MailboxAddress.Parse(email));
             message.Subject = "Xác thực tài khoản An Thực";
 
@@ -199,7 +199,7 @@ namespace SmartCookFinal.Controllers
             using var client = new MailKit.Net.Smtp.SmtpClient();
 
             client.Connect("smtp.gmail.com", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            client.Authenticate("sadboy4102003@gmail.com", "qzsf grkb iigm xqkn"); // Thay bằng email & mật khẩu của bạn
+            client.Authenticate("anthuc2025@gmail.com", "kelw fyjr bdbx rqjo"); // Thay bằng email & mật khẩu của bạn
             client.Send(message);
             client.Disconnect(true);
         }
