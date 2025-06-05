@@ -172,6 +172,7 @@
             <th>Tiêu đề</th>
             <th>Nội dung</th>
             <th>Ngày tạo</th>
+            <th>Lượt xem</th>
             <th>Hành động</th>
         </tr>
     </thead>
@@ -182,7 +183,7 @@
                 <td>@news.Title</td>
                 <td>@(news.Content.Length > 100 ? news.Content.Substring(0, 100) + "..." : news.Content)</td>
                 <td>@news.CreatedAt.ToString("dd/MM/yyyy")</td>
-
+                <td>@news.ViewCount</td>
                 <td class="actions-column">
                     <div>
                         <a class="action-button" asp-action="Edit" asp-route-id="@news.NewsId">Edit</a>
