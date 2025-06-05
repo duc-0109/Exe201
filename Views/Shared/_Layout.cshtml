@@ -8,6 +8,7 @@
 	<!-- Bootstrap và site styles -->
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	@RenderSection("Styles", required: false)
 	<link rel="stylesheet" href="~/SmartCookTest2.styles.css" asp-append-version="true" />
 
 	<!-- META -->
@@ -266,6 +267,7 @@
 								</div>
 							</div>
 							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+
 								<div class="widget footer_widget">
 									<h5 class="footer-title">Blog</h5>
 

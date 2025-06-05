@@ -4,7 +4,7 @@
     bool isAuthenticated = Context.Session.GetInt32("UserId") != null;
     string userName = Context.Session.GetString("UserName") ?? "";
     string userEmail = Context.Session.GetString("UserEmail") ?? "";
-
+ 
     if (ViewBag.IsLoggedIn == true)
     {
         userName = ViewBag.LoggedInUserName ?? userName;
@@ -15,131 +15,637 @@
     string displayEmail = isAuthenticated ? userEmail : (Model?.Email ?? "");
 }
 
-<div class="container mt-5 mb-5" style="max-width: 600px;">
-    <h2 class="mb-4 text-primary">Liên hệ với chúng tôi</h2>
 
-    @if (isAuthenticated)
-    {
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            Thông tin cá nhân của bạn đã được tự động điền.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @TempData["SuccessMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @TempData["ErrorMessage"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (ViewBag.Message != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            @ViewBag.Message
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    @if (ViewBag.Error != null)
-    {
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @ViewBag.Error
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    <form asp-controller="Contact" asp-action="SendContact" method="post">
-        @Html.AntiForgeryToken()
-
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label">Họ và tên</label>
-            <input asp-for="Name"
-                   value="@displayName"
-                   class="form-control @(isAuthenticated ? "bg-light" : "")"
-                   placeholder="Nhập họ và tên"
-                   readonly="@isAuthenticated" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label">Email</label>
-            <input asp-for="Email"
-                   value="@displayEmail"
-                   class="form-control @(isAuthenticated ? "bg-light" : "")"
-                   placeholder="example@gmail.com"
-                   type="email"
-                   readonly="@isAuthenticated" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Subject" class="form-label">Chủ đề</label>
-            <select asp-for="Subject" class="form-select">
-                <option value="">-- Chọn chủ đề --</option>
-                <option value="Hỗ trợ kỹ thuật">Hỗ trợ kỹ thuật</option>
-                <option value="Phản hồi sản phẩm">Phản hồi sản phẩm</option>
-                <option value="Hợp tác kinh doanh">Hợp tác kinh doanh</option>
-                <option value="Góp ý cải thiện">Góp ý cải thiện</option>
-                <option value="Báo lỗi website">Báo lỗi website</option>
-                <option value="Khác">Khác</option>
-            </select>
-            <span asp-validation-for="Subject" class="text-danger"></span>
-        </div>
-
-        <div class="mb-4">
-            <label asp-for="Message" class="form-label">Nội dung</label>
-            <textarea asp-for="Message"
-                      class="form-control"
-                      rows="6"
-                      placeholder="Viết nội dung liên hệ của bạn tại đây..."></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
+<div class="container mt-5 mb-5" style="max-width: 650px;">
+    <div class="contact-container p-4 p-md-5">
+        <div class="contact-header">
+            <div class="floating-icon">💌</div>
+            <div class="floating-icon">📞</div>
+            <div class="floating-icon">✨</div>
+            <h2 class="contact-title mb-3">Liên hệ với chúng tôi</h2>
+            <p class="text-muted">Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn</p>
         </div>
 
         @if (isAuthenticated)
         {
-            <input type="hidden" name="Name" value="@displayName" />
-            <input type="hidden" name="Email" value="@displayEmail" />
-        }
-
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary btn-lg">
-                Gửi yêu cầu
-            </button>
-        </div>
-
-        @if (!isAuthenticated)
-        {
-            <div class="text-center mt-3">
-                <small class="text-muted">
-                    <a href="/Home/Login" class="text-decoration-none">Đăng nhập</a>
-                    để tự động điền thông tin cá nhân
-                </small>
+            <div class="auth-badge">
+                <i class="fas fa-check-circle me-2"></i>
+                Thông tin cá nhân đã được tự động điền
             </div>
         }
-    </form>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                @ViewBag.Message
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                @ViewBag.Error
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <form asp-controller="Contact" asp-action="SendContact" method="post" id="contactForm">
+            @Html.AntiForgeryToken()
+
+            <!-- Họ và tên -->
+            @if (!isAuthenticated)
+            {
+                <div class="form-floating mb-3">
+                    <input asp-for="Name"
+                           class="form-control"
+                           placeholder="Nhập họ và tên" />
+                    <label asp-for="Name"><i class="fas fa-user me-2"></i>Họ và tên</label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <!-- Hiển thị giá trị dạng chỉ đọc -->
+                <div class="mb-3">
+                    <label class="form-label"><i class="fas fa-user me-2"></i>Họ và tên</label>
+                    <input type="text" class="form-control readonly-field" value="@displayName" readonly />
+                </div>
+            }
+
+            <!-- Email -->
+            @if (!isAuthenticated)
+            {
+                <div class="form-floating mb-3">
+                    <input asp-for="Email"
+                           type="email"
+                           class="form-control"
+                           placeholder="example@gmail.com" />
+                    <label asp-for="Email"><i class="fas fa-envelope me-2"></i>Email</label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <!-- Hiển thị giá trị dạng chỉ đọc -->
+                <div class="mb-3">
+                    <label class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                    <input type="email" class="form-control readonly-field" value="@displayEmail" readonly />
+                </div>
+            }
+        
+
+            <div class="mb-3">
+                <label asp-for="Subject" class="form-label">
+                    <i class="fas fa-tag me-2"></i>Chủ đề
+                </label>
+                <select asp-for="Subject" class="form-select subject-select">
+                    <option value="">-- Chọn chủ đề --</option>
+                    <option value="Hỗ trợ kỹ thuật">🔧 Hỗ trợ kỹ thuật</option>
+                    <option value="Phản hồi sản phẩm">⭐ Phản hồi sản phẩm</option>
+                    <option value="Hợp tác kinh doanh">🤝 Hợp tác kinh doanh</option>
+                    <option value="Góp ý cải thiện">💡 Góp ý cải thiện</option>
+                    <option value="Báo lỗi website">🐛 Báo lỗi website</option>
+                    <option value="Khác">📝 Khác</option>
+                </select>
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-floating mb-3">
+                <textarea asp-for="Message"
+                          class="form-control"
+                          placeholder="Viết nội dung liên hệ của bạn tại đây..."
+                          style="height: 150px"></textarea>
+                <label asp-for="Message">
+                    <i class="fas fa-comment-dots me-2"></i>Nội dung
+                </label>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+
+
+            @if (isAuthenticated)
+            {
+                <input type="hidden" name="Name" value="@displayName" />
+                <input type="hidden" name="Email" value="@displayEmail" />
+            }
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-submit" id="submitBtn">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane me-2"></i>
+                        Gửi yêu cầu
+                    </span>
+                </button>
+            </div>
+
+            @if (!isAuthenticated)
+            {
+                <div class="text-center mt-4">
+                    <small class="text-muted">
+                        <a href="/Home/Login" class="login-link">
+                            <i class="fas fa-sign-in-alt me-1"></i>
+                            Đăng nhập
+                        </a>
+                        để tự động điền thông tin cá nhân
+                    </small>
+                </div>
+            }
+        </form>
+    </div>
 </div>
+
+@section Styles {
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --danger-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        body {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @@keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .contact-container {
+            backdrop-filter: blur(20px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: slideInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .contact-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+                animation: shimmer 3s infinite;
+            }
+
+        @@keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @@keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .contact-title {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            animation: titlePulse 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+
+        @@keyframes titlePulse {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.02);
+            }
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+            .floating-icon:nth-child(1) {
+                top: -10px;
+                left: 20%;
+                animation-delay: 0s;
+            }
+
+            .floating-icon:nth-child(2) {
+                top: -15px;
+                right: 20%;
+                animation-delay: 1s;
+            }
+
+            .floating-icon:nth-child(3) {
+                bottom: -10px;
+                left: 30%;
+                animation-delay: 2s;
+            }
+
+        @@keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .form-floating {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-control:focus, .form-select:focus {
+                background: rgba(255, 255, 255, 1);
+                border-color: #667eea;
+                box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15), 0 12px 35px rgba(0, 0, 0, 0.15);
+                transform: translateY(-2px);
+            }
+
+        .form-label {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .btn-submit::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn-submit:hover::before {
+                left: 100%;
+            }
+
+            .btn-submit:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+            }
+
+            .btn-submit:active {
+                transform: translateY(-1px) scale(0.98);
+            }
+
+        .alert {
+            border: none;
+            border-radius: 15px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(10px);
+            animation: alertSlide 0.5s ease-out;
+        }
+
+        @@keyframes alertSlide {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, rgba(91, 192, 222, 0.2), rgba(91, 192, 222, 0.1));
+            border-left: 4px solid #5bc0de;
+            color: #31708f;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, rgba(92, 184, 92, 0.2), rgba(92, 184, 92, 0.1));
+            border-left: 4px solid #5cb85c;
+            color: #3c763d;
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, rgba(217, 83, 79, 0.2), rgba(217, 83, 79, 0.1));
+            border-left: 4px solid #d9534f;
+            color: #a94442;
+        }
+
+        .login-link {
+            display: inline-block;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+            .login-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -2px;
+                left: 0;
+                background: var(--secondary-gradient);
+                transition: width 0.3s ease;
+            }
+
+            .login-link:hover::after {
+                width: 100%;
+            }
+
+        .auth-badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--success-gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: badgeBounce 2s ease-in-out infinite;
+        }
+
+        @@keyframes badgeBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .input-group {
+            position: relative;
+            overflow: hidden;
+        }
+
+            .input-group::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+                transition: left 0.5s;
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .input-group:focus-within::before {
+                left: 100%;
+            }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .readonly-field {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)) !important;
+            border-color: rgba(102, 126, 234, 0.3) !important;
+        }
+
+        .subject-select {
+            cursor: pointer;
+        }
+
+            .subject-select option {
+                padding: 10px;
+            }
+
+        @@media (max-width: 768px) {
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                margin: 1rem;
+                border-radius: 15px;
+            }
+
+            .btn-submit {
+                width: 100%;
+                padding: 1rem 2rem;
+            }
+        }
+
+        .btn-submit.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+            .btn-submit.loading::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 20px;
+                height: 20px;
+                margin: -10px 0 0 -10px;
+                border: 2px solid transparent;
+                border-top: 2px solid white;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+}
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Focus on appropriate field
             const focusElement = document.querySelector(
-                '@(isAuthenticated ? "select[name='Subject']" : "input[name='Name']")'
+                '@Html.Raw(isAuthenticated ? "select[name='Subject']" : "input[name='Name']")'
             );
             if (focusElement) {
-                focusElement.focus();
+                setTimeout(() => focusElement.focus(), 500);
             }
+
+            // Form submission with loading animation
+            const form = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+
+            form.addEventListener('submit', function(e) {
+                submitBtn.classList.add('loading');
+                btnText.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang gửi...';
+                submitBtn.disabled = true;
+            });
+
+            // Add smooth scroll for alerts
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.opacity = '0';
+                alert.style.transform = 'translateY(-20px)';
+
+                setTimeout(() => {
+                    alert.style.transition = 'all 0.5s ease';
+                    alert.style.opacity = '1';
+                    alert.style.transform = 'translateY(0)';
+                }, 100);
+            });
+
+            // Enhanced form field animations
+            const formControls = document.querySelectorAll('.form-control, .form-select');
+            formControls.forEach(control => {
+                control.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+
+                control.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+
+            // Add typing animation for textarea
+            const textarea = document.querySelector('textarea');
+            if (textarea) {
+                let typingTimer;
+                textarea.addEventListener('input', function() {
+                    clearTimeout(typingTimer);
+                    this.style.borderColor = '#667eea';
+                    this.style.boxShadow = '0 0 20px rgba(102, 126, 234, 0.3)';
+
+                    typingTimer = setTimeout(() => {
+                        this.style.borderColor = '';
+                        this.style.boxShadow = '';
+                    }, 1000);
+                });
+            }
+
+            // Parallax effect for floating icons
+            document.addEventListener('mousemove', function(e) {
+                const icons = document.querySelectorAll('.floating-icon');
+                const mouseX = e.clientX / window.innerWidth;
+                const mouseY = e.clientY / window.innerHeight;
+
+                icons.forEach((icon, index) => {
+                    const speed = (index + 1) * 0.5;
+                    const x = (mouseX - 0.5) * speed * 20;
+                    const y = (mouseY - 0.5) * speed * 20;
+
+                    icon.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
         });
     </script>
 }
