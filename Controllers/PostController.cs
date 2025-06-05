@@ -17,9 +17,19 @@ namespace SmartCookFinal.Controllers
             _context = context;
         }
 
+
+        private bool IsAdmin()
+        {
+            var role = HttpContext.Session.GetString("UserRole");
+            return !string.IsNullOrEmpty(role) && role.ToLower() == "admin";
+        }
+
         //Index
         public async Task<IActionResult> Index(string search, int page = 1)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var query = _context.Blogs
                 .Include(b => b.User)
                 .OrderByDescending(b => b.CreatedAt)
@@ -48,6 +58,9 @@ namespace SmartCookFinal.Controllers
         // GET: /Post/Detail/5
         public async Task<IActionResult> Detail(int id)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var blog = await _context.Blogs
                 .Include(b => b.User)
                 .FirstOrDefaultAsync(b => b.BlogId == id);
@@ -62,6 +75,9 @@ namespace SmartCookFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Detail(int id, bool isChecked)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var blog = await _context.Blogs.FindAsync(id);
             if (blog == null) return NotFound();
 
@@ -76,6 +92,9 @@ namespace SmartCookFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var blog = await _context.Blogs
                 .Include(b => b.Comments) // Load luôn Comments để xóa
                 .FirstOrDefaultAsync(b => b.BlogId == id);

@@ -17,6 +17,9 @@ namespace SmartCookFinal.Controllers
         // GET: /ManageNews
         public async Task<IActionResult> Index(string search, int page = 1)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             int pageSize = 5;
 
             IQueryable<News> newsQuery = _context.News.Include(n => n.User);
@@ -44,6 +47,9 @@ namespace SmartCookFinal.Controllers
         // GET: /ManageNew/Create
         public IActionResult Create()
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             ViewBag.Users = new SelectList(_context.NguoiDungs, "Id", "TenNguoiDung");
             return View();
         }
@@ -53,6 +59,9 @@ namespace SmartCookFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(News news, IFormFile ImageFile)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
                 return RedirectToAction("Login", "Home");
@@ -86,6 +95,9 @@ namespace SmartCookFinal.Controllers
         // GET: /ManageNew/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var news = await _context.News.FindAsync(id);
             if (news == null) return NotFound();
 
@@ -97,6 +109,9 @@ namespace SmartCookFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, News news, IFormFile imageFile)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             if (id != news.NewsId) return NotFound();
 
             var existingNews = await _context.News.AsNoTracking().FirstOrDefaultAsync(n => n.NewsId == id);
@@ -140,6 +155,9 @@ namespace SmartCookFinal.Controllers
         // GET: /ManageNew/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var news = await _context.News
                 .Include(n => n.User)
                 .FirstOrDefaultAsync(n => n.NewsId == id);
@@ -154,6 +172,9 @@ namespace SmartCookFinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (!IsAdmin())
+                return RedirectToAction("AccessDenied", "Home");
+
             var news = await _context.News.FindAsync(id);
             if (news != null)
             {
@@ -163,5 +184,12 @@ namespace SmartCookFinal.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        private bool IsAdmin()
+        {
+            var role = HttpContext.Session.GetString("UserRole");
+            return !string.IsNullOrEmpty(role) && role.ToLower() == "admin";
+        }
+
     }
 }
