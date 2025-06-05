@@ -6,7 +6,6 @@ using System.Security.Claims;
 
 namespace SmartCookFinal.Controllers
 {
-    // Controllers/BlogController.cs
     public class BlogController : Controller
     {
         private readonly SmartCookContext _context;
@@ -22,14 +21,14 @@ namespace SmartCookFinal.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Login", "Home"); // Redirect nếu chưa đăng nhập
+                return RedirectToAction("Login", "Home");
             }
 
-            int pageSize = 4; // Số bài viết mỗi trang
+            int pageSize = 4;
 
-            // Chỉ lấy các bài viết đã được duyệt
             IQueryable<Blog> blogs = _context.Blogs
                 .Include(b => b.User)
+                .Include(b => b.Comments)
                 .Where(b => b.isChecked == true);
 
             if (!string.IsNullOrEmpty(searchText))
@@ -52,10 +51,7 @@ namespace SmartCookFinal.Controllers
             return View(pagedBlogs);
         }
 
-
-
-
-      
+        
         // GET: /Blog/Details/5
         public async Task<IActionResult> Details(int id)
         {
@@ -70,9 +66,14 @@ namespace SmartCookFinal.Controllers
             if (blog == null)
                 return NotFound();
 
+            // Tăng ViewCount
+            blog.ViewCount++;
+            _context.Blogs.Update(blog);
+            await _context.SaveChangesAsync();
+
             // Lấy 3 bài viết mới nhất đã được duyệt (không tính bài hiện tại)
             var recentPosts = await _context.Blogs
-                .Where(b => b.BlogId != id && b.isChecked == true)  // chỉ lấy bài đã duyệt
+                .Where(b => b.BlogId != id && b.isChecked == true)
                 .OrderByDescending(b => b.CreatedAt)
                 .Take(3)
                 .ToListAsync();
@@ -81,7 +82,6 @@ namespace SmartCookFinal.Controllers
 
             return View(blog);
         }
-
 
 
         // GET: /Blog/Create
@@ -94,13 +94,12 @@ namespace SmartCookFinal.Controllers
         // POST: /Blog/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [HttpPost]
         public async Task<IActionResult> Create(Blog blog, IFormFile ImageFile)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Home");
             }
 
             // Xử lý ảnh upload
@@ -120,12 +119,13 @@ namespace SmartCookFinal.Controllers
                     await ImageFile.CopyToAsync(stream);
                 }
 
-                blog.UrlImage = "/uploads/" + uniqueFileName; // Lưu đường dẫn tương đối
+                blog.UrlImage = "/uploads/" + uniqueFileName;
             }
 
             blog.UserId = userId.Value;
             blog.CreatedAt = DateTime.Now;
             blog.isChecked = false;
+            blog.ViewCount = 1; // Khởi tạo ViewCount = 1 khi tạo mới
 
             _context.Add(blog);
             await _context.SaveChangesAsync();
@@ -133,8 +133,7 @@ namespace SmartCookFinal.Controllers
             return RedirectToAction(nameof(MyBlog));
         }
 
-
-
+        // GET: /Blog/Edit/5
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -144,6 +143,7 @@ namespace SmartCookFinal.Controllers
             return View(blog);
         }
 
+        // POST: /Blog/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Blog blog, IFormFile imageFile)
@@ -155,14 +155,14 @@ namespace SmartCookFinal.Controllers
 
             try
             {
-                existingBlog.Title = blog.Title;
-                existingBlog.Content = blog.Content;
-                existingBlog.Detail = blog.Detail;
+                // Không sửa ViewCount
+                int currentViewCount = existingBlog.ViewCount;
+
                 // Upload ảnh nếu có file mới
                 if (imageFile != null && imageFile.Length > 0)
                 {
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-                    Directory.CreateDirectory(uploadsFolder); // tạo thư mục nếu chưa có
+                    Directory.CreateDirectory(uploadsFolder);
 
                     var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
                     var filePath = Path.Combine(uploadsFolder, uniqueFileName);
@@ -176,30 +176,25 @@ namespace SmartCookFinal.Controllers
                 }
                 else
                 {
-                    blog.UrlImage = existingBlog.UrlImage; // giữ ảnh cũ nếu không upload mới
+                    blog.UrlImage = existingBlog.UrlImage;
                 }
 
-                // Giữ lại CreatedAt, isChecked, UserId từ bản gốc
+                // Giữ lại các trường không được sửa qua form
                 blog.CreatedAt = existingBlog.CreatedAt;
                 blog.isChecked = existingBlog.isChecked;
                 blog.UserId = existingBlog.UserId;
+                blog.ViewCount = currentViewCount;
 
                 _context.Update(blog);
                 await _context.SaveChangesAsync();
+
                 return RedirectToAction("MyBlog");
             }
             catch
             {
                 return View(blog);
             }
-
-
-            //return View(blog);
         }
-
-
-
-
 
         // GET: /Blog/Delete/5
         public async Task<IActionResult> Delete(int id)
@@ -233,7 +228,7 @@ namespace SmartCookFinal.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Login", "Home"); // Redirect nếu chưa đăng nhập
+                return RedirectToAction("Login", "Home");
             }
 
             var userBlogs = await _context.Blogs
@@ -242,11 +237,10 @@ namespace SmartCookFinal.Controllers
                 .OrderByDescending(b => b.CreatedAt)
                 .ToListAsync();
 
-            return View("MyBlog", userBlogs); // Truyền model đến view MyBlog.cshtml
+            return View("MyBlog", userBlogs);
         }
 
-
-        //Comment
+        // Comment
         [HttpPost]
         public async Task<IActionResult> AddComment(int BlogId, string CommentText)
         {
@@ -255,7 +249,7 @@ namespace SmartCookFinal.Controllers
             int? userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
-                return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
+                return RedirectToAction("Login", "Account");
             }
 
             var comment = new BlogComment
@@ -271,6 +265,7 @@ namespace SmartCookFinal.Controllers
 
             return RedirectToAction("Details", new { id = BlogId });
         }
+
         [HttpPost]
         public IActionResult DeleteComment(int commentId, int blogId)
         {
@@ -289,7 +284,5 @@ namespace SmartCookFinal.Controllers
 
             return RedirectToAction("Details", new { id = blogId });
         }
-
     }
 }
-
