@@ -147,4 +147,10 @@ public class AdminController : Controller
 
         return RedirectToAction("ContactList");
     }
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index", "Home");
+    }
+
 }
