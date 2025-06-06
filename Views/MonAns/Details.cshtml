@@ -4,38 +4,73 @@
     ViewData["Title"] = "Chi tiết món ăn";
 }
 
+<!-- Bootstrap + Animate.css (chỉ thêm nếu chưa có) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 <div class="container mt-5">
-    <div class="card shadow-lg">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Chi tiết món ăn</h3>
+    <div class="card shadow-lg border-0 animate__animated animate__fadeIn">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">🥗 Chi Tiết Món Ăn</h3>
+            <a href="@Url.Action("Index", "MonAns")" class="btn btn-light btn-sm">⬅ Quay lại danh sách</a>
         </div>
-        <div class="card-body">
-            <dl class="row">
-                <dt class="col-sm-4">Tên món</dt>
-                <dd class="col-sm-8">@Model.TenMon</dd>
 
-                <dt class="col-sm-4">Mô tả</dt>
-                <dd class="col-sm-8">@Model.MoTa</dd>
+        <div class="row g-0">
+            <!-- Hình ảnh món ăn -->
+            <div class="col-md-5">
+                <img src="@(string.IsNullOrEmpty(Model.UrlHinhAnh) ? "/images/default-food.png" : Model.UrlHinhAnh)" class="img-fluid h-100 w-100 object-fit-cover rounded-start" alt="@Model.TenMon" style="object-fit:cover; height:100%;">
+            </div>
 
-                <dt class="col-sm-4">Loại bữa ăn</dt>
-                <dd class="col-sm-8">@Model.LoaiBuaAn</dd>
+            <!-- Thông tin món ăn -->
+            <div class="col-md-7">
+                <div class="card-body p-4">
+                    <h4 class="text-success fw-bold">@Model.TenMon</h4>
+                    <p class="text-muted">@Model.MoTa</p>
 
-                <dt class="col-sm-4">Thời gian nấu (phút)</dt>
-                <dd class="col-sm-8">@Model.ThoiGianNau</dd>
+                    <hr />
 
-                <dt class="col-sm-4">Lượng calo</dt>
-                <dd class="col-sm-8">@Model.LuongCalo</dd>
+                    <div class="row mb-3">
+                        <div class="col-6"><strong>🍽 Loại bữa ăn:</strong></div>
+                        <div class="col-6 text-end"><span class="badge bg-success-subtle text-success">@Model.LoaiBuaAn</span></div>
+                    </div>
 
-                <dt class="col-sm-4">Carbs</dt>
-                <dd class="col-sm-8">@Model.Carbs</dd>
+                    <div class="row mb-3">
+                        <div class="col-6"><strong>⏱ Thời gian nấu:</strong></div>
+                        <div class="col-6 text-end">@Model.ThoiGianNau phút</div>
+                    </div>
 
-                <dt class="col-sm-4">Protein</dt>
-                <dd class="col-sm-8">@Model.Protein</dd>
+                    <div class="row mb-3">
+                        <div class="col-6"><strong🔥 Lượng calo:</strong></div>
+                        <div class="col-6 text-end text-danger fw-semibold">@Model.LuongCalo kcal</div>
+                    </div>
 
-                <dt class="col-sm-4">Fat</dt>
-                <dd class="col-sm-8">@Model.Fat</dd>
+                    <div class="row text-center mb-3">
+                        <div class="col-4">
+                            <span class="text-muted">Carbs</span><br />
+                            <span class="fw-bold">@Model.Carbs g</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="text-muted">Protein</span><br />
+                            <span class="fw-bold">@Model.Protein g</span>
+                        </div>
+                        <div class="col-4">
+                            <span class="text-muted">Fat</span><br />
+                            <span class="fw-bold">@Model.Fat g</span>
+                        </div>
+                    </div>
 
-                <dt class="col-sm-4">Cách nấu</dt>
-                <dd class="col-sm-8">@Model.CachNau</dd>
+                    <div class="mb-3">
+                        <strong>💸 Chi phí ước tính:</strong>
+                        <span class="text-primary fw-bold">@Model.ChiPhiUocTinh?.ToString("N0") VND</span>
+                    </div>
 
-                <dt class="col-sm-4">Chi phí ước tính @Model.ChiPhiUocTinh (VNĐ)</dt>
+                    <hr />
+
+                    <div>
+                        <h5 class="text-success">📋 Cách nấu:</h5>
+                        <p>@Model.CachNau</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

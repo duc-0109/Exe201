@@ -2,162 +2,698 @@
 @using X.PagedList.Mvc.Core
 @using X.PagedList
 
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Món Ăn";
 }
 
-<div class="page-content bg-white">
-    <!-- inner page banner -->
-    <div class="page-banner ovbl-dark" style="background-image: url('@Url.Content("~/assets/images/smartcook/background.png")');" ;">
-        <div class="container">
-            <div class="page-banner-entry">
-                <h1 class="text-white">Món Ăn</h1>
-            </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-green: #22c55e;
+        --secondary-green: #16a34a;
+        --light-green: #dcfce7;
+        --dark-green: #15803d;
+        --accent-green: #84cc16;
+        --bg-green: #f0fdf4;
+        --shadow-green: rgba(34, 197, 94, 0.1);
+    }
+
+    body {
+        background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Header Section */
+    .header-section {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        color: white;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .header-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .header-subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 0;
+    }
+
+    /* Search Card */
+    .search-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px var(--shadow-green);
+        border: 1px solid var(--light-green);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .search-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px var(--shadow-green);
+    }
+
+    .search-card-header {
+        background: linear-gradient(135deg, var(--light-green) 0%, #f0fdf4 100%);
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--light-green);
+    }
+
+    .search-card-body {
+        padding: 1.5rem;
+    }
+
+    .search-input {
+        border: 2px solid var(--light-green);
+        border-radius: 15px;
+        padding: 12px 16px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .search-input:focus {
+        border-color: var(--primary-green);
+        box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
+        outline: none;
+    }
+
+    .search-btn {
+        background: var(--primary-green);
+        border: none;
+        border-radius: 12px;
+        padding: 12px 20px;
+        color: white;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .search-btn:hover {
+        background: var(--secondary-green);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px var(--shadow-green);
+    }
+
+    /* Category List */
+    .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .category-item {
+        margin-bottom: 8px;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .category-item:hover {
+        transform: translateX(5px);
+    }
+
+    .category-item.active {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        color: white;
+        box-shadow: 0 5px 15px var(--shadow-green);
+    }
+
+    .category-item.active a {
+        color: white !important;
+        font-weight: 600;
+    }
+
+    .category-link {
+        display: block;
+        padding: 12px 16px;
+        text-decoration: none;
+        color: var(--dark-green);
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+    }
+
+    .category-link:hover {
+        background: var(--light-green);
+        color: var(--dark-green);
+    }
+
+    /* Food Cards */
+    .food-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        border: 1px solid var(--light-green);
+        transition: all 0.4s ease;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .food-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-green) 0%, var(--accent-green) 100%);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .food-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .food-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
+    }
+
+    .food-card-img {
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .food-card:hover .food-card-img {
+        transform: scale(1.1);
+    }
+
+    .food-card-body {
+        padding: 1.5rem;
+    }
+
+    .food-card-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark-green);
+        margin-bottom: 0.5rem;
+    }
+
+    .food-card-description {
+        color: #6b7280;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+
+    .detail-btn {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        border: none;
+        border-radius: 25px;
+        padding: 10px 20px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 0.85rem;
+    }
+
+    .detail-btn:hover {
+        background: linear-gradient(135deg, var(--secondary-green) 0%, var(--dark-green) 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px var(--shadow-green);
+    }
+
+    /* Modal Styles */
+    .modal-content {
+        border-radius: 20px;
+        border: none;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+        border-radius: 20px 20px 0 0;
+        padding: 1.5rem 2rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .modal-body {
+        padding: 2rem;
+        animation: fadeInUp 0.6s ease;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Nutrition Boxes */
+    .nutrition-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .nutrition-box {
+        background: linear-gradient(135deg, var(--bg-green) 0%, var(--light-green) 100%);
+        border: 2px solid var(--light-green);
+        border-radius: 16px;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nutrition-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .nutrition-box:hover::before {
+        left: 100%;
+    }
+
+    .nutrition-box:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 30px var(--shadow-green);
+        border-color: var(--primary-green);
+    }
+
+    .nutrition-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .nutrition-label {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+    }
+
+    .nutrition-value {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--dark-green);
+    }
+
+    /* Info Section */
+    .info-section {
+        background: var(--bg-green);
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .info-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        color: var(--primary-green);
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: var(--dark-green);
+        margin-right: 0.5rem;
+    }
+
+    .info-value {
+        color: #374151;
+    }
+
+    /* Pagination */
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    }
+
+    .pagination .page-link {
+        border: 2px solid var(--light-green);
+        color: var(--primary-green);
+        font-weight: 600;
+        border-radius: 12px;
+        margin: 0 4px;
+        padding: 10px 16px;
+        transition: all 0.3s ease;
+    }
+
+    .pagination .page-link:hover {
+        background: var(--primary-green);
+        border-color: var(--primary-green);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .pagination .page-item.active .page-link {
+        background: var(--primary-green);
+        border-color: var(--primary-green);
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .header-title {
+            font-size: 2rem;
+        }
+        
+        .food-card {
+            margin-bottom: 1.5rem;
+        }
+        
+        .nutrition-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Loading Animation */
+    .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        border-top-color: transparent;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @@keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Scroll Animations */
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .stagger-animation {
+        animation-delay: calc(var(--stagger) * 0.1s);
+    }
+</style>
+
+<!-- Header Section -->
+<div class="header-section">
+    <div class="container">
+        <div class="header-content text-center">
+            <h1 class="header-title animate__animated animate__fadeInDown">
+                <i class="bi bi-cup-hot me-3"></i>Thế Giới Món Ăn
+            </h1>
+            <p class="header-subtitle animate__animated animate__fadeInUp">
+                Khám phá hương vị tuyệt vời từ những món ăn được chọn lọc kỹ càng
+            </p>
         </div>
     </div>
-    <!-- Breadcrumb row -->
-    <div class="breadcrumb-row">
-        <div class="container">
-            <ul class="list-inline">
-                <li><a href="#">Home</a></li>
-                <li>Our Courses</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Breadcrumb row END -->
-    <!-- inner page banner END -->
-    <div class="content-block">
-        <!-- About Us -->
-        <div class="section-area section-sp1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
-                        <div class="widget courses-search-bx placeani">
-                            <form asp-action="SearchByName" method="get">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <label>Search </label>
-                                        <input name="name" type="text" value="@ViewBag.SearchTerm" required class="form-control" />
-                                        <button type="submit" class="btn btn-primary">Tìm</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="widget widget_archive">
-                            <h5 class="widget-title style-1">All Courses</h5>
-                            <ul>
-                                <li class="@(ViewBag.LoaiBuaAn == null ? "active" : "")"><a href="@Url.Action("Index", "MonAns")">Tất Cả</a></li>
-                                <li class="@(ViewBag.LoaiBuaAn == "Sáng" ? "active" : "")"><a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Sáng" })">Buổi Sáng</a></li>
-                                <li class="@(ViewBag.LoaiBuaAn == "Trưa" ? "active" : "")"><a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Trưa" })">Buổi Trưa</a></li>
-                                <li class="@(ViewBag.LoaiBuaAn == "Tối" ? "active" : "")"><a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Tối" })">Buổi Tối</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-8 col-sm-12">
-                        @if (ViewBag.LoaiBuaAn != null)
-                        {
-                            <h3>Món ăn cho: @ViewBag.LoaiBuaAn</h3>
-                        }
-                        else if (ViewBag.SearchTerm != null)
-                        {
-                            <h3>Kết quả tìm kiếm: "@ViewBag.SearchTerm"</h3>
-                        }
-                        else
-                        {
-                            <h3>Tất cả món ăn</h3>
-                        }
+</div>
 
-                        <br />
-                        <div class="row">
-                            @foreach (var item in Model)
-                            {
-                                <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                    <div class="cours-bx">
-                                        <div class="action-box">
-                                            <img src="@item.UrlHinhAnh" alt="@item.TenMon"
-                                                 style="width:200px; height:150px; object-fit:cover; border-radius:8px;" />
-
-                                            <!-- Nút mở modal -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMonAn_@item.Id">
-                                                Read More
-                                            </button>
-                                        </div>
-                                        <div class="info-bx text-center">
-                                            <h5><a href="#">@item.TenMon</a></h5>
-                                            <span>
-                                                @(
-                                                    item.MoTa.Length > 20
-                                                    ? item.MoTa.Substring(0, 20) + "..."
-                                                    : item.MoTa
-                                                    )
-                                            </span>
-                                        </div>
-                                        <div class="cours-more-info">
-                                            <div class="review">
-                                                <span>3 Review</span>
-                                                <ul class="cours-star">
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li class="active"><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                    <li><i class="fa fa-star"></i></li>
-                                                </ul>
-                                            </div>
-                                            <div class="price">
-                                                <h6>@item.LuongCalo calo</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="modalMonAn_@item.Id" tabindex="-1" aria-labelledby="modalLabel_@item.Id" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                        <div class="modal-content shadow">
-                                            <div class="modal-header bg-success text-white">
-                                                <h5 class="modal-title" id="modalLabel_@item.Id">@item.TenMon</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <img src="@item.UrlHinhAnh" alt="@item.TenMon"
-                                                     style="width:100%; height:300px; object-fit:cover; border-radius:8px;" />
-                                                <hr />
-                                                <p><strong>Mô tả:</strong> @item.MoTa</p>
-                                                <p><strong>Loại bữa ăn:</strong> @item.LoaiBuaAn</p>
-                                                <p><strong>Thời gian nấu:</strong> @item.ThoiGianNau phút</p>
-                                                <p><strong>Lượng calo:</strong> @item.LuongCalo</p>
-                                                <p><strong>Carbs:</strong> @item.Carbs</p>
-                                                <p><strong>Protein:</strong> @item.Protein</p>
-                                                <p><strong>Fat:</strong> @item.Fat</p>
-                                                <p><strong>Chi phí ước tính:</strong> @item.ChiPhiUocTinh VND</p>
-                                                <p><strong>Nguyên liệu chính:</strong> @item.NguyenLieuChinh</p>
-                                                <p><strong>Cách nấu:</strong><br /> @item.CachNau</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-
-                        <div class="col-lg-12 m-b20">
-                            <div class="pagination-bx rounded-sm gray clearfix">
-                                @{
-                                    string currentAction = (string)(ViewBag.CurrentAction ?? "Index");
-                                    string searchTerm = (string)(ViewBag.SearchTerm ?? "");
-                                    string loaiBuaAn = (string)(ViewBag.LoaiBuaAn ?? "");
-                                }
-
-                                @Html.PagedListPager(Model, page => Url.Action(currentAction, "MonAns", new { page, name = searchTerm, loaiBuaAn = loaiBuaAn }))
-
-
+<div class="container py-4">
+    <div class="row">
+        <!-- Search & Filter Section -->
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="search-card animate__animated animate__fadeInLeft">
+                <div class="search-card-header">
+                    <h5 class="mb-0">
+                        <i class="bi bi-search me-2"></i>Tìm kiếm & Lọc
+                    </h5>
+                </div>
+                <div class="search-card-body">
+                    <form asp-action="SearchByName" method="get">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Tên món ăn</label>
+                            <div class="input-group">
+                                <input name="name" type="text" value="@ViewBag.SearchTerm" 
+                                       class="form-control search-input" 
+                                       placeholder="Nhập tên món ăn..." />
+                                <button class="btn search-btn" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
                             </div>
                         </div>
+                    </form>
+
+                    <div class="mt-4">
+                        <h6 class="fw-semibold mb-3">
+                            <i class="bi bi-funnel me-2"></i>Phân loại theo bữa ăn
+                        </h6>
+                        <ul class="category-list">
+                            <li class="category-item @(ViewBag.LoaiBuaAn == null ? "active" : "")">
+                                <a href="@Url.Action("Index", "MonAns")" class="category-link">
+                                    <i class="bi bi-house-door me-2"></i>Tất cả món ăn
+                                </a>
+                            </li>
+                            <li class="category-item @(ViewBag.LoaiBuaAn == "Sáng" ? "active" : "")">
+                                <a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Sáng" })" class="category-link">
+                                    <i class="bi bi-sunrise me-2"></i>Bữa sáng
+                                </a>
+                            </li>
+                            <li class="category-item @(ViewBag.LoaiBuaAn == "Trưa" ? "active" : "")">
+                                <a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Trưa" })" class="category-link">
+                                    <i class="bi bi-sun me-2"></i>Bữa trưa
+                                </a>
+                            </li>
+                            <li class="category-item @(ViewBag.LoaiBuaAn == "Tối" ? "active" : "")">
+                                <a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Tối" })" class="category-link">
+                                    <i class="bi bi-moon me-2"></i>Bữa tối
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Food Cards Section -->
+        <div class="col-lg-9 col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold text-success">
+                    @if (ViewBag.LoaiBuaAn != null)
+                    {
+                        <i class="bi bi-clock me-2"></i>@:Món ăn cho bữa @ViewBag.LoaiBuaAn
+                    }
+                    else if (ViewBag.SearchTerm != null)
+                    {
+                        <i class="bi bi-search me-2"></i>@:Kết quả tìm kiếm: "@ViewBag.SearchTerm"
+                    }
+                    else
+                    {
+                        <i class="bi bi-grid me-2"></i>@:Tất cả món ăn
+                    }
+                </h2>
+                <span class="badge bg-success fs-6">@Model.TotalItemCount món ăn</span>
+            </div>
+
+            <div class="row g-4">
+                @foreach (var item in Model.Select((value, index) => new { value, index }))
+                {
+                    <div class="col-xl-4 col-lg-6 col-md-12">
+                        <div class="food-card animate__animated animate__fadeInUp stagger-animation" 
+                             style="--stagger: @item.index">
+                            <div class="position-relative overflow-hidden">
+                                <img src="@item.value.UrlHinhAnh" 
+                                     class="card-img-top food-card-img w-100" 
+                                     alt="@item.value.TenMon"
+                                     onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                                <div class="position-absolute top-0 end-0 m-3">
+                                    <span class="badge bg-success fs-6">@item.value.LoaiBuaAn</span>
+                                </div>
+                            </div>
+                            <div class="food-card-body">
+                                <h5 class="food-card-title">@item.value.TenMon</h5>
+                                <p class="food-card-description">
+                                    @(item.value.MoTa.Length > 80 ? item.value.MoTa.Substring(0, 80) + "..." : item.value.MoTa)
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted">
+                                        <i class="bi bi-clock me-1"></i>@item.value.ThoiGianNau phút
+                                    </small>
+                                    <small class="text-success fw-semibold">
+                                        <i class="bi bi-fire me-1"></i>@item.value.LuongCalo cal
+                                    </small>
+                                </div>
+                                <button class="btn detail-btn w-100" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#modalMonAn_@item.value.Id">
+                                    <i class="bi bi-eye me-2"></i>Xem chi tiết
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Modal -->
+                    <div class="modal fade" id="modalMonAn_@item.value.Id" tabindex="-1" aria-labelledby="modalLabel_@item.value.Id" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        <i class="bi bi-cup-hot me-2"></i>@item.value.TenMon
+                                    </h4>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <img src="@item.value.UrlHinhAnh" 
+                                                 class="img-fluid rounded-3 shadow-sm w-100" 
+                                                 alt="@item.value.TenMon"
+                                                 style="height: 300px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="nutrition-grid">
+                                                <div class="nutrition-box">
+                                                    <i class="bi bi-fire nutrition-icon text-danger"></i>
+                                                    <div class="nutrition-label">Calories</div>
+                                                    <div class="nutrition-value">@item.value.LuongCalo</div>
+                                                </div>
+                                                <div class="nutrition-box">
+                                                    <i class="bi bi-box nutrition-icon text-warning"></i>
+                                                    <div class="nutrition-label">Carbs</div>
+                                                    <div class="nutrition-value">@item.value.Carbs g</div>
+                                                </div>
+                                                <div class="nutrition-box">
+                                                    <i class="bi bi-egg-fried nutrition-icon text-primary"></i>
+                                                    <div class="nutrition-label">Protein</div>
+                                                    <div class="nutrition-value">@item.value.Protein g</div>
+                                                </div>
+                                                <div class="nutrition-box">
+                                                    <i class="bi bi-droplet-half nutrition-icon text-info"></i>
+                                                    <div class="nutrition-label">Fat</div>
+                                                    <div class="nutrition-value">@item.value.Fat g</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="info-section">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="info-item">
+                                                    <i class="bi bi-clock info-icon"></i>
+                                                    <span class="info-label">Loại bữa ăn:</span>
+                                                    <span class="info-value">@item.value.LoaiBuaAn</span>
+                                                </div>
+                                                <div class="info-item">
+                                                    <i class="bi bi-stopwatch info-icon"></i>
+                                                    <span class="info-label">Thời gian nấu:</span>
+                                                    <span class="info-value">@item.value.ThoiGianNau phút</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="info-item">
+                                                    <i class="bi bi-cash-coin info-icon"></i>
+                                                    <span class="info-label">Chi phí ước tính:</span>
+                                                    <span class="info-value">@item.value.ChiPhiUocTinh VND</span>
+                                                </div>
+                                                <div class="info-item">
+                                                    <i class="bi bi-basket info-icon"></i>
+                                                    <span class="info-label">Nguyên liệu chính:</span>
+                                                    <span class="info-value">@item.value.NguyenLieuChinh</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-3">
+                                            <h6 class="fw-bold text-success mb-3">
+                                                <i class="bi bi-book me-2"></i>Cách nấu:
+                                            </h6>
+                                            <div class="bg-white p-3 rounded-3 shadow-sm">
+                                                <p class="mb-0 lh-lg">@item.value.CachNau</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        <i class="bi bi-x-circle me-2"></i>Đóng
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Enhanced Pagination -->
+            <div class="pagination-wrapper">
+                @{
+                    string currentAction = ViewBag.CurrentAction ?? "Index";
+                }
+                @Html.PagedListPager(Model, page =>
+                    Url.Action(currentAction, new { page, name = ViewBag.SearchTerm, loaiBuaAn = ViewBag.LoaiBuaAn }))
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+    // Add stagger animation delay to cards
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.stagger-animation');
+        cards.forEach((card, index) => {
+            card.style.setProperty('--stagger', index);
+        });
+    });
+
+    // Add loading state to buttons
+    document.querySelectorAll('.detail-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span class="loading-spinner me-2"></span>Đang tải...';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+            }, 1000);
+        });
+    });
+</script>

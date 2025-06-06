@@ -4,8 +4,75 @@
     ViewBag.Title = "Tạo Thực Đơn";
 }
 
+<!-- Custom Styles -->
+<style>
+    /* Màu xanh lá chủ đạo */
+    .btn-primary, .nav-tabs .nav-link.active {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+
+    .btn-primary:hover {
+        background-color: #45a049 !important;
+    }
+
+    .nav-tabs .nav-link {
+        color: #4CAF50;
+    }
+
+    .nav-tabs .nav-link:hover {
+        background-color: #e8f5e9;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 128, 0, 0.2);
+    }
+
+    .card-title {
+        color: #2e7d32;
+    }
+
+    h2, h5 {
+        color: #2e7d32;
+    }
+
+    .page-banner {
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .page-banner-entry h1 {
+        font-weight: bold;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .tab-pane {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
+<!-- Optional Animate.css (Tab animation) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
 <div class="page-content bg-white">
-    <!-- inner page banner -->
+    <!-- Banner -->
     <div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/smartcook/background.png")');">
         <div class="container">
             <div class="page-banner-entry">
@@ -14,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Breadcrumb row -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb-row">
         <div class="container">
             <ul class="list-inline">
@@ -26,108 +93,124 @@
 
     <br />
 
-    <h2 class="mb-4">Kết quả chỉ số của bạn</h2>
+    <!-- Kết quả chỉ số -->
+    <div class="container">
+        <h2 class="mb-4 text-success fw-bold text-center">Kết Quả Chỉ Số Của Bạn</h2>
 
-    <table class="table table-bordered table-hover text-center align-middle">
-        <thead class="table-light">
-            <tr>
-                <th>BMR (Tỷ lệ trao đổi chất cơ bản)</th>
-                <th>TDEE (Lượng calo tiêu hao hàng ngày)</th>
-                <th>Tổng calo sau khi điều chỉnh theo mục tiêu</th>
-                <th>Calo bữa sáng (20%)</th>
-                <th>Calo bữa trưa (40%)</th>
-                <th>Calo bữa tối (40%)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.KetQua.BMR kcal/ngày</td>
-                <td>@Model.KetQua.TDEE kcal/ngày</td>
-                <td>@Model.KetQua.TongCaloDieuChinh kcal/ngày</td>
-                <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.2, 2) kcal</td>
-                <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.4, 2) kcal</td>
-                <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.4, 2) kcal</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h2 class="text-center mt-5 mb-4">Kết Quả Thực Đơn Trong 7 Ngày</h2>
-
-    @if (Model.ThucDon7Ngay == null || !Model.ThucDon7Ngay.Any())
-    {
-        <div class="alert alert-warning text-center mt-4">
-            Không tìm thấy thực đơn phù hợp.
+<div class="row justify-content-center mb-5 animate__animated animate__fadeIn">
+    <div class="col-md-10">
+        <div class="table-responsive shadow rounded-4 overflow-hidden">
+            <table class="table table-striped text-center align-middle mb-0" style="background-color: #f8fff8;">
+                <thead class="table-success text-dark">
+                    <tr>
+                        <th>BMR<br><small>(Tỷ lệ trao đổi chất cơ bản)</small></th>
+                        <th>TDEE<br><small>(Tổng calo tiêu hao)</small></th>
+                        <th>Tổng Calo<br><small>(Sau điều chỉnh)</small></th>
+                        <th>Sáng<br><small>(20%)</small></th>
+                        <th>Trưa<br><small>(40%)</small></th>
+                        <th>Tối<br><small>(40%)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="fw-semibold">
+                        <td>@Model.KetQua.BMR kcal/ngày</td>
+                        <td>@Model.KetQua.TDEE kcal/ngày</td>
+                        <td>@Model.KetQua.TongCaloDieuChinh kcal/ngày</td>
+                        <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.2, 2) kcal</td>
+                        <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.4, 2) kcal</td>
+                        <td>@Math.Round(Model.KetQua.TongCaloDieuChinh * 0.4, 2) kcal</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    }
-    else
-    {
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="thucDonTabs" role="tablist">
-            @for (int i = 0; i < Model.ThucDon7Ngay.Count; i++)
-            {
-                var ngayThucDon = Model.ThucDon7Ngay[i];
-                var isActive = (i == 0) ? "active" : "";
-                var tabId = $"ngay{i + 1}";
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link @isActive" id="@($"{tabId}-tab")" data-bs-toggle="tab" data-bs-target="#@tabId" type="button" role="tab" aria-controls="@tabId" aria-selected="@(i == 0 ? "true" : "false")">
-                        @ngayThucDon.Ngay.ToString("dd/MM/yyyy")
-                    </button>
-
-                </li>
-            }
-        </ul>
-
-        <!-- Tab content -->
-        <div class="tab-content mt-4" id="thucDonTabsContent">
-            @for (int i = 0; i < Model.ThucDon7Ngay.Count; i++)
-            {
-                var ngayThucDon = Model.ThucDon7Ngay[i];
-                var isActive = (i == 0) ? "show active" : "";
-                var tabId = $"ngay{i + 1}";
-
-                var groups = ngayThucDon.DanhSachMonAn?
-                .GroupBy(m => m.LoaiBuaAn ?? "Không xác định")
-                .OrderBy(g => g.Key)
-                .ToList() ?? new List<IGrouping<string, SmartCookFinal.Models.MonAn>>();
-
-                <div class="tab-pane fade @isActive" id="@tabId" role="tabpanel" aria-labelledby="@($"{tabId}-tab")">
-                    @foreach (var group in groups)
-                    {
-                        <h5 class="text-primary">@group.Key</h5>
-                        <div class="row g-3 mb-4">
-                            @foreach (var mon in group)
-                            {
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="card h-100 shadow-sm border-0">
-                                        <img src="@(string.IsNullOrWhiteSpace(mon.UrlHinhAnh) ? "/images/default-food.png" : mon.UrlHinhAnh)" class="card-img-top" alt="@mon.TenMon" style="height:200px; object-fit:cover;" />
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title">@mon.TenMon</h5>
-                                            <p class="card-text mb-1"><strong>Calories:</strong> @(mon.LuongCalo ?? 0) kcal</p>
-                                            <p class="card-text mb-0"><strong>Chi phí:</strong> @(mon.ChiPhiUocTinh?.ToString("N0") ?? "0") VND</p>
-                                            <div class="mt-auto">
-                                                <a href="@Url.Action("Details", "MonAns", new { id = mon.Id })" class="btn btn-primary mt-auto">
-                                                    Xem chi tiết
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                </div>
-            }
-        </div>
-    }
+    </div>
 </div>
 
 
+        <!-- Kết quả thực đơn -->
+        <h2 class="text-center mt-5 mb-4">Kết Quả Thực Đơn Trong 7 Ngày</h2>
+
+        @if (Model.ThucDon7Ngay == null || !Model.ThucDon7Ngay.Any())
+        {
+            <div class="alert alert-warning text-center mt-4">
+                Không tìm thấy thực đơn phù hợp.
+            </div>
+        }
+        else
+        {
+            <!-- Tab navigation -->
+            <ul class="nav nav-tabs" id="thucDonTabs" role="tablist">
+                @for (int i = 0; i < Model.ThucDon7Ngay.Count; i++)
+                {
+                    var ngayThucDon = Model.ThucDon7Ngay[i];
+                    var isActive = (i == 0) ? "active" : "";
+                    var tabId = $"ngay{i + 1}";
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link @isActive" id="@($"{tabId}-tab")" data-bs-toggle="tab" data-bs-target="#@tabId" type="button" role="tab" aria-controls="@tabId" aria-selected="@(i == 0 ? "true" : "false")">
+                            @ngayThucDon.Ngay.ToString("dd/MM/yyyy")
+                        </button>
+                    </li>
+                }
+            </ul>
+
+            <!-- Tab content -->
+            <div class="tab-content mt-4" id="thucDonTabsContent">
+                @for (int i = 0; i < Model.ThucDon7Ngay.Count; i++)
+                {
+                    var ngayThucDon = Model.ThucDon7Ngay[i];
+                    var isActive = (i == 0) ? "show active" : "";
+                    var tabId = $"ngay{i + 1}";
+
+                    var groups = ngayThucDon.DanhSachMonAn?
+                    .GroupBy(m => m.LoaiBuaAn ?? "Không xác định")
+                    .OrderBy(g => g.Key)
+                    .ToList() ?? new List<IGrouping<string, SmartCookFinal.Models.MonAn>>();
+
+                    <div class="tab-pane fade @isActive" id="@tabId" role="tabpanel" aria-labelledby="@($"{tabId}-tab")">
+                        @foreach (var group in groups)
+                        {
+                            <h5 class="text-primary mt-4">@group.Key</h5>
+                            <div class="row g-3 mb-4">
+                                @foreach (var mon in group)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="card h-100 shadow-sm border-0">
+                                            <img src="@(string.IsNullOrWhiteSpace(mon.UrlHinhAnh) ? "/images/default-food.png" : mon.UrlHinhAnh)" class="card-img-top" alt="@mon.TenMon" style="height:200px; object-fit:cover;" />
+                                            <div class="card-body d-flex flex-column">
+                                                <h5 class="card-title">@mon.TenMon</h5>
+                                                <p class="card-text mb-1"><strong>Calories:</strong> @(mon.LuongCalo ?? 0) kcal</p>
+                                                <p class="card-text mb-0"><strong>Chi phí:</strong> @(mon.ChiPhiUocTinh?.ToString("N0") ?? "0") VND</p>
+                                                <div class="mt-auto">
+                                                    <a href="@Url.Action("Details", "MonAns", new { id = mon.Id })" class="btn btn-primary w-100 mt-3">
+                                                        <i class="fas fa-info-circle me-1"></i> Xem chi tiết
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<!-- JavaScript -->
 <script>
     const tabs = document.querySelectorAll('button[data-bs-toggle="tab"]');
     tabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', function (event) {
-            console.log("Đang xem tab:", event.target.textContent);
+            const paneId = event.target.getAttribute('data-bs-target');
+            const pane = document.querySelector(paneId);
+            if (pane) {
+                pane.classList.add('animate__animated', 'animate__fadeIn');
+                setTimeout(() => {
+                    pane.classList.remove('animate__animated', 'animate__fadeIn');
+                }, 800);
+            }
         });
     });
 </script>
-
