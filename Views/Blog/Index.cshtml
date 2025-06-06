@@ -2,21 +2,31 @@
 @model IEnumerable<SmartCookFinal.Models.Blog>
 
 <style>
+    /*
+            =========================================================================================
+            STYLE V.4 - SỬA LỖI MÀU BANNER
+            =========================================================================================
+        */
+
+    /* Nền chính của trang, rất nhạt để làm nổi bật nội dung */
+    .content-block, .page-content {
+        background-color: #F0F9F0; /* Màu nền xanh siêu nhạt */
+    }
+
     .blog-post {
         background: #fff;
         border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
         overflow: hidden;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         margin-bottom: 40px;
         animation: fadeInUp 0.8s ease forwards;
-        border: 1px solid rgba(255,255,255,0.2);
-        backdrop-filter: blur(10px);
+        border: 1px solid #E8F5E9;
     }
 
         .blog-post:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
         }
 
     .blog-image {
@@ -25,17 +35,11 @@
         border-radius: 15px 15px 0 0;
         object-fit: cover;
         transition: all 0.5s ease;
-        filter: brightness(1.1) contrast(1.1);
-    }
-
-    .blog-post:hover .blog-image {
-        transform: scale(1.08);
-        filter: brightness(1.2) contrast(1.2);
     }
 
     .ttr-post-info {
         padding: 30px;
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        background: #ffffff;
     }
 
     .media-post {
@@ -49,14 +53,15 @@
         .media-post li {
             display: flex;
             align-items: center;
-            color: #6c757d;
+            color: #556B2F; /* Màu olive đậm cho chữ phụ */
             font-size: 14px;
             font-weight: 500;
         }
 
+        /* Icon màu xanh lá cây */
         .media-post i {
             margin-right: 8px;
-            color: #007bff;
+            color: #66BB6A; /* Màu xanh lá cây chính */
             font-size: 16px;
         }
 
@@ -67,39 +72,32 @@
         line-height: 1.4;
     }
 
+        /* Tiêu đề màu xanh lá cây đậm */
         .post-title a {
-            color: #2c3e50;
+            color: #1B5E20; /* Xanh lá rất đậm */
             text-decoration: none;
             transition: all 0.3s ease;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
             .post-title a:hover {
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                transform: translateX(5px);
+                color: #4CAF50; /* Xanh lá sáng hơn khi hover */
             }
 
     .blog-excerpt {
-        color: #6c757d;
+        color: #556B2F;
         line-height: 1.7;
         margin-bottom: 25px;
         font-size: 15px;
     }
 
-    .btn-link {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Nút bấm màu xanh lá */
+    .btn-link, .modal-footer .btn-primary {
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
         color: white;
         text-decoration: none;
         font-weight: 600;
         padding: 12px 30px;
         border-radius: 50px;
-        position: relative;
         transition: all 0.3s ease;
         display: inline-block;
         overflow: hidden;
@@ -110,66 +108,22 @@
         font-size: 13px;
     }
 
-        .btn-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn-link:hover::before {
-            left: 100%;
-        }
-
-        .btn-link::after {
-            content: " →";
-            position: absolute;
-            opacity: 0;
-            right: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-link:hover::after {
-            opacity: 1;
-            right: 10px;
-        }
-
-        .btn-link:hover {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        .btn-link:hover, .modal-footer .btn-primary:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            color: white;
-            text-decoration: none;
-            padding-right: 45px;
+            box-shadow: 0 15px 35px rgba(67, 160, 71, 0.3);
         }
 
-    /* Enhanced Modal Styles */
+    /* Modal Styles */
     .modal-content {
         border-radius: 20px;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-        animation: modalSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border: none;
         overflow: hidden;
     }
 
-    @@keyframes modalSlideIn {
-        from {
-            opacity: 0;
-            transform: scale(0.7) translateY(-50px);
-        }
-
-        to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
-    }
-
+    /* Header modal màu xanh lá */
     .modal-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
         color: white;
         border: none;
         padding: 25px 30px;
@@ -178,24 +132,13 @@
     .modal-title {
         font-weight: 700;
         font-size: 1.6rem;
-        margin: 0;
     }
 
     .modal-body {
         padding: 30px;
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        background: #FAFFF9;
         line-height: 1.8;
     }
-
-        .modal-body img {
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-            .modal-body img:hover {
-                transform: scale(1.02);
-            }
 
     .modal-footer {
         background: #f8f9fa;
@@ -204,21 +147,15 @@
     }
 
     .btn-secondary {
-        background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        background: #E0E0E0;
         border: none;
         border-radius: 50px;
         padding: 10px 25px;
         font-weight: 600;
-        transition: all 0.3s ease;
+        color: #333;
     }
 
-        .btn-secondary:hover {
-            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-
-    /* Enhanced Pagination */
+    /* Pagination */
     .pagination-bx {
         margin-top: 50px;
         display: flex;
@@ -228,57 +165,113 @@
     .pagination {
         display: flex;
         gap: 10px;
-        align-items: center;
         list-style: none;
         padding: 0;
-        margin: 0;
     }
-
-        .pagination li {
-            margin: 0;
-        }
 
         .pagination > li > a,
         .pagination > li > span {
             border: none;
-            color: #6c757d;
+            color: #388E3C;
             background: white;
-            margin: 0;
             padding: 12px 18px;
             border-radius: 50px;
             transition: all 0.3s ease;
-            text-decoration: none;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 50px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
-        .pagination > li.active > a {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            .pagination > li.active > a,
+            .pagination > li > a:hover {
+                background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+                color: #fff;
+                box-shadow: 0 8px 25px rgba(67, 160, 71, 0.4);
+                transform: translateY(-2px);
+            }
+
+    /* ** FIX HERE ** BANNER ĐƯỢC CẬP NHẬT LẠI */
+    .page-banner.ovbl-dark {
+        background: linear-gradient(135deg, rgba(85, 139, 47, 0.85), rgba(27, 94, 32, 0.9));
+        padding: 120px 0 80px;
+    }
+
+    .page-banner h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Thanh tìm kiếm */
+    .search-bx .input-group {
+        box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+        border-radius: 50px;
+        overflow: hidden;
+        background: white;
+        transition: all 0.3s ease;
+    }
+
+        .search-bx .input-group:focus-within {
+            box-shadow: 0 15px 50px rgba(67, 160, 71, 0.2);
             transform: translateY(-2px);
         }
 
-        .pagination > li > a:hover {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    .search-bx .form-control {
+        border: none;
+        padding: 20px 25px;
+        font-size: 16px;
+        background: transparent;
+    }
+
+    /* Nút tìm kiếm */
+    .search-bx .input-group-btn button {
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+        border: none;
+        padding: 20px 30px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+        .search-bx .input-group-btn button:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
         }
 
-        .pagination .previous a,
-        .pagination .next a {
-            padding: 12px 20px;
-            font-size: 14px;
+    /* ** FIX HERE ** THANH BREADCRUMB ĐƯỢC CẬP NHẬT */
+    .breadcrumb-row {
+        background: #C8E6C9; /* Màu xanh lá từ ảnh bạn cung cấp */
+        padding: 20px 0;
+        border-bottom: 1px solid #A5D6A7;
+    }
+
+        .breadcrumb-row a {
+            color: #1B5E20; /* Màu xanh đậm cho chữ */
+            text-decoration: none;
             font-weight: 600;
         }
 
-    /* Enhanced Animations */
+            .breadcrumb-row a:hover {
+                color: #388E3C;
+            }
+
+        .breadcrumb-row li, .breadcrumb-row li:not(:last-child)::after {
+            color: #2E7D32;
+        }
+
+    .widget {
+        padding: 40px 0;
+        background: transparent;
+    }
+
+    .alert.alert-info {
+        background-color: #E6F3E6;
+        border-color: #C8E6C9;
+        color: #1B5E20;
+    }
+
+        .alert.alert-info .text-primary {
+            color: #4CAF50 !important;
+        }
+
+    /* Animation */
     @@keyframes fadeInUp {
         0% {
             opacity: 0;
@@ -290,258 +283,27 @@
             transform: translateY(0);
         }
     }
-
-    @@keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* Enhanced Image Overlay */
-    .ttr-post-media {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px 15px 0 0;
-    }
-
-        .ttr-post-media::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient( 135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.3) 100% );
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-    .blog-post:hover .ttr-post-media::after {
-        opacity: 1;
-    }
-
-    /* Page Banner Enhancement */
-    .page-banner {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('@Url.Content("~/assets/images/banner/banner3.jpg")') center/cover;
-        padding: 120px 0 80px;
-        position: relative;
-        overflow: hidden;
-    }
-
-        .page-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-
-    @@keyframes shimmer {
-        0% {
-            transform: translateX(-100%);
-        }
-
-        100% {
-            transform: translateX(100%);
-        }
-    }
-
-    .page-banner h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
-        animation: fadeInDown 1s ease-out;
-    }
-
-    @@keyframes fadeInDown {
-        from {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Enhanced Search Box */
-    .search-bx {
-        margin-bottom: 40px;
-        animation: fadeIn 1.2s ease-out;
-    }
-
-        .search-bx .input-group {
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border-radius: 50px;
-            overflow: hidden;
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-            .search-bx .input-group:focus-within {
-                box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3);
-                transform: translateY(-2px);
-            }
-
-        .search-bx .form-control {
-            border: none;
-            padding: 20px 25px;
-            font-size: 16px;
-            background: transparent;
-        }
-
-            .search-bx .form-control:focus {
-                box-shadow: none;
-                outline: none;
-            }
-
-        .search-bx .input-group-btn button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            padding: 20px 30px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 18px;
-        }
-
-            .search-bx .input-group-btn button:hover {
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-                transform: scale(1.05);
-            }
-
-    /* Breadcrumb Enhancement */
-    .breadcrumb-row {
-        background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(10px);
-        padding: 20px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-        .breadcrumb-row ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .breadcrumb-row li {
-            margin-right: 15px;
-            position: relative;
-        }
-
-            .breadcrumb-row li:not(:last-child)::after {
-                content: '›';
-                position: absolute;
-                right: -10px;
-                color: #6c757d;
-                font-weight: bold;
-            }
-
-        .breadcrumb-row a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-            .breadcrumb-row a:hover {
-                color: #764ba2;
-                text-decoration: underline;
-            }
-
-    /* Section Spacing */
-    .section-area.section-sp1 {
-        padding-top: 60px;
-        padding-bottom: 80px;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        position: relative;
-    }
-
-    /* Content Block */
-    .content-block {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        min-height: 100vh;
-    }
-
-    .widget {
-        padding: 40px 0;
-        background: rgba(255,255,255,0.8);
-        backdrop-filter: blur(10px);
-    }
-
-    /* Responsive Design */
-    @@media (max-width: 768px) {
-        .page-banner h1 {
-            font-size: 2.5rem;
-        }
-
-        .blog-post {
-            margin-bottom: 30px;
-        }
-
-        .pagination > li > a,
-        .pagination > li > span {
-            padding: 10px 15px;
-            font-size: 14px;
-        }
-    }
-
-    /* Loading Animation */
-    .blog-post {
-        animation-fill-mode: both;
-    }
-
-        .blog-post:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .blog-post:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .blog-post:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .blog-post:nth-child(4) {
-            animation-delay: 0.4s;
-        }
 </style>
 
-<div class="page-content bg-white">
-    <!-- Inner page banner -->
+<div class="page-content">
     <div class="page-banner ovbl-dark">
         <div class="container">
             <div class="page-banner-entry text-center">
-                <h1 class="text-white">Blog An Thực</h1>
+                <h1 class="text-white">Blog Ẩm Thực</h1>
                 <p class="text-white-50 mt-3 fs-5">Khám phá thế giới ẩm thực cùng chúng tôi</p>
             </div>
         </div>
     </div>
 
-    <!-- Breadcrumb row -->
     <div class="breadcrumb-row">
         <div class="container">
             <ul class="list-inline">
-                <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home me-2"></i>Trang chủ</a></li>
+                <li><a href="@Url.Action("Index", "Home") " style="margin-right:10px;"><i class="fa fa-home me-2"></i>Trang chủ</a></li>
                 <li><a asp-controller="Blog" asp-action="MyBlog">My Blog</a></li>
-                
             </ul>
         </div>
     </div>
 
-    <!-- Content -->
     <div class="content-block">
         <div class="widget">
             <div class="container">
@@ -560,10 +322,9 @@
             </div>
         </div>
 
-        <div class="section-area section-sp1">
+        <div class="section-area section-sp1 pt-0">
             <div class="container">
                 <div class="row justify-content-center">
-                    <!-- Blog list -->
                     @if (Model != null && Model.Any())
                     {
                         @foreach (var item in Model)
@@ -571,19 +332,9 @@
                             <div class="col-lg-10 col-xl-8">
                                 <div class="blog-post blog-md clearfix">
                                     <div class="ttr-post-media">
-                                        @if (!string.IsNullOrEmpty(item.UrlImage))
-                                        {
-                                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId">
-                                                <img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId">
-                                                <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=300&fit=crop"
-                                                     alt="@item.Title" class="blog-image" />
-                                            </a>
-                                        }
+                                        <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId">
+                                            <img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
+                                        </a>
                                     </div>
                                     <div class="ttr-post-info">
                                         <ul class="media-post">
@@ -610,22 +361,16 @@
                                             <div class="view-count text-muted" style="display: inline-block;">
                                                 <i class="fa fa-eye"></i> @item.ViewCount lượt xem
                                             </div>
-
                                         </div>
-
-
                                     </div>
                                 </div>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="blogModal-@item.BlogId" tabindex="-1"
-                                     aria-labelledby="modalLabel-@item.BlogId" aria-hidden="true">
+                                <div class="modal fade" id="blogModal-@item.BlogId" tabindex="-1" aria-labelledby="modalLabel-@item.BlogId" aria-hidden="true">
                                     <div class="modal-dialog modal-lg modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="modalLabel-@item.BlogId">@item.Title</h5>
-                                                <button type="button" class="btn-close btn-close-white"
-                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="mb-4">
@@ -644,8 +389,7 @@
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                                     <i class="fa fa-times me-2"></i>Đóng
                                                 </button>
-                                                <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId"
-                                                   class="btn btn-primary">
+                                                <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId" class="btn btn-primary">
                                                     <i class="fa fa-external-link me-2"></i>Xem chi tiết
                                                 </a>
                                             </div>
@@ -666,58 +410,30 @@
                         </div>
                     }
 
-                    <!-- Pagination -->
                     @if (ViewBag.TotalPages != null && (int)ViewBag.TotalPages > 1)
                     {
                         <div class="col-12">
                             <div class="pagination-bx rounded-sm gray clearfix">
                                 <ul class="pagination">
-                                    @if (ViewBag.CurrentPage != null && (int)ViewBag.CurrentPage > 1)
+                                    @if ((int)ViewBag.CurrentPage > 1)
                                     {
                                         <li class="previous">
                                             <a href="@Url.Action("Index", new { page = (int)ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })">
-                                                <i class="ti-arrow-left me-2"></i>Trước
+                                                Trước
                                             </a>
                                         </li>
                                     }
-
-                                    @{
-                                        int currentPage = ViewBag.CurrentPage ?? 1;
-                                        int totalPages = ViewBag.TotalPages ?? 1;
-                                        int startPage = Math.Max(1, currentPage - 2);
-                                        int endPage = Math.Min(totalPages, currentPage + 2);
-                                    }
-
-                                    @if (startPage > 1)
+                                    @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
                                     {
-                                        <li><a href="@Url.Action("Index", new { page = 1, searchText = ViewBag.SearchText })">1</a></li>
-                                        @if (startPage > 2)
-                                        {
-                                            <li><span>...</span></li>
-                                        }
-                                    }
-
-                                    @for (int i = startPage; i <= endPage; i++)
-                                    {
-                                        <li class="@(i == currentPage ? "active" : "")">
+                                        <li class="@(i == (int)ViewBag.CurrentPage ? "active" : "")">
                                             <a href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
                                         </li>
                                     }
-
-                                    @if (endPage < totalPages)
-                                    {
-                                        @if (endPage < totalPages - 1)
-                                        {
-                                            <li><span>...</span></li>
-                                        }
-                                        <li><a href="@Url.Action("Index", new { page = totalPages, searchText = ViewBag.SearchText })">@totalPages</a></li>
-                                    }
-
-                                    @if (currentPage < totalPages)
+                                    @if ((int)ViewBag.CurrentPage < (int)ViewBag.TotalPages)
                                     {
                                         <li class="next">
-                                            <a href="@Url.Action("Index", new { page = currentPage + 1, searchText = ViewBag.SearchText })">
-                                                Sau <i class="ti-arrow-right ms-2"></i>
+                                            <a href="@Url.Action("Index", new { page = (int)ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })">
+                                                Sau
                                             </a>
                                         </li>
                                     }
@@ -731,7 +447,6 @@
     </div>
 </div>
 
-<!-- Bootstrap JS (nếu chưa có) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script>

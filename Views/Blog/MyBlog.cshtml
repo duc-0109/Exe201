@@ -1,123 +1,232 @@
-﻿@using Azure.Core
-@model List<SmartCookFinal.Models.Blog>
+﻿@model List<SmartCookFinal.Models.Blog>
 
+<style>
+    /*
+            =========================================================================================
+            STYLE V.4 - TÔNG MÀU XANH LÁ - ÁP DỤNG CHO TRANG MY BLOG
+            =========================================================================================
+        */
 
+    .page-content {
+        background-color: #F0F9F0; /* Nền xanh lá siêu nhạt */
+    }
 
+    /* Banner */
+    .page-banner.ovbl-dark {
+        background: linear-gradient(135deg, rgba(85, 139, 47, 0.85), rgba(27, 94, 32, 0.9));
+        padding: 100px 0;
+    }
+
+    .page-banner h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb-row {
+        background: #C8E6C9; /* Màu xanh lá từ ảnh */
+        padding: 1rem 0;
+        border-bottom: 1px solid #A5D6A7;
+    }
+
+        .breadcrumb-row ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-row a {
+            color: #1B5E20; /* Màu xanh đậm cho chữ */
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .breadcrumb-row a:hover {
+                color: #4CAF50;
+            }
+
+        .breadcrumb-row li {
+            color: #2E7D32;
+        }
+
+    /* Widget & Nút New Blog */
+    .widget {
+        padding: 2rem 0;
+        background: transparent;
+    }
+
+    .btn.btn-primary {
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(67, 160, 71, 0.25);
+    }
+
+        .btn.btn-primary:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(67, 160, 71, 0.35);
+        }
+
+    /* Blog Post Card */
+    .blog-post {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        transition: all 0.4s ease;
+        margin-bottom: 40px;
+        border: 1px solid #E8F5E9;
+    }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+    .blog-image {
+        width: 100%;
+        height: 250px; /* Chỉnh lại chiều cao cho phù hợp list */
+        object-fit: cover;
+    }
+
+    .ttr-post-info {
+        padding: 25px;
+    }
+
+    .media-post {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+        list-style: none;
+        padding: 0;
+        font-size: 0.9rem;
+    }
+
+        .media-post li {
+            color: #556B2F;
+        }
+
+        .media-post i {
+            margin-right: 8px;
+            color: #66BB6A;
+        }
+
+    .post-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+
+        .post-title a {
+            color: #1B5E20;
+        }
+
+            .post-title a:hover {
+                color: #4CAF50;
+            }
+
+    .post-extra {
+        margin-top: 20px;
+    }
+
+        /* Nút Edit */
+        .post-extra .btn-link {
+            background-color: #E8F5E9;
+            color: #388E3C;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+            font-style: normal;
+        }
+
+            .post-extra .btn-link:hover {
+                background-color: #C8E6C9;
+                color: #1B5E20;
+            }
+</style>
 
 <div class="page-content bg-white">
-	<!-- inner page banner -->
-	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');" ;">
-		<div class="container">
-			<div class="page-banner-entry">
-				<h1 class="text-white">My Blog</h1>
+    <div class="page-banner ovbl-dark">
+        <div class="container">
+            <div class="page-banner-entry">
+                <h1 class="text-white">My Blog</h1>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="list-inline">
+                <li><a href="/">Trang chủ</a></li>
+                <li>My Blog</li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-block">
+        <div class="container">
+            <div class="widget">
+                <div class="text-right">
+                    <a class="btn btn-primary" href="@Url.Action("Create", "Blog")">
+                        <i class="fa fa-plus"></i> Tạo bài viết mới
+                    </a>
+                </div>
+            </div>
 
-			</div>
-		</div>
-	</div>
-	<!-- Breadcrumb row -->
-	<div class="breadcrumb-row">
-		<div class="container">
-			<ul class="list-inline">
-				<li><a href="/">Home</a></li>
-				<li>My Blog</li>
-			</ul>
-
-		</div>
-	</div>
-	<!-- Breadcrumb row END -->
-	<!-- contact area -->
-	<div class="content-block">
-		<div class="widget">
-			<div class="search-bx style-1 text-right">
-				<a class="btn btn-primary" href="@Url.Action("Create", "Blog")">
-					<i class="fa fa-plus"></i> New Blog
-				</a>
-			</div>
-		</div>
-
-
-		<div class="section-area section-sp1">
-			<div class="container">
-				<div class="row">
-					<!-- Left part start -->
-					@foreach (var item in Model)
-					{
-						<div class="col-lg-8">
-							<div class="blog-post blog-md clearfix">
-								<div class="ttr-post-media">
-									<a href="#">
-										@if (!string.IsNullOrEmpty(item.UrlImage))
-										{
-											<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId">
-												<img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
-											</a>
-
-										}
-									</a>
-								</div>
-								<div class="ttr-post-info">
-									<ul class="media-post">
-										<li><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
-										<li><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
-									</ul>
-									<h5 class="post-title">
-										<a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId" style="text-decoration: none; color: inherit;">
-											@item.Title
-										</a>
-									</h5>
-
-
-									<p>@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)</p>
-									<div class="post-extra">
-										<a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-link"
-										   style="text-decoration: none; color: black; font-style: italic; font-weight: bold;">
-											Edit
-										</a>
-
-
-
-									</div>
-								</div>
-							</div>
-
-							<!-- Modal -->
-							<div class="modal fade" id="blogModal-@item.BlogId" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@item.BlogId" aria-hidden="true">
-								<div class="modal-dialog modal-lg" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="modalLabel-@item.BlogId">@item.Title</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
-											<p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
-											@if (!string.IsNullOrEmpty(item.UrlImage))
-											{
-												<img src="@item.UrlImage" alt="Image" class="img-fluid mb-3" />
-											}
-											<p>@item.Content</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					}
-
-
-
-
-
-
-				</div>
-				<!-- Left part END -->
-
-			</div>
-		</div>
-	</div>
-</div>
+            <div class="section-area section-sp1 pt-0">
+                <div class="row">
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-6 col-lg-4">
+                                <div class="blog-post blog-md clearfix">
+                                    <div class="ttr-post-media">
+                                        <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId">
+                                            @if (!string.IsNullOrEmpty(item.UrlImage))
+                                            {
+                                                <img src="@item.UrlImage" alt="@item.Title" class="blog-image" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/assets/images/default-blog.jpg" alt="Default Image" class="blog-image" />
+                                            }
+                                        </a>
+                                    </div>
+                                    <div class="ttr-post-info">
+                                        <ul class="media-post">
+                                            <li><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
+                                            <li><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
+                                        </ul>
+                                        <h5 class="post-title">
+                                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.BlogId" style="text-decoration: none; color: inherit;">
+                                                @item.Title
+                                            </a>
+                                        </h5>
+                                        <p>@(item.Content != null && item.Content.Length > 100 ? item.Content.Substring(0, 100) + "..." : item.Content)</p>
+                                        <div class="post-extra">
+                                            <a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-link">
+                                                <i class="fa fa-pencil-alt"></i> Chỉnh sửa
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12 text-center">
+                            <p>Bạn chưa có bài viết nào. Hãy tạo bài viết đầu tiên của bạn!</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
