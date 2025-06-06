@@ -1,0 +1,528 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Về An Thực</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3a5 100%);
+    min-height: 100vh;
+    color: #2c3e50;
+    overflow-x: hidden;
+    line-height: 1.6;
+    }
+
+    /* Floating particles background */
+    .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    }
+
+    .particle {
+    position: absolute;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
+    }
+
+    @@keyframes float {
+    0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+    }
+    10% {
+    opacity: 1;
+    }
+    90% {
+    opacity: 1;
+    }
+    100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+    }
+    }
+
+    /* Header */
+    header {
+    background: linear-gradient(135deg, #27ae60, #2ecc71, #58d68d);
+    color: white;
+    padding: 100px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
+    z-index: 10;
+    }
+
+    header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    animation: shimmer 3s infinite;
+    }
+
+    @@keyframes shimmer {
+    0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+    }
+
+    header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: slideInFromTop 1s ease-out;
+    position: relative;
+    z-index: 2;
+    }
+
+    header p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+    animation: slideInFromBottom 1s ease-out 0.3s both;
+    position: relative;
+    z-index: 2;
+    }
+
+    @@keyframes slideInFromTop {
+    0% {
+    opacity: 0;
+    transform: translateY(-50px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+
+    @@keyframes slideInFromBottom {
+    0% {
+    opacity: 0;
+    transform: translateY(50px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+
+    /* Main Container */
+    main {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+    }
+
+    /* Grid layout */
+    .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+    }
+
+    /* Card styles */
+    .card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 50px 40px;
+    box-shadow: 0 15px 35px rgba(39, 174, 96, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.8s ease-out;
+    }
+
+    .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(46, 204, 113, 0.1), transparent);
+    transition: left 0.5s ease;
+    }
+
+    .card:hover::before {
+    left: 100%;
+    }
+
+    .card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(39, 174, 96, 0.2);
+    border-color: rgba(46, 204, 113, 0.4);
+    }
+
+    @@keyframes fadeInUp {
+    0% {
+    opacity: 0;
+    transform: translateY(30px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+
+    .card h2 {
+    color: #27ae60;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    }
+
+    .card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    transition: width 0.4s ease;
+    border-radius: 2px;
+    }
+
+    .card:hover h2::after {
+    width: 100%;
+    }
+
+    .card p {
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 18px;
+    }
+
+    /* Mission card special */
+    .mission-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(52, 152, 219, 0.05));
+    border-left: 6px solid #27ae60;
+    }
+
+    /* Features list */
+    .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+
+    .features-list li {
+    padding: 15px 0 15px 30px;
+    border-bottom: 1px solid rgba(46, 204, 113, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+    }
+
+    .features-list li:hover {
+    background: rgba(46, 204, 113, 0.05);
+    padding-left: 40px;
+    }
+
+    .features-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2rem;
+    }
+
+    .features-list li:last-child {
+    border-bottom: none;
+    }
+
+    .features-list strong {
+    color: #27ae60;
+    display: block;
+    margin-bottom: 5px;
+    }
+
+    /* Contact card */
+    .contact-card {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    text-align: center;
+    grid-column: 1 / -1;
+    }
+
+    .contact-card h2 {
+    color: white;
+    margin-bottom: 30px;
+    }
+
+    .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    }
+
+    .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    }
+
+    .contact-item::before {
+    content: '📧';
+    font-size: 1.5rem;
+    }
+
+    .contact-item:last-child::before {
+    content: '📞';
+    }
+
+    .contact-item a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    }
+
+    .contact-item a:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+    }
+
+    /* Back button */
+    .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+    margin: 40px auto 0;
+    display: block;
+    width: fit-content;
+    }
+
+    .back-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+    header h1 {
+    font-size: 2.5rem;
+    }
+
+    header p {
+    font-size: 1.1rem;
+    }
+
+    .content-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    }
+
+    .card {
+    padding: 30px;
+    }
+
+    .contact-info {
+    flex-direction: column;
+    gap: 20px;
+    }
+    }
+
+    @@media (max-width: 480px) {
+    header {
+    padding: 60px 15px;
+    }
+
+    header h1 {
+    font-size: 2rem;
+    }
+
+    .card {
+    padding: 25px;
+    }
+
+    }
+
+        .thank-you-note {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0fff0;
+            border-left: 5px solid #4CAF50;
+            border-radius: 10px;
+            text-align: center; /* Căn giữa chữ */
+            display: flex;
+            justify-content: center; /* Căn giữa khối */
+            align-items: center;
+            font-style: italic;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <h1>Về An Thực</h1>
+        <p>Nền tảng chăm sóc sức khỏe qua từng bữa ăn</p>
+    </header>
+
+    <main>
+        <div class="content-grid">
+            <div class="card mission-card">
+                <h2>Sứ Mệnh của Chúng Tôi</h2>
+                <p>An Thực cung cấp giải pháp thực đơn lành mạnh, cá nhân hóa cho từng cá nhân nhằm giúp duy trì một cuộc sống khỏe mạnh, cân bằng và tràn đầy năng lượng.</p>
+                <p>Chúng tôi sử dụng công nghệ phân tích dinh dưỡng tiên tiến và ngân sách hợp lý để giúp bạn cải thiện sức khỏe lâu dài.</p>
+            </div>
+
+            <div class="card">
+                <h2>Lý Do Bạn Nên Chọn An Thực</h2>
+                <ul class="features-list">
+                    <li>
+                        <strong>Cá nhân hóa hoàn toàn:</strong>
+                        Dựa trên mục tiêu và sở thích của bạn.
+                    </li>
+                    <li>
+                        <strong>Tiết kiệm thời gian và chi phí:</strong>
+                        Chế độ ăn hiệu quả, dễ chuẩn bị.
+                    </li>
+                    <li>
+                        <strong>Giải pháp lâu dài:</strong>
+                        Xây dựng thói quen ăn uống bền vững.
+                    </li>
+                    <li>
+                        <strong>Dễ dàng và tiện lợi:</strong>
+                        Nấu nhanh, vẫn đủ chất.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Chúng Tôi Là Ai?</h2>
+                <p>Đội ngũ An Thực là những người đam mê sức khỏe, ẩm thực và công nghệ, tạo ra nền tảng hỗ trợ người bận rộn xây dựng chế độ ăn uống lành mạnh mà vẫn tiện lợi, tiết kiệm.</p>
+            </div>
+
+            <div class="card contact-card">
+                <h2>Liên Hệ Với Chúng Tôi</h2>
+                <div class="contact-info">
+                    <p>
+                        Chúng tôi luôn sẵn lòng hỗ trợ bạn! Nếu bạn có bất kỳ câu hỏi nào về công thức,
+                        tư vấn dinh dưỡng hay<br>
+                        muốn tìm hiểu thêm về các dịch vụ của <strong>An Thực</strong>, hãy
+                        <a >liên hệ với chúng tôi</a>.
+                    </p>
+
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <a href="mailto:anthuc2025@gmail.com">anthuc2025@gmail.com</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>Điện thoại:</strong>
+                        <span>0393402205</span>
+                    </div>
+                </div>
+            </div>
+            <div class="thank-you-note">
+                <p>
+                    ❤️ Cảm ơn bạn đã ghé thăm <strong>An Thực</strong>. Hãy để chúng tôi đồng hành cùng bạn trên hành trình
+                    chăm sóc sức khỏe và xây dựng lối sống lành mạnh, đầy đủ dinh dưỡng và hạnh phúc!
+                </p>
+            </div>
+        </div>
+
+        <a href="@Url.Action("Index", "Home")" class="back-button">
+            ← Quay về Trang chủ
+        </a>
+
+    </main>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particles = document.getElementById('particles');
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                // Random size and position
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+                particles.appendChild(particle);
+            }
+        }
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        // Add scroll animations
+        function handleScroll() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    card.style.animationDelay = (index * 0.1) + 's';
+                    card.classList.add('animate');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+        // Add smooth scrolling
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
