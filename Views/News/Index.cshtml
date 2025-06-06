@@ -1,334 +1,362 @@
 ﻿@model IEnumerable<SmartCookFinal.Models.News>
 
-<div class="page-content bg-white">
-	<!-- inner page banner -->
-	<div class="page-banner ovbl-dark" style="background-image:url('@Url.Content("~/assets/images/banner/banner3.jpg")');">
-		<div class="container">
-			<div class="page-banner-entry text-center">
-				<h1 class="text-white banner-title">News List</h1>
-			</div>
-		</div>
-	</div>
-
-	<!-- Breadcrumb -->
-	<div class="breadcrumb-row bg-light py-3">
-		<div class="container">
-			<ul class="breadcrumb-list list-inline mb-0">
-				<li><a href="#" class="breadcrumb-link">Home</a></li>
-				<li class="active">News List</li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Search Box -->
-	<div class="content-block py-5">
-		<div class="container">
-			<div class="search-bx style-1 mb-5">
-				<form method="get" action="@Url.Action("Index", "News")" role="search" class="search-form d-flex">
-					<input type="text" name="searchText" class="form-control search-input" placeholder="Enter your keywords..." value="@ViewBag.SearchText" />
-					<button type="submit" class="btn btn-primary search-btn">
-						<i class="fa fa-search"></i>
-					</button>
-				</form>
-			</div>
-
-			<div class="row">
-				<!-- News List -->
-				<div class="col-lg-8">
-					@foreach (var item in Model)
-					{
-						<div class="blog-post blog-md mb-5 shadow-sm rounded hover-shadow transition">
-							<div class="ttr-post-media position-relative overflow-hidden rounded-top">
-								@if (!string.IsNullOrEmpty(item.UrlImage))
-								{
-									<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="d-block">
-										<img src="@item.UrlImage" alt="@item.Title" class="img-fluid w-100 news-image transition-scale" />
-										<div class="overlay-hover d-flex align-items-center justify-content-center">
-											<span class="text-white h4 mb-0">View Details</span>
-										</div>
-									</a>
-								}
-							</div>
-
-							<div class="ttr-post-info p-4 bg-white rounded-bottom">
-								<ul class="media-post list-inline text-muted mb-2 small">
-									<li class="list-inline-item"><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
-									<li class="list-inline-item ml-3"><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
-								</ul>
-
-								<h5 class="post-title mb-3">
-									<a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="text-dark font-weight-bold text-decoration-none hover-text-primary">
-										@item.Title
-									</a>
-								</h5>
-
-								<p class="post-excerpt text-secondary">
-									@(item.Content.Length > 200 ? item.Content.Substring(0, 200) + "..." : item.Content)
-								</p>
-
-								<div class="d-flex justify-content-between align-items-center mt-3">
-									<button type="button" class="btn btn-outline-primary btn-sm read-more-btn" data-toggle="modal" data-target="#blogModal-@item.NewsId">
-										READ MORE
-									</button>
-									<span class="text-muted small">
-										<i class="fa fa-eye"></i> @item.ViewCount lượt xem
-									</span>
-								</div>
-
-							</div>
-						</div>
-
-						<!-- Modal -->
-						<div class="modal fade" id="blogModal-@item.NewsId" tabindex="-1" role="dialog" aria-labelledby="modalLabel-@item.NewsId" aria-hidden="true">
-							<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-								<div class="modal-content rounded shadow-lg">
-									<div class="modal-header border-bottom-0">
-										<h5 class="modal-title font-weight-bold" id="modalLabel-@item.NewsId">@item.Title</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true" class="h4">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
-										<p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
-										@if (!string.IsNullOrEmpty(item.UrlImage))
-										{
-											<img src="@item.UrlImage" alt="Image" class="img-fluid mb-3 rounded" />
-										}
-										<p class="text-justify">@item.Content</p>
-									</div>
-									<div class="modal-footer border-top-0">
-										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Đóng</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					}
-				</div>
-
-				<!-- You can add a right sidebar here if needed -->
-
-			</div>
-
-			<!-- Pagination -->
-			@if (ViewBag.TotalPages > 1)
-			{
-				<nav aria-label="Page navigation" class="mt-4">
-					<ul class="pagination justify-content-center">
-						@if (ViewBag.CurrentPage > 1)
-						{
-							<li class="page-item">
-								<a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })" aria-label="Previous">
-									<span aria-hidden="true">&laquo; Prev</span>
-								</a>
-							</li>
-						}
-						@for (int i = 1; i <= ViewBag.TotalPages; i++)
-						{
-							<li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-								<a class="page-link" href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
-							</li>
-						}
-						@if (ViewBag.CurrentPage < ViewBag.TotalPages)
-						{
-							<li class="page-item">
-								<a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })" aria-label="Next">
-									<span aria-hidden="true">Next &raquo;</span>
-								</a>
-							</li>
-						}
-					</ul>
-				</nav>
-			}
-		</div>
-	</div>
-</div>
+@{
+    ViewData["Title"] = "Tin tức";
+}
 
 <style>
-	/* Banner */
-	.page-banner {
-		position: relative;
-		background-size: cover;
-		background-position: center center;
-		padding: 100px 0;
-	}
+    /*
+            =========================================================================================
+            STYLE V.4 - TÔNG MÀU XANH LÁ - ÁP DỤNG CHO TRANG NEWS LIST
+            =========================================================================================
+        */
 
-	.banner-title {
-		font-size: 3rem;
-		font-weight: 700;
-		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-	}
+    /* Nền chung */
+    .page-content {
+        background-color: #F0F9F0;
+    }
 
-	/* Breadcrumb */
-	.breadcrumb-list {
-		padding: 0;
-		margin: 0;
-	}
+    /* Banner */
+    .page-banner.ovbl-dark {
+        background: linear-gradient(135deg, rgba(85, 139, 47, 0.85), rgba(27, 94, 32, 0.9));
+        padding: 100px 0;
+    }
 
-		.breadcrumb-list li {
-			display: inline;
-			font-size: 0.9rem;
-			color: #555;
-		}
+    .banner-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+    }
 
-			.breadcrumb-list li + li::before {
-				content: " / ";
-				padding: 0 8px;
-				color: #999;
-			}
+    /* Breadcrumb */
+    .breadcrumb-row {
+        background: #C8E6C9;
+        padding: 1rem 0;
+        border-bottom: 1px solid #A5D6A7;
+    }
 
-	.breadcrumb-link {
-		color: #007bff;
-		text-decoration: none;
-		transition: color 0.3s ease;
-	}
+    .breadcrumb-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-		.breadcrumb-link:hover {
-			color: #0056b3;
-			text-decoration: underline;
-		}
+    .breadcrumb-link {
+        color: #1B5E20;
+        text-decoration: none;
+        font-weight: 600;
+    }
 
-	/* Search Box */
-	.search-form {
-		max-width: 600px;
-		margin: 0 auto;
-	}
+        .breadcrumb-link:hover {
+            color: #4CAF50;
+        }
 
-	.search-input {
-		flex: 1;
-		border-top-right-radius: 0;
-		border-bottom-right-radius: 0;
-		border: 2px solid #007bff;
-		padding: 10px 15px;
-		font-size: 1rem;
-		transition: box-shadow 0.3s ease;
-	}
+    .breadcrumb-list .active {
+        color: #2E7D32;
+    }
 
-		.search-input:focus {
-			box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-			border-color: #0056b3;
-			outline: none;
-		}
+    .breadcrumb-list li:not(.active)::after {
+        content: '›';
+        margin-left: 0.5rem;
+        font-weight: bold;
+        color: #2E7D32;
+    }
 
-	.search-btn {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-		padding: 0 20px;
-		font-size: 1.2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: background-color 0.3s ease;
-	}
+    /* Search Box */
+    .search-bx {
+        max-width: 700px;
+        margin: 0 auto;
+    }
 
-		.search-btn:hover {
-			background-color: #0056b3;
-			color: #fff;
-		}
+    .search-form .form-control {
+        border-radius: 50px 0 0 50px;
+        border: 1px solid #C8E6C9;
+        padding: 12px 20px;
+    }
 
-	/* Blog post */
-	.blog-post {
-		background: #fff;
-		border-radius: 10px;
-		overflow: hidden;
-	}
+        .search-form .form-control:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
 
-		.blog-post:hover {
-			box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-			transition: box-shadow 0.4s ease;
-		}
+    .search-form .btn {
+        border-radius: 0 50px 50px 0;
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+        border: none;
+        color: white;
+    }
 
-	.ttr-post-media {
-		position: relative;
-	}
+        .search-form .btn:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+        }
 
-	.news-image {
-		transition: transform 0.3s ease;
-		border-bottom: 4px solid #007bff;
-	}
+    /* News Card */
+    .blog-post {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+        transition: all 0.4s ease;
+    }
 
-	.ttr-post-media:hover .news-image {
-		transform: scale(1.05);
-	}
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
 
-	.overlay-hover {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0, 123, 255, 0.5);
-		opacity: 0;
-		transition: opacity 0.3s ease;
-	}
+    .ttr-post-media {
+        position: relative;
+        overflow: hidden;
+    }
 
-	.ttr-post-media:hover .overlay-hover {
-		opacity: 1;
-		cursor: pointer;
-	}
+    .news-image {
+        transition: transform 0.4s ease;
+    }
 
-	.post-title a {
-		transition: color 0.3s ease;
-	}
+    .blog-post:hover .news-image {
+        transform: scale(1.05);
+    }
 
-		.post-title a.hover-text-primary:hover {
-			color: #007bff;
-			text-decoration: underline;
-		}
+    /* Hiệu ứng overlay khi hover ảnh */
+    .ttr-post-media::after {
+        content: "Xem chi tiết";
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(46, 125, 50, 0.7); /* Lớp phủ màu xanh lá */
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
 
-	.post-excerpt {
-		font-size: 0.95rem;
-		line-height: 1.6;
-	}
+    .blog-post:hover .ttr-post-media::after {
+        opacity: 1;
+    }
 
-	.read-more-btn {
-		transition: all 0.3s ease;
-	}
+    .media-post {
+        color: #556B2F; /* Màu olive */
+    }
 
-		.read-more-btn:hover {
-			background-color: #007bff;
-			color: #fff;
-		}
+        .media-post i {
+            color: #66BB6A;
+        }
 
-	/* Pagination */
-	.pagination .page-item .page-link {
-		color: #007bff;
-		border-radius: 50%;
-		width: 38px;
-		height: 38px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		transition: background-color 0.3s ease, color 0.3s ease;
-	}
+    .post-title a {
+        color: #1B5E20; /* Xanh đậm */
+        transition: color 0.3s ease;
+    }
 
-	.pagination .page-item.active .page-link {
-		background-color: #007bff;
-		color: #fff;
-		border-color: #007bff;
-	}
+        .post-title a:hover {
+            color: #4CAF50;
+            text-decoration: none;
+        }
 
-	.pagination .page-item .page-link:hover {
-		background-color: #0056b3;
-		color: #fff;
-		text-decoration: none;
-	}
+    .post-excerpt {
+        color: #555;
+    }
 
-	/* Modal */
-	.modal-content {
-		border-radius: 15px;
-	}
+    /* Nút Read More */
+    .read-more-btn {
+        font-weight: 600;
+        border-color: #66BB6A;
+        color: #388E3C;
+    }
 
-	.modal-header {
-		border-bottom: none;
-	}
+        .read-more-btn:hover {
+            background-color: #388E3C;
+            border-color: #388E3C;
+            color: white;
+        }
 
-	.modal-title {
-		color: #007bff;
-	}
+    /* Modal */
+    .modal-header {
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+        color: white;
+    }
 
-	.modal-footer {
-		border-top: none;
-	}
+    .modal-title {
+        color: white;
+    }
+
+    .btn-close-white {
+        filter: invert(1) grayscale(100%) brightness(200%);
+    }
+
+    /* Pagination */
+    .pagination .page-link {
+        color: #388E3C;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 5px;
+        border-color: #C8E6C9;
+        transition: all 0.3s ease;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #4CAF50;
+        color: white;
+        border-color: #4CAF50;
+    }
+
+    .pagination .page-item:not(.active) .page-link:hover {
+        background-color: #E8F5E9;
+        border-color: #A5D6A7;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        color: #A5D6A7;
+    }
 
 </style>
+
+<div class="page-content">
+    <div class="page-banner ovbl-dark">
+        <div class="container">
+            <div class="page-banner-entry text-center">
+                <h1 class="text-white banner-title">Tin Tức</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul class="breadcrumb-list">
+                <li><a href="@Url.Action("Index", "Home")" class="breadcrumb-link">Trang chủ</a></li>
+                <li class="active">Tin tức</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-block py-5">
+        <div class="container">
+            <div class="search-bx style-1 mb-5">
+                <form method="get" action="@Url.Action("Index", "News")" role="search" class="search-form d-flex">
+                    <input type="text" name="searchText" class="form-control search-input" placeholder="Nhập từ khóa tin tức..." value="@ViewBag.SearchText" />
+                    <button type="submit" class="btn search-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="row">
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="col-lg-6 col-md-12">
+                            <div class="blog-post blog-md mb-5">
+                                <div class="ttr-post-media rounded-top">
+                                    @if (!string.IsNullOrEmpty(item.UrlImage))
+                                    {
+                                        <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="d-block">
+                                            <img src="@item.UrlImage" alt="@item.Title" class="img-fluid w-100 news-image" />
+                                        </a>
+                                    }
+                                </div>
+
+                                <div class="ttr-post-info p-4">
+                                    <ul class="media-post list-inline text-muted mb-2 small">
+                                        <li class="list-inline-item"><i class="fa fa-calendar"></i> @item.CreatedAt.ToString("dd/MM/yyyy")</li>
+                                        <li class="list-inline-item ml-3"><i class="fa fa-user"></i> @item.User.TenNguoiDung</li>
+                                    </ul>
+
+                                    <h5 class="post-title mb-3">
+                                        <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="text-decoration-none">
+                                            @item.Title
+                                        </a>
+                                    </h5>
+
+                                    <p class="post-excerpt text-secondary">
+                                        @(item.Content != null && item.Content.Length > 150 ? item.Content.Substring(0, 150) + "..." : item.Content)
+                                    </p>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <a asp-controller="News" asp-action="Details" asp-route-id="@item.NewsId" class="btn btn-outline-primary btn-sm read-more-btn">
+                                            ĐỌC THÊM
+                                        </a>
+                                        <span class="text-muted small">
+                                            <i class="fa fa-eye"></i> @item.ViewCount lượt xem
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="blogModal-@item.NewsId" tabindex="-1" aria-labelledby="modalLabel-@item.NewsId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                <div class="modal-content rounded-lg">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title font-weight-bold" id="modalLabel-@item.NewsId">@item.Title</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>Tác giả:</strong> @item.User.TenNguoiDung</p>
+                                        <p><strong>Ngày đăng:</strong> @item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+                                        @if (!string.IsNullOrEmpty(item.UrlImage))
+                                        {
+                                            <img src="@item.UrlImage" alt="Image" class="img-fluid mb-3 rounded" />
+                                        }
+                                        <p class="text-justify">@item.Content</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-12 text-center">
+                        <p>Không tìm thấy tin tức nào phù hợp.</p>
+                    </div>
+                }
+            </div>
+
+            @if (ViewBag.TotalPages != null && (int)ViewBag.TotalPages > 1)
+            {
+                <nav aria-label="Page navigation" class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        @if ((int)ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewBag.CurrentPage - 1, searchText = ViewBag.SearchText })" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == (int)ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i, searchText = ViewBag.SearchText })">@i</a>
+                            </li>
+                        }
+                        @if ((int)ViewBag.CurrentPage < (int)ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewBag.CurrentPage + 1, searchText = ViewBag.SearchText })" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            }
+        </div>
+    </div>
+</div>

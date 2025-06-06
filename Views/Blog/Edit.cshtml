@@ -1,47 +1,254 @@
 ﻿@model SmartCookFinal.Models.Blog
+
 @{
-    ViewData["Title"] = "Edit Blog";
+    ViewData["Title"] = "Chỉnh sửa Bài viết";
 }
 
-<h2>Edit Blog</h2>
+<style>
+    /*
+            =========================================================================================
+            STYLE V.4 - TÔNG MÀU XANH LÁ - ÁP DỤNG CHO TRANG EDIT BLOG
+            (Sử dụng lại toàn bộ style của trang Create để đảm bảo tính nhất quán)
+            =========================================================================================
+        */
 
-<form asp-action="Edit" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="BlogId" />
+    /* Nền chung */
+    .page-content {
+        background-color: #F0F9F0;
+    }
 
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
+    /* Banner */
+    .page-banner.ovbl-dark {
+        background: linear-gradient(135deg, rgba(85, 139, 47, 0.85), rgba(27, 94, 32, 0.9));
+        padding: 100px 0;
+    }
 
+    .page-banner h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+    }
 
+    /* Breadcrumb */
+    .breadcrumb-row {
+        background: #C8E6C9;
+        padding: 1rem 0;
+        border-bottom: 1px solid #A5D6A7;
+    }
 
-    <div class="form-group">
-        <label>Upload New Image (optional):</label>
-        <input type="file" name="imageFile" class="form-control-file" />
-        @if (!string.IsNullOrEmpty(Model.UrlImage))
-        {
-            <p>Current image:</p>
-            <img src="@Model.UrlImage" alt="Current Image" style="max-height: 150px;" />
+        .breadcrumb-row ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+
+        .breadcrumb-row a {
+            color: #1B5E20;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .breadcrumb-row a:hover {
+                color: #4CAF50;
+            }
+
+        .breadcrumb-row li {
+            color: #2E7D32;
+        }
+
+            .breadcrumb-row li:not(:last-child)::after {
+                content: '›';
+                margin-left: 0.5rem;
+                font-weight: bold;
+            }
+
+    /* Form Container */
+    .form-container-card {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 40px auto;
+    }
+
+    .form-title {
+        color: #1B5E20;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Form Elements */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .control-label {
+        font-weight: 600;
+        color: #388E3C;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+    .current-image-preview {
+        margin-top: 15px;
+        border: 2px dashed #C8E6C9;
+        padding: 10px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+
+        .current-image-preview img {
+            max-height: 150px;
+            border-radius: 5px;
+        }
+
+
+    /* File Input */
+    input[type="file"].form-control {
+        padding: 8px;
+    }
+
+    input[type="file"]::file-selector-button {
+        background: #E8F5E9;
+        color: #388E3C;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+    }
+
+        input[type="file"]::file-selector-button:hover {
+            background: #C8E6C9;
+            color: #1B5E20;
+        }
+
+    /* Buttons */
+    .form-buttons {
+        margin-top: 30px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .btn {
+        border-radius: 50px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-save {
+        background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+        color: white;
+        border: none;
+    }
+
+        .btn-save:hover {
+            background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(67, 160, 71, 0.3);
+        }
+
+    .btn-cancel {
+        background: #f1f1f1;
+        color: #555;
+        border: 1px solid #ddd;
+    }
+
+        .btn-cancel:hover {
+            background: #e0e0e0;
+            border-color: #ccc;
+        }
+</style>
+
+<div class="page-content">
+    <div class="page-banner ovbl-dark">
+        <div class="container">
+            <div class="page-banner-entry">
+                <h1 class="text-white">Chỉnh Sửa Bài Viết</h1>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb-row">
+        <div class="container">
+            <ul>
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li><a href="@Url.Action("MyBlog", "Blog")">My Blog</a></li>
+                <li>Chỉnh sửa</li>
+            </ul>
+        </div>
     </div>
 
+    <div class="container">
+        <div class="form-container-card">
+            <h2 class="form-title">Cập nhật nội dung</h2>
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="BlogId" />
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="UrlImage" />
+                <input type="hidden" asp-for="CreatedAt" />
 
 
-    <div class="form-group">
-        <label asp-for="Content"></label>
-        <input asp-for="Content" class="form-control" />
-        <span asp-validation-for="Content" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label">Tiêu đề</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageFile" class="control-label">Tải ảnh bài viết </label>
+                    <input type="file" name="imageFile" class="form-control" accept="image/*" />
+                    @if (!string.IsNullOrEmpty(Model.UrlImage))
+                    {
+                        <div class="current-image-preview">
+                            <label class="control-label" style="font-size: 0.9rem; color: #556B2F;">Ảnh hiện tại:</label>
+                            <img src="@Model.UrlImage" alt="Current Image" />
+                        </div>
+                    }
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label">Nội dung chính</label>
+                    <textarea asp-for="Content" class="form-control" rows="8"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Detail" class="control-label">Chi tiết (Nguyên liệu, Hướng dẫn...)</label>
+                    <textarea asp-for="Detail" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Detail" class="text-danger"></span>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-save">Lưu thay đổi</button>
+                    <a asp-action="MyBlog" class="btn btn-cancel">Hủy</a>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Detail"></label>
-        <textarea asp-for="Detail" class="form-control" rows="5"></textarea>
-        <span asp-validation-for="Detail" class="text-danger"></span>
-    </div>
-
-    <input type="hidden" asp-for="UserId" />
-
-    <button type="submit" class="btn btn-success">Save</button>
-    <a asp-action="MyBlog" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
