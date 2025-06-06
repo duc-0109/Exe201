@@ -1,235 +1,143 @@
 ﻿@model List<SmartCookFinal.Models.Blog>
-
 @{
     ViewData["Title"] = "Quản lý bài viết";
+    Layout = null;
 }
 
-<style>
-    .admin-posts-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-        font-family: Arial, sans-serif;
-    }
-
-        .admin-posts-table th, .admin-posts-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-            vertical-align: top;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .truncate-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .admin-posts-table th {
-            background-color: #2c3e50;
+        .status-approved {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .btn-back {
+            background-color: #3182ce;
             color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            padding: 8px 16px;
+            text-decoration: none;
         }
 
-        .admin-posts-table td img {
+            .btn-back:hover {
+                background-color: #2b6cb0;
+                color: white;
+            }
+
+        .table-img {
             width: 100px;
             height: auto;
             object-fit: cover;
             border-radius: 5px;
         }
+    </style>
+</head>
+<body class="container py-4">
 
-    .action-button {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        text-decoration: none;
-        margin-right: 6px;
-        display: inline-block;
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
     }
 
-        .action-button:hover {
-            background-color: #2980b9;
-        }
-
-    .delete-button {
-        background-color: #e74c3c;
-    }
-
-        .delete-button:hover {
-            background-color: #c0392b;
-        }
-
-    h2 {
-        color: #2c3e50;
-        margin-bottom: 20px;
-    }
-
-    .status-approved {
-        color: green;
-        font-weight: bold;
-    }
-
-    .status-pending {
-        color: orange;
-        font-weight: bold;
-    }
-
-    .alert {
-        padding: 10px 15px;
-        margin-bottom: 15px;
-        border-radius: 4px;
-    }
-
-    .alert-success {
-        background-color: #d4edda;
-        color: #155724;
-    }
-
-    .alert-danger {
-        background-color: #f8d7da;
-        color: #721c24;
-    }
-
-    form input[type="text"] {
-        padding: 6px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        margin-right: 8px;
-    }
-
-    form button {
-        padding: 6px 12px;
-        border: none;
-        border-radius: 4px;
-        background-color: #3498db;
-        color: white;
-        cursor: pointer;
-    }
-
-        form button:hover {
-            background-color: #2980b9;
-        }
-
-    /* Add user button */
-    .btn-add-user {
-        background-color: #38a169; /* green-500 */
-        color: white;
-        padding: 8px 14px;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 600;
-        text-decoration: none;
-        box-shadow: 0 2px 6px rgb(56 161 105 / 0.4);
-        transition: background-color 0.3s ease;
-    }
-
-        .btn-add-user:hover {
-            background-color: #2f855a;
-            box-shadow: 0 3px 8px rgb(47 133 90 / 0.7);
-        }
-
-</style>
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
-
- <div style="margin-bottom: 20px;">
-        <a asp-controller="Admin" asp-action="Dashboard" class="btn-add-user" style="background-color:#3182ce;">
-            🔙 Quay về bảng kiểm soát
-        </a>
+    <div class="mb-3">
+        <a asp-controller="Admin" asp-action="Dashboard" class="btn-back">🔙 Quay về bảng kiểm soát</a>
     </div>
 
-<h2>Danh sách bài viết cần quản lý</h2>
+    <h2 class="mb-4 text-primary">Danh sách bài viết cần quản lý</h2>
 
+    <form method="get" asp-action="Index" class="mb-3 d-flex gap-2">
+        <input type="text" name="search" value="@ViewBag.CurrentSearch" class="form-control" placeholder="Tìm kiếm bài viết..." />
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+    </form>
 
-<form method="get" asp-action="Index">
-    <input type="text" name="search" value="@ViewBag.CurrentSearch" placeholder="Tìm kiếm bài viết..." />
-    <button type="submit">Tìm kiếm</button>
-</form>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung</th>
+                    <th>Ngày tạo</th>
+                    <th>Lượt Bình luận</th>
+                    <th>Lượt xem</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var blog in Model)
+                {
+                    <tr>
+                        <td>@blog.Title</td>
+                        <td class="truncate-text">@Html.Raw(blog.Content.Length > 100 ? blog.Content.Substring(0, 100) + "..." : blog.Content)</td>
+                        <td>@blog.CreatedAt.ToString("dd/MM/yyyy")</td>
+                        <td>@(blog.Comments?.Count ?? 0)</td>
+                        <td>@blog.ViewCount</td>
+                        <td>
+                            @if (blog.isChecked)
+                            {
+                                <span class="status-approved">Đã duyệt</span>
+                            }
+                            else
+                            {
+                                <span class="status-pending">Chờ duyệt</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <a class="btn btn-sm btn-info text-white" asp-action="Detail" asp-route-id="@blog.BlogId">Chi tiết</a>
 
+                                <form asp-action="Delete" asp-route-id="@blog.BlogId" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa bài viết này?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-<table class="admin-posts-table">
-    <thead>
-        <tr>
-           
-            <th>Tiêu đề</th>
-            <th>Nội dung</th>
-            <th>Ngày tạo</th>
-            <th>Lượt Bình luận</th>
-            <th>Lượt xem</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var blog in Model)
-        {
-            <tr>
-               
-                <td>@blog.Title</td>
-                <td>@(blog.Content.Length > 100 ? blog.Content.Substring(0, 100) + "..." : blog.Content)</td>
-                <td>@blog.CreatedAt.ToString("dd/MM/yyyy")</td>
-                <td>@(blog.Comments != null ? blog.Comments.Count : 0)</td>
-
-                <td>@blog.ViewCount</td>
-
-                <td>
-                    @if (blog.isChecked)
-                    {
-                        <span class="status-approved">Đã duyệt</span>
-                    }
-                    else
-                    {
-                        <span class="status-pending">Chờ duyệt</span>
-                    }
-                </td>
-                <td>
-                    <div style="display: flex; gap: 8px;">
-                        <a class="action-button" asp-action="Detail" asp-route-id="@blog.BlogId">Detail</a>
-
-                        <form asp-action="Delete" asp-route-id="@blog.BlogId" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa bài viết này?');">
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="action-button delete-button">Delete</button>
-                        </form>
-                    </div>
-                </td>
-
-            </tr>
-        }
-    </tbody>
-</table>
-
-<div style="margin-top: 20px;">
     @if (ViewBag.TotalPages > 1)
     {
-        <div>
-            Trang:
-            @for (int i = 1; i <= ViewBag.TotalPages; i++)
-            {
-                if (i == ViewBag.CurrentPage)
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
                 {
-                    <strong>@i</strong>
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@i"
+                           asp-route-search="@ViewBag.CurrentSearch">@i</a>
+                    </li>
                 }
-                else
-                {
-                    <a asp-action="Index"
-                       asp-route-page="@i"
-                       asp-route-search="@ViewBag.CurrentSearch">@i</a>
-                }
-
-                if (i < ViewBag.TotalPages)
-                {
-                    <span>|</span>
-                }
-            }
-        </div>
+            </ul>
+        </nav>
     }
-</div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
