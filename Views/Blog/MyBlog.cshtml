@@ -150,13 +150,26 @@
                 background-color: #C8E6C9;
                 color: #1B5E20;
             }
+
+    .page-banner {
+        position: relative;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        /* Lớp phủ màu xanh lá lên ảnh banner của bài viết */
+        background: linear-gradient(135deg, rgba(85, 139, 47, 0.7), rgba(27, 94, 32, 0.8)), url('~/upload/green.jpg') center/cover;
+    }
 </style>
 
 <div class="page-content bg-white">
-    <div class="page-banner ovbl-dark">
+    <div class="page-banner">
         <div class="container">
-            <div class="page-banner-entry">
-                <h1 class="text-white">My Blog</h1>
+            <div class="page-banner-entry text-center">
+                <h1 class="text-white">Bài Viết Của Tôi</h1>
             </div>
         </div>
     </div>
@@ -164,7 +177,7 @@
         <div class="container">
             <ul class="list-inline">
                 <li><a href="/">Trang chủ</a></li>
-                <li>My Blog</li>
+                <li>Bài Viết Của Tôi</li>
             </ul>
         </div>
     </div>
