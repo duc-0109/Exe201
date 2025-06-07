@@ -2,78 +2,621 @@
 @{
     ViewData["Title"] = "Thông Tin Cá Nhân";
 }
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-<div class="container mt-5 mb-5">
-    <h2 class="mb-4 text-center">Thông Tin Cá Nhân</h2>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    @if (TempData["Success"] != null)
-    {
-        <div class="alert alert-success">@TempData["Success"]</div>
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            min-height: 100vh;
+            color: #2d5a2d;
+        }
 
-    @if (TempData["Error"] != null)
-    {
-        <div class="alert alert-danger">@TempData["Error"]</div>
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
 
-    <form asp-action="Profile" method="post" class="card shadow p-4 mx-auto" style="max-width: 600px;">
-        @Html.AntiForgeryToken()
+        @@keyframes fadeIn {
+            from
 
-        <!-- Hidden field for ID - QUAN TRỌNG -->
-        <input type="hidden" asp-for="Id" />
+        {
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
-        <div class="mb-3">
-            <label asp-for="TenNguoiDung" class="form-label">Tên người dùng</label>
-            <input asp-for="TenNguoiDung" class="form-control" />
-            <span asp-validation-for="TenNguoiDung" class="text-danger"></span>
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+            .header h1 {
+                font-size: 2.5rem;
+                font-weight: 300;
+                color: #2d5a2d;
+                margin-bottom: 0.5rem;
+                position: relative;
+            }
+
+                .header h1::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 60px;
+                    height: 3px;
+                    background: linear-gradient(90deg, #4CAF50, #66BB6A);
+                    border-radius: 2px;
+                }
+
+            .header p {
+                color: #5a7c5a;
+                font-size: 1.1rem;
+                margin-top: 1rem;
+            }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .profile-sidebar {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.1);
+            height: fit-content;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @@keyframes slideInLeft {
+            from
+
+        {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        }
+
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+            .avatar:hover {
+                transform: scale(1.05);
+            }
+
+        .user-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d5a2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .status-verified {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+        }
+
+        .status-unverified {
+            background: linear-gradient(135deg, #FF8A65, #FFAB91);
+            color: white;
+        }
+
+        .profile-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.1);
+            border: 1px solid rgba(76, 175, 80, 0.1);
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        @@keyframes slideInRight {
+            from
+
+        {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+            .form-group.full-width {
+                grid-column: 1 / -1;
+            }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2d5a2d;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e8f5e8;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafffe;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #4CAF50;
+                box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+                transform: translateY(-1px);
+            }
+
+            .form-control:hover {
+                border-color: #66BB6A;
+            }
+
+            .form-control[readonly] {
+                background: #f8f9fa;
+                cursor: not-allowed;
+                color: #6c757d;
+            }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .btn-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+            }
+
+            .btn-submit:active {
+                transform: translateY(0);
+            }
+
+            .btn-submit::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .btn-submit:hover::before {
+                left: 100%;
+            }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @@keyframes slideDown {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #C8E6C9, #E8F5E8);
+            color: #2E7D32;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, #FFCDD2, #FFEBEE);
+            color: #C62828;
+            border-left: 4px solid #F44336;
+        }
+
+        .text-danger {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #E8F5E8, #F1F8E9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4CAF50;
+        }
+
+            .info-card h3 {
+                color: #2d5a2d;
+                margin-bottom: 0.5rem;
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+
+            .info-card p {
+                color: #5a7c5a;
+                margin: 0;
+                line-height: 1.5;
+            }
+
+        .user-stats {
+            background: linear-gradient(135deg, #f8fff8, #e8f5e8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.1);
+        }
+
+            .stat-item:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+        .stat-label {
+            color: #5a7c5a;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            color: #2d5a2d;
+            font-weight: 600;
+        }
+
+        @@media (max-width: 768px) {
+            .profile-container
+
+        {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+        }
+
+        .container {
+            padding: 1rem;
+        }
+
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-shape {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(76, 175, 80, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+            .floating-shape:nth-child(1) {
+                top: 10%;
+                left: 10%;
+                animation-delay: 0s;
+            }
+
+            .floating-shape:nth-child(2) {
+                top: 20%;
+                right: 15%;
+                animation-delay: 2s;
+            }
+
+            .floating-shape:nth-child(3) {
+                bottom: 30%;
+                left: 20%;
+                animation-delay: 4s;
+            }
+
+            .floating-shape:nth-child(4) {
+                bottom: 10%;
+                right: 10%;
+                animation-delay: 1s;
+            }
+
+        @@keyframes float {
+            0%, 100%
+
+        {
+            transform: translateY(0px) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(-20px) rotate(10deg);
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Thông Tin Cá Nhân</h1>
+            <p>Quản lý và cập nhật thông tin cá nhân của bạn</p>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label">Email</label>
-            <input asp-for="Email" class="form-control" readonly />
-        </div>
+        <!-- Alert Messages -->
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
 
-        <div class="mb-3">
-            <label asp-for="Tuoi" class="form-label">Tuổi</label>
-            <input asp-for="Tuoi" type="number" class="form-control" min="1" max="120" />
-            <span asp-validation-for="Tuoi" class="text-danger"></span>
-        </div>
+        <div class="profile-container">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="avatar-section">
+                    <div class="avatar">
+                        @if (!string.IsNullOrEmpty(Model.TenNguoiDung))
+                        {
+                            @Model.TenNguoiDung.Substring(0, 1).ToUpper()
+                        }
+                        else
+                        {
+                            <text>U</text>
+                        }
+                    </div>
+                    <div class="user-name">
+                        @(Model.TenNguoiDung ?? "Người dùng")
+                    </div>
+                    <div class="status-badge @(Model.IsActive ? "status-verified" : "status-unverified")">
+                        @(Model.IsActive ? "Đã xác thực" : "Chưa xác thực")
+                    </div>
+                </div>
 
-        <div class="mb-3">
-            <label asp-for="ChieuCao" class="form-label">Chiều cao (cm)</label>
-            <input asp-for="ChieuCao" type="number" step="0.1" class="form-control" min="50" max="250" />
-            <span asp-validation-for="ChieuCao" class="text-danger"></span>
-        </div>
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Email:</span>
+                        <span class="stat-value">@Model.Email</span>
+                    </div>
+                    @if (Model.Tuoi.HasValue)
+                    {
+                        <div class="stat-item">
+                            <span class="stat-label">Tuổi:</span>
+                            <span class="stat-value">@Model.Tuoi tuổi</span>
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.GioiTinh))
+                    {
+                        <div class="stat-item">
+                            <span class="stat-label">Giới tính:</span>
+                            <span class="stat-value">@Model.GioiTinh</span>
+                        </div>
+                    }
+                    @if (Model.ChieuCao.HasValue && Model.CanNang.HasValue)
+                    {
+                        <div class="stat-item">
+                            <span class="stat-label">BMI:</span>
+                            <span class="stat-value">@(Math.Round((double)(Model.CanNang / ((Model.ChieuCao / 100) * (Model.ChieuCao / 100))), 1))</span>
+                        </div>
+                    }
+                </div>
 
-        <div class="mb-3">
-            <label asp-for="CanNang" class="form-label">Cân nặng (kg)</label>
-            <input asp-for="CanNang" type="number" step="0.1" class="form-control" min="20" max="300" />
-            <span asp-validation-for="CanNang" class="text-danger"></span>
-        </div>
+                <div class="info-card">
+                    <h3>Thông tin tài khoản</h3>
+                    <p>Tài khoản của bạn @(Model.IsActive ? "đã được xác thực và bảo mật" : "chưa được xác thực"). Vui lòng cập nhật thông tin đầy đủ để có trải nghiệm tốt nhất.</p>
+                </div>
 
-        <div class="mb-3">
-            <label asp-for="GioiTinh" class="form-label">Giới tính</label>
-            <select asp-for="GioiTinh" class="form-select">
-                <option value="">-- Chọn --</option>
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-                <option value="Khác">Khác</option>
-            </select>
-            <span asp-validation-for="GioiTinh" class="text-danger"></span>
-        </div>
+                <div class="info-card">
+                    <h3>Bảo mật</h3>
+                    <p>Email của bạn được sử dụng để xác thực và không thể thay đổi. Liên hệ hỗ trợ nếu cần thiết.</p>
+                </div>
+            </div>
 
-        <div class="mb-3">
-            <label class="form-label">Tài khoản xác thực</label>
-            <input type="text" class="form-control" value="@(Model.IsActive ? "Đã xác thực" : "Chưa xác thực")" readonly
-                   style="color:@(Model.IsActive ? "green" : "red"); font-weight: bold;" />
-        </div>
+            <!-- Form -->
+            <div class="profile-form">
+                <form asp-action="Profile" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="Id" />
 
-        <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label asp-for="TenNguoiDung" class="form-label">Tên người dùng</label>
+                            <input asp-for="TenNguoiDung" class="form-control" placeholder="Nhập tên của bạn" />
+                            <span asp-validation-for="TenNguoiDung" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Tuoi" class="form-label">Tuổi</label>
+                            <input asp-for="Tuoi" type="number" class="form-control" min="1" max="120" placeholder="Nhập tuổi" />
+                            <span asp-validation-for="Tuoi" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                            <select asp-for="GioiTinh" class="form-control">
+                                <option value="">-- Chọn giới tính --</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                            <span asp-validation-for="GioiTinh" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ChieuCao" class="form-label">Chiều cao (cm)</label>
+                            <input asp-for="ChieuCao" type="number" class="form-control" min="50" max="250" step="0.1" placeholder="Nhập chiều cao" />
+                            <span asp-validation-for="ChieuCao" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="CanNang" class="form-label">Cân nặng (kg)</label>
+                            <input asp-for="CanNang" type="number" class="form-control" min="20" max="300" step="0.1" placeholder="Nhập cân nặng" />
+                            <span asp-validation-for="CanNang" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        Cập nhật thông tin
+                    </button>
+                </form>
+            </div>
         </div>
-    </form>
-</div>
+    </div>
+
+    <script>
+        // Add hover effects to form inputs
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentNode.style.transform = 'translateY(-2px)';
+                this.parentNode.style.transition = 'transform 0.2s ease';
+            });
+
+            input.addEventListener('blur', function() {
+                this.parentNode.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading animation to form
+            setTimeout(() => {
+                document.querySelector('.profile-form').style.opacity = '1';
+                document.querySelector('.profile-sidebar').style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

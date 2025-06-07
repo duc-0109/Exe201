@@ -22,7 +22,10 @@ namespace SmartCookFinal.Controllers
             _configuration = configuration;
         }
 
-
+        public IActionResult About()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             var fixedMonAnList = _context.MonAns

@@ -169,13 +169,10 @@
 								<li>
 									<a href="@Url.Action("Index", "Blog")" style="text-decoration:none; font-size: 18px;"><strong>Blog</strong></a>
 								</li>
-								@if (User.IsInRole("Admin"))
-								{
-									<li>
-										<a href="@Url.Action("Index", "Dashboard")" style="font-size:18px;"><strong>Dashboard</strong></a>
-									</li>
-								}
-
+							
+								<li>
+									<a href="@Url.Action("About", "Home")" style="text-decoration:none; font-size: 18px;"><strong>About Us</strong></a>
+								</li>
 							</ul>
 
 
