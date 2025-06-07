@@ -401,10 +401,10 @@
                                     <span><i class="fas fa-user"></i> @Model.User.TenNguoiDung</span>
                                 </div>
                                 <h1 class="blog-title">@Model.Title</h1>
-                                <div class="blog-text">
-                                    @Html.Raw(Model.Content)
-                                    <br />
-                                    @Html.Raw(Model.Detail)
+                                <div class="content-text">
+                                    <p style="font-weight: bold;">@Html.Raw(Model.Content)</p>
+                                    <hr style="margin: 2rem 0;" />
+                                    <div style="white-space: pre-line;">@Html.Raw(Model.Detail)</div>
                                 </div>
                                 <hr class="divider">
                             </div>
