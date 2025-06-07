@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartCookFinal.Models;
 
@@ -11,9 +12,11 @@ using SmartCookFinal.Models;
 namespace SmartCookFinal.Migrations
 {
     [DbContext(typeof(SmartCookContext))]
-    partial class SmartCookContextModelSnapshot : ModelSnapshot
+    [Migration("20250607033659_AddCategoryForNews")]
+    partial class AddCategoryForNews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
