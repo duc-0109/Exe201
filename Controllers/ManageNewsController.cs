@@ -22,7 +22,9 @@ namespace SmartCookFinal.Controllers
 
             int pageSize = 5;
 
-            IQueryable<News> newsQuery = _context.News.Include(n => n.User);
+            IQueryable<News> newsQuery = _context.News
+                .Include(n => n.User)
+                .Include(n => n.Category); // thêm Category
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -44,17 +46,18 @@ namespace SmartCookFinal.Controllers
             return View(pagedNews);
         }
 
-        // GET: /ManageNew/Create
+        // GET: /ManageNews/Create
         public IActionResult Create()
         {
             if (!IsAdmin())
                 return RedirectToAction("AccessDenied", "Home");
 
             ViewBag.Users = new SelectList(_context.NguoiDungs, "Id", "TenNguoiDung");
+            ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "Name"); // thêm
             return View();
         }
 
-        // POST: /ManageNew/Create
+        // POST: /ManageNews/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(News news, IFormFile ImageFile)
@@ -92,7 +95,7 @@ namespace SmartCookFinal.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: /ManageNew/Edit/5
+        // GET: /ManageNews/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
             if (!IsAdmin())
@@ -101,10 +104,11 @@ namespace SmartCookFinal.Controllers
             var news = await _context.News.FindAsync(id);
             if (news == null) return NotFound();
 
+            ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "Name", news.CategoryId);
             return View(news);
         }
 
-        // POST: /ManageNew/Edit/5
+        // POST: /ManageNews/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, News news, IFormFile imageFile)
@@ -148,11 +152,12 @@ namespace SmartCookFinal.Controllers
             }
             catch
             {
+                ViewBag.Categories = new SelectList(_context.Categories, "CategoryId", "Name", news.CategoryId);
                 return View(news);
             }
         }
 
-        // GET: /ManageNew/Delete/5
+        // GET: /ManageNews/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
             if (!IsAdmin())
@@ -160,6 +165,7 @@ namespace SmartCookFinal.Controllers
 
             var news = await _context.News
                 .Include(n => n.User)
+                .Include(n => n.Category)
                 .FirstOrDefaultAsync(n => n.NewsId == id);
 
             if (news == null) return NotFound();
@@ -167,7 +173,7 @@ namespace SmartCookFinal.Controllers
             return View(news);
         }
 
-        // POST: /ManageNew/Delete/5
+        // POST: /ManageNews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -190,6 +196,5 @@ namespace SmartCookFinal.Controllers
             var role = HttpContext.Session.GetString("UserRole");
             return !string.IsNullOrEmpty(role) && role.ToLower() == "admin";
         }
-
     }
 }

@@ -16,6 +16,7 @@ namespace SmartCookFinal.Models
 		public DbSet<DanhMucMonAn> DanhMucMonAns { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<EmailConfirmation> EmailConfirmations { get; set; }
         public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }

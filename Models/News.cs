@@ -14,8 +14,12 @@
 
         // Foreign Key
         public int UserId { get; set; }
+        public int? CategoryId { get; set; }  // Nullable  // Khóa ngoại đến Category
+
 
         // Navigation
         public NguoiDung User { get; set; }
+
+        public Category? Category { get; set; } // Navigation tới Category
     }
 }

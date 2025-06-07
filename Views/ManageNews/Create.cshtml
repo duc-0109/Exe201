@@ -2,36 +2,135 @@
 
 @{
     ViewData["Title"] = "Create News";
+    Layout = null;
 }
 
-<div class="container mt-5">
-    <h2>Create News</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Create News</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
 
-    <form asp-action="Create" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label asp-for="Title" class="control-label"></label>
-            <input asp-for="Title" class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+        }
 
-        <div class="form-group">
-            <label for="ImageFile">Upload Image</label>
-            <input type="file" name="ImageFile" class="form-control" accept="image/*" />
-        </div>
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
 
-        <div class="form-group">
-            <label asp-for="Content" class="control-label"></label>
-            <textarea asp-for="Content" class="form-control" rows="5"></textarea>
-            <span asp-validation-for="Content" class="text-danger"></span>
-        </div>
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-        <div class="form-group">
-            <label asp-for="Detail" class="control-label"></label>
-            <textarea asp-for="Detail" class="form-control" rows="3"></textarea>
-            <span asp-validation-for="Detail" class="text-danger"></span>
-        </div>
+        .control-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-        <input type="submit" value="Create" class="btn btn-success" />
-        <a asp-action="MyBlog" class="btn btn-secondary">Back</a>
-    </form>
-</div>
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+        .btn {
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            margin-left: 10px;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+            }
+
+        .text-danger {
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create News</h2>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="ImageFile">Upload Image</label>
+                <input type="file" name="ImageFile" class="form-control" accept="image/*" />
+            </div>
+
+            <div class="form-group">
+                <label for="CategoryId" class="control-label">Chuyên mục</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+                    <option value="">-- Chọn chuyên mục --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Detail" class="control-label"></label>
+                <textarea asp-for="Detail" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Detail" class="text-danger"></span>
+            </div>
+
+            <input type="submit" value="Create" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 ﻿@model List<SmartCookFinal.Models.Contact>
 
 @{
+    Layout = null;
     ViewData["Title"] = "Danh sách Liên hệ";
     int currentPage = ViewBag.CurrentPage ?? 1;
     int totalPages = ViewBag.TotalPages ?? 1;
@@ -180,5 +181,5 @@
         }
     </div>
 
-    <a href="/Admin/Dashboard" class="back-button">⬅️ Quay lại Dashboard</a>
+    <a href="/Admin/Dashboard" class="back-button">⬅️ Quay về</a>
 </div>

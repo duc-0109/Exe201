@@ -15,17 +15,29 @@ namespace SmartCookFinal.Controllers
         }
 
         // GET: /News
-        public async Task<IActionResult> Index(string searchText, int page = 1)
+        public async Task<IActionResult> Index(string searchText, int? categoryId, int page = 1)
         {
-            int pageSize = 4;
-            IQueryable<News> newsQuery = _context.News.Include(n => n.User);
+            int pageSize = 5;
+
+            // Load danh sách Category với kiểm tra null
+            var categoryList = await _context.Categories.ToListAsync();
+            ViewBag.CategoryList = categoryList ?? new List<Category>();
+            ViewBag.SelectedCategoryId = categoryId;
+            ViewBag.SearchText = searchText;
+
+            IQueryable<News> newsQuery = _context.News
+                .Include(n => n.User)
+                .Include(n => n.Category);
 
             if (!string.IsNullOrEmpty(searchText))
             {
                 newsQuery = newsQuery.Where(n => n.Title.Contains(searchText));
             }
 
-            ViewBag.SearchText = searchText;
+            if (categoryId.HasValue && categoryId.Value != 0)
+            {
+                newsQuery = newsQuery.Where(n => n.CategoryId == categoryId.Value);
+            }
 
             int totalItems = await newsQuery.CountAsync();
             var pagedNews = await newsQuery
@@ -39,7 +51,6 @@ namespace SmartCookFinal.Controllers
 
             return View(pagedNews);
         }
-
         // GET: /News/Details/5
         public async Task<IActionResult> Details(int id)
         {
