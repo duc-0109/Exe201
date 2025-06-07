@@ -235,7 +235,7 @@ namespace SmartCookFinal.Controllers
                 var monNgauNhien = danhSach.OrderBy(x => random.Next()).Take(soMon).ToList();
                 var tongCalo = monNgauNhien.Sum(m => m.LuongCalo ?? 0);
 
-                if (tongCalo >= caloMoiBua - 500 && tongCalo <= caloMoiBua + 500)
+                if (tongCalo >= caloMoiBua - 50 && tongCalo <= caloMoiBua + 50)
                 {
                     return monNgauNhien;
                 }

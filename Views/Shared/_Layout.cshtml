@@ -1,334 +1,423 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - SmartCookTest2</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SmartCookTest2</title>
 
-	<!-- Bootstrap và site styles -->
-	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	@RenderSection("Styles", required: false)
-	<link rel="stylesheet" href="~/SmartCookTest2.styles.css" asp-append-version="true" />
+    <!-- Bootstrap và site styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+    @* <link rel="stylesheet" href="~/SmartCookTest2.styles.css" asp-append-version="true" /> *@
 
-	<!-- META -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
-	<meta name="robots" content="" />
+    <!-- META -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
 
-	<!-- DESCRIPTION -->
-	<meta name="description" content="EduChamp : Education HTML Template" />
+    <!-- DESCRIPTION -->
+    <meta name="description" content="EduChamp : Education HTML Template" />
 
-	<!-- OG -->
-	<meta property="og:title" content="EduChamp : Education HTML Template" />
-	<meta property="og:description" content="EduChamp : Education HTML Template" />
-	<meta property="og:image" content="" />
-	<meta name="format-detection" content="telephone=no">
+    <!-- OG -->
+    <meta property="og:title" content="EduChamp : Education HTML Template" />
+    <meta property="og:description" content="EduChamp : Education HTML Template" />
+    <meta property="og:image" content="" />
+    <meta name="format-detection" content="telephone=no">
 
-	<!-- FAVICONS ICON -->
-	<link rel="icon" href="~/assets/images/exe-logo.png" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="~/assets/images/exe-logo.png" />
+    <!-- FAVICONS ICON -->
+    <link rel="icon" href="~/images/exe-logo.png" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/exe-logo.png" />
 
-	<!-- PAGE TITLE -->
-	<title>EduChamp : Education HTML Template</title>
+    <!-- PAGE TITLE -->
+    <title>EduChamp : Education HTML Template</title>
 
-	<!-- MOBILE SPECIFIC -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- MOBILE SPECIFIC -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!--[if lt IE 9]>
-	<script src="~/assets/js/html5shiv.min.js"></script>
-	<script src="~/assets/js/respond.min.js"></script>
-	<![endif]-->
-	<!-- ALL PLUGINS CSS -->
-	<link rel="stylesheet" type="text/css" href="~/assets/css/assets.css" />
+    <!--[if lt IE 9]>
+    <script src="~/js/html5shiv.min.js"></script>
+    <script src="~/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- ALL PLUGINS CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/assets.css" />
 
-	<!-- TYPOGRAPHY -->
-	<link rel="stylesheet" type="text/css" href="~/assets/css/typography.css" />
+    <!-- TYPOGRAPHY -->
+    <link rel="stylesheet" type="text/css" href="~/css/typography.css" />
 
-	<!-- SHORTCODES -->
-	<link rel="stylesheet" type="text/css" href="~/assets/css/shortcodes/shortcodes.css" />
+    <!-- SHORTCODES -->
+    <link rel="stylesheet" type="text/css" href="~/css/shortcodes/shortcodes.css" />
 
-	<!-- MAIN STYLESHEET -->
-	<link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
+    <!-- MAIN STYLESHEET -->
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 
-	<link class="skin" rel="stylesheet" type="text/css" href="~/assets/css/color/color-1.css" />
+    <link class="skin" rel="stylesheet" type="text/css" href="~/css/color/color-1.css" />
 
-	<!-- REVOLUTION SLIDER CSS -->
-	<link rel="stylesheet" type="text/css" href="~/assets/vendors/revolution/css/layers.css" />
-	<link rel="stylesheet" type="text/css" href="~/assets/vendors/revolution/css/settings.css" />
-	<link rel="stylesheet" type="text/css" href="~/assets/vendors/revolution/css/navigation.css" />
+    <!-- REVOLUTION SLIDER CSS -->
+    <link rel="stylesheet" type="text/css" href="~/vendors/revolution/css/layers.css" />
+    <link rel="stylesheet" type="text/css" href="~/vendors/revolution/css/settings.css" />
+    <link rel="stylesheet" type="text/css" href="~/vendors/revolution/css/navigation.css" />
 
-	<!-- Bootstrap CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
 
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    @* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> *@
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 
-	<style>
-		body, header, .top-bar, .menu-bar, .menu-logo, .nav, .navbar-nav, .nav a, .list-inline-item, .btn-link {
-			font-family: 'Poppins', sans-serif !important;
-		}
-	</style>
+    <style>
+        body, header, .top-bar, .menu-bar, .menu-logo, .nav, .navbar-nav, .nav a, .list-inline-item, .btn-link {
+            font-family: 'Poppins', sans-serif !important;
+        }
+    </style>
 
 
 </head>
 <body>
-	<header class="header rs-nav" style="background-color:darkslateblue">
-		<div class="top-bar">
-			<div class="container">
-				<div class="row d-flex justify-content-between align-items-center">
-					<div class="topbar-left col-auto">
-						<ul class="list-inline m-0">
-							<li class="list-inline-item">
-								<a asp-controller="Home" asp-action="Contact"><i class="fa fa-question-circle"></i> Liên hệ</a>
-							</li>
-							<li class="list-inline-item"><a href="#"><i class="fa fa-envelope-o"></i> anthuc2025@gmail.com</a></li>
-						</ul>
-					</div>
-					<div class="topbar-right col-auto">
-						<ul class="list-inline m-0">
-							<li class="list-inline-item">
-								<select class="header-lang-bx">
-									<option data-icon="flag flag-vn">Tiếng Việt</option>
-									<option data-icon="flag flag-uk">English UK</option>
-								</select>
-							</li>
-
-							@{
-								var userName = Context.Session.GetString("UserName");
-							}
-
-							@if (!string.IsNullOrEmpty(userName))
-							{
-								<li class="list-inline-item">Xin chào, <strong>@userName</strong></li>
-								<li class="list-inline-item">
-									<a href="/User/Profile" class="btn btn-outline-primary btn-sm" style="margin-left: 8px;">
-										<i class="fa fa-user-circle"></i> <strong>Hồ sơ</strong>
-									</a>
-								</li>
-								<li class="list-inline-item"><a href="@Url.Action("Logout", "Home")">Đăng Xuất</a></li>
-							}
-							else
-							{
-								<li class="list-inline-item"><a href="@Url.Action("Login", "Home")">Đăng Nhập</a></li>
-								<li class="list-inline-item"><a href="@Url.Action("Register", "Home")">Đăng Ký</a></li>
-							}
-						</ul>
-					</div>
-
-				</div>
-			</div>
+    <header class="header rs-nav @(ViewBag.IsHomePage == true ? "header-transparent" : "")">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="topbar-left col-auto">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item"><a href="@Url.Action("Index", "Contact")"><i class="fa fa-question-circle"></i> Liên hệ</a></li>
+                            <li class="list-inline-item"><a href="#"><i class="fa fa-envelope-o"></i>anthuc2025@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="topbar-right col-auto">
+                        <ul class="list-inline m-0">
 
 
+                            @{
+                                var userName = Context.Session.GetString("UserName");
+                            }
 
-			<div class="sticky-header navbar-expand-lg">
-				<div class="menu-bar clearfix">
-					<div class="container clearfix">
-						<!-- Header Logo ==== -->
-						<div class="menu-logo">
-							<a href="@Url.Action("Index", "Home")"><img src="~/assets/images/exe-logo.png" alt=""></a>
-						</div>
-						<!-- Mobile Nav Button ==== -->
-						<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
-						<!-- Author Nav ==== -->
-						<div class="secondary-menu">
-							<div class="secondary-inner">
-							</div>
-						</div>
-						<!-- Search Box ==== -->
-						<div class="nav-search-bar">
-							<form action="#">
-								<input name="search" value="" type="text" class="form-control" placeholder="Type to search">
-								<span><i class="ti-search"></i></span>
-							</form>
-							<span id="search-remove"><i class="ti-close"></i></span>
-						</div>
-						<!-- Navigation Menu ==== -->
-						<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
-							<div class="menu-logo">
-								<a href="@Url.Action("Index", "Home")"><img src="~/assets/images/logo.png" alt=""></a>
-							</div>
-							<ul class="nav navbar-nav">
-								<li class="active">
-									<a href="@Url.Action("Index", "Home")" style="text-decoration:none; font-size: 18px"><strong>Home</strong></a>
-								</li>
-								<li class="add-mega-menu">
-									<a href="@Url.Action("Index", "MonAns")" style="text-decoration:none; font-size: 18px;"><strong>Món ăn</strong></a>
-								</li>
-								<li>
-									<a href="@Url.Action("NhapChiSo", "ThucDon")" style="text-decoration:none; font-size: 18px;"><strong>Thực Đơn Cá Nhân</strong></a>
-								</li>
-								<li>
-									<a href="@Url.Action("Index", "News")" style="text-decoration:none; font-size: 18px;"><strong>News</strong></a>
-								</li>
-								<li>
-									<a href="@Url.Action("Index", "Blog")" style="text-decoration:none; font-size: 18px;"><strong>Blog</strong></a>
-								</li>
-								@if (User.IsInRole("Admin"))
-								{
-									<li>
-										<a href="@Url.Action("Index", "Dashboard")" style="font-size:18px;"><strong>Dashboard</strong></a>
-									</li>
-								}
+                            @if (!string.IsNullOrEmpty(userName))
+                            {
+                                    <li class="list-inline-item" style="color:black">Xin chào, <strong>@userName</strong></li>
+                                    <li class="list-inline-item">
+                                        <a href="/User/Profile" class="btn btn-outline-primary btn-sm" style="margin-left: 8px;">
+                                            <i class="fa fa-user-circle"></i> <strong>Hồ sơ</strong>
+                                        </a>
+                                    </li>
+                                        <li class="list-inline-item"><a href="@Url.Action("Logout", "Home")"><strong>Đăng Xuất</strong></a></li>
+                            }
+                            else
+                            {
+                                        <li class="list-inline-item"><a href="@Url.Action("Login", "Home")"><strong>Đăng Nhập</strong></a></li>
+                                    <li class="list-inline-item"><a href="@Url.Action("Register", "Home")"><strong>Đăng Ký</strong></a></li>
+                            }
+                        </ul>
+                    </div>
 
-							</ul>
+                </div>
+            </div>
+        </div>
+        <div class="sticky-header navbar-expand-lg">
+            <div class="menu-bar clearfix">
+                <div class="container clearfix">
+                    <!-- Header Logo ==== -->
+                    <div class="menu-logo">
+                        <a href="@Url.Action("Index1", "Home")"><img src="~/images/exe-logo.png" alt=""></a>
+                    </div>
+                    <!-- Mobile Nav Button ==== -->
+                    <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- Author Nav ==== -->
+                    <div class="secondary-menu">
+                        <div class="secondary-inner">
+                            <ul>
+                                <li><a href="https://www.facebook.com/profile.php?id=61576735652419" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="javascript:;" class="btn-link"><i class="bi bi-tiktok"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
 
+                    <!-- Navigation Menu ==== -->
+                    <div class="menu-links navbar-collapse collapse justify-content-start" style="font-weight:bold" id="menuDropdown">
+                        <div class="menu-logo">
+                            <a href="@Url.Action("Index1", "Home")"><img src="~/images/logo.png" alt=""></a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                            <li class="active">
+                                <a href="@Url.Action("Index1", "Home")">Trang chủ</a>
+                            </li>
 
-							<!-- Navigation Menu END ==== -->
-						</div>
-					</div>
-				</div>
-	</header>
-	<div class="container">
-		<main role="main" class="pb-3">
-			@RenderBody()
-		</main>
-	</div>
+                            </li>
+                            <li class="add-mega-menu">
+                                <a href="@Url.Action("Index", "MonAns")">Kho Công Thức</a>
+                            </li>
+                            <li class="add-mega-menu">
+                                <a href="@Url.Action("NhapChiSo", "ThucDon")">Thực Đơn Cá Nhân</a>
 
-	<footer>
-		<div class="footer-top">
-			<div class="pt-exebar">
-				<div class="container">
-					<div class="d-flex align-items-stretch">
-						<div class="pt-logo mr-auto">
-							<a href="#"><img style="height:120px" src="~/assets/images/exe-logo.png"></a>
-						</div>
-						<div class="pt-social-link">
-							<ul class="list-inline m-a0">
-								<li><a href="#" class="btn-link"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#" class="btn-link"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#" class="btn-link"><i class="fa fa-linkedin"></i></a></li>
-								<li><a href="#" class="btn-link"><i class="fa fa-google-plus"></i></a></li>
-							</ul>
-						</div>
-						<div class="pt-btn-join">
-							<a href="#" class="btn btn-light">Đăng ký</a>
-						</div>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Blog")">Cộng đồng </a>
 
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-12 col-sm-12 footer-col-4">
-						<div class="widget">
-							<h5 class="footer-title">Trở thành một đầu bếp giỏi ngay cùng với An Thực</h5>
-							<p class="text-capitalize m-b20">Weekly Breaking news analysis and cutting edge advices on job searching.</p>
-							<div class="subscribe-form m-b20">
-								<form class="subscription-form" action="http://educhamp.themetrades.com/demo/assets/script/mailchamp.php" method="post">
-									<div class="ajax-message"></div>
-									<div class="input-group">
-										<input name="email" required="required" class="form-control" placeholder="Your Email Address" type="email">
-										<span class="input-group-btn">
-											<button name="submit" value="Submit" type="submit" class="btn"><i class="fa fa-arrow-right"></i></button>
-										</span>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-5 col-md-7 col-sm-12">
-						<div class="row">
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-								<div class="widget footer_widget">
-									<h5 class="footer-title">An Thực</h5>
-									<ul>
-										@* <li><a href="index.html">Home</a></li>
-										<li><a href="about-1.html">About us</a></li>
-										<li><a href="faq-1.html">FAQs</a></li>
-										<li><a href="contact-1.html">Liên Hệ</a></li> *@
-									</ul>
-								</div>
-							</div>
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-								<div class="widget footer_widget">
-									<h5 class="footer-title">Get In Touch</h5>
-									<ul>
-										<li><a href="http://educhamp.themetrades.com/admin/index.html">Dashboard</a></li>
-										<li><a href="blog-classic-grid.html">Blog</a></li>
-										<li><a href="portfolio.html">Portfolio</a></li>
-										<li><a href="event.html">Event</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
-								<div class="widget footer_widget">
-									<h5 class="footer-title">Món ăn</h5>
-									<ul>
-										<li><a href="">Buổi Sáng</a></li>
-										<li><a href="">Buổi Trưa</a></li>
-										<li><a href="">Buổi Tối</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-4 col-lg-4 col-md-4 col-sm-4">
+                            </li>
+                            <li>
+                                <a href="javascript:;">Tin tức </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Blog")">Giới Thiệu </a>
 
-								<div class="widget footer_widget">
-									<h5 class="footer-title">Blog</h5>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                    <li>
+                                        <a href="@Url.Action("Index", "Dashboard")" style="font-size:18px;"><strong>Dashboard</strong></a>
+                                    </li>
+                            }
+                        </ul>
+                        <div class="nav-social-link">
+                            <a href="javascript:;"><i class="fa fa-facebook"></i></a>
 
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-3 col-md-5 col-sm-12 footer-col-4">
-						<div class="widget widget_gallery gallery-grid-4">
-							<h5 class="footer-title">Our Gallery</h5>
-							<ul class="magnific-image">
-								<li><a href="~/assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic1.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic2.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic3.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic4.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic5.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic6.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic7.jpg" alt=""></a></li>
-								<li><a href="~/assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic8.jpg" alt=""></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 text-center"><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	<script src="~/assets/js/jquery.min.js"></script>
-	<script src="~/assets/vendors/bootstrap/js/popper.min.js"></script>
-	<script src="~/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-	<script src="~/assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-	<script src="~/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-	<script src="~/assets/vendors/magnific-popup/magnific-popup.js"></script>
-	<script src="~/assets/vendors/counter/waypoints-min.js"></script>
-	<script src="~/assets/vendors/counter/counterup.min.js"></script>
-	<script src="~/assets/vendors/imagesloaded/imagesloaded.js"></script>
-	<script src="~/assets/vendors/masonry/masonry.js"></script>
-	<script src="~/assets/vendors/masonry/filter.js"></script>
-	<script src="~/assets/vendors/owl-carousel/owl.carousel.js"></script>
-	<script src="~/assets/js/functions.js"></script>
-	<script src="~/assets/js/contact.js"></script>
-	<script src="~/assets/vendors/switcher/switcher.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-	<!--Validate -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+                        </div>
+                    </div>
+                    <!-- Navigation Menu END ==== -->
+                </div>
+            </div>
+        </div>
 
 
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
-	@await RenderSectionAsync("Scripts", required: false)
+    <footer>
+        <div class="footer-top">
+            <div class="pt-exebar">
+                <div class="container">
+                    <div class="d-flex align-items-stretch">
+                        <div class="pt-logo d-flex align-items-center mr-auto">
+    <a href="#"><img style="height:140px" src="~/images/exe-logo.png"></a>
+    <div class="ml-3">
+        <h5 class="footer-title mb-1">Trở thành một đầu bếp giỏi ngay cùng với An Thực</h5>
+        <p class="text-capitalize m-b0">Nấu ăn lành mạnh phù hợp với bạn ngay bây giờ</p>
+    </div>
+</div>
+
+                        <div class="pt-social-link">
+                            <ul class="list-inline m-a0">
+                                <li><a href="#" class="btn-link"><i class="fa fa-facebook"></i></a></li>
+
+                            </ul>
+                        </div>
+                        <div class="pt-btn-join">
+                            <a href="#" class="btn btn-light">Đăng ký</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+<div class="container">
+    <div class="row justify-content-between text-center">
+        <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+            <div class="widget footer_widget">
+                <h5 class="footer-title">An Thực</h5>
+                <ul>
+                    <li><a href="@Url.Action("Index1", "Home")">Trang chủ</a></li>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="@Url.Action("Index", "Contact")">Liên Hệ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+            <div class="widget footer_widget">
+                <h5 class="footer-title">Tin tức</h5>
+                <ul>
+                    <li><a href="#">Xu hướng</a></li>
+                    <li><a href="#">Mẹo vặt</a></li><li><a href="#">Khoa học</a></li><li><a href="#">Sự kiện</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+            <div class="widget footer_widget">
+                <h5 class="footer-title">Món ăn</h5>
+                <ul>
+                    <li><a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Sáng" })">Buổi Sáng</a></li>
+                    <li><a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Sáng" })">Buổi Trưa</a></li>
+                    <li><a href="@Url.Action("FilterByBuaAn", "MonAns", new { loaiBuaAn = "Sáng" })">Buổi Tối</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-3 col-md-6 col-sm-12">
+            <div class="widget widget_gallery gallery-grid-4">
+                <h5 class="footer-title">Our Gallery</h5>
+                <ul class="magnific-image">
+    <li>
+        <a href="https://i.pinimg.com/736x/5d/1e/bb/5d1ebb2de2616326215b39fc84e26b6d.jpg" class="magnific-anchor">
+            <img src="https://i.pinimg.com/736x/5d/1e/bb/5d1ebb2de2616326215b39fc84e26b6d.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+        </a>
+    </li>
+    <li>
+        <a href="https://i.pinimg.com/736x/a6/88/01/a68801047b9b921d675fb1f41a3eed1c.jpg" class="magnific-anchor">
+            <img src="https://i.pinimg.com/736x/a6/88/01/a68801047b9b921d675fb1f41a3eed1c.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+        </a>
+    </li>
+    <li>
+        <a href="https://i.pinimg.com/736x/41/7e/c3/417ec33f4b977a92ffbfae03361fa7e9.jpg" class="magnific-anchor">
+            <img src="https://i.pinimg.com/736x/41/7e/c3/417ec33f4b977a92ffbfae03361fa7e9.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+        </a>
+    </li>
+    <li>
+        <a href="https://i.pinimg.com/736x/b8/7f/86/b87f86bf83dc1606fc1897a37cd4eb3d.jpg" class="magnific-anchor">
+            <img src="https://i.pinimg.com/736x/b8/7f/86/b87f86bf83dc1606fc1897a37cd4eb3d.jpg" alt="" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
+        </a>
+    </li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 text-center"><a target="_blank" href="https://www.templateshub.net">An Thực@2025</a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--Validate -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="~/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="~/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="~/vendors/magnific-popup/magnific-popup.js"></script>
+    <script src="~/vendors/counter/waypoints-min.js"></script>
+    <script src="~/vendors/counter/counterup.min.js"></script>
+    <script src="~/vendors/imagesloaded/imagesloaded.js"></script>
+    <script src="~/vendors/masonry/masonry.js"></script>
+    <script src="~/vendors/masonry/filter.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.js"></script>
+    <script src="~/js/functions.js"></script>
+    <script src="~/js/contact.js"></script>
+    @* <script src="~/vendors/switcher/switcher.js"></script> *@
+    <!-- Revolution JavaScripts Files -->
+    <script src="~/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="~/vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var ttrevapi;
+            var tpj = jQuery;
+            if (tpj("#rev_slider_486_1").revolution == undefined) {
+                revslider_showDoubleJqueryError("#rev_slider_486_1");
+            } else {
+                ttrevapi = tpj("#rev_slider_486_1").show().revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "~/vendors/revolution/js/",
+                    sliderLayout: "fullwidth",
+                    dottedOverlay: "none",
+                    delay: 9000,
+                    navigation: {
+                        keyboardNavigation: "on",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        mouseScrollReverse: "default",
+                        onHoverStop: "on",
+                        touch: {
+                            touchenabled: "on",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 1,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
+                        }
+                        ,
+                        arrows: {
+                            style: "uranus",
+                            enable: true,
+                            hide_onmobile: false,
+                            hide_onleave: false,
+                            tmp: '',
+                            left: {
+                                h_align: "left",
+                                v_align: "center",
+                                h_offset: 10,
+                                v_offset: 0
+                            },
+                            right: {
+                                h_align: "right",
+                                v_align: "center",
+                                h_offset: 10,
+                                v_offset: 0
+                            }
+                        },
+
+                    },
+                    viewPort: {
+                        enable: true,
+                        outof: "pause",
+                        visible_area: "80%",
+                        presize: false
+                    },
+                    responsiveLevels: [1240, 1024, 778, 480],
+                    visibilityLevels: [1240, 1024, 778, 480],
+                    gridwidth: [1240, 1024, 778, 480],
+                    gridheight: [768, 600, 600, 600],
+                    lazyType: "none",
+                    parallax: {
+                        type: "scroll",
+                        origo: "enterpoint",
+                        speed: 400,
+                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 46, 47, 48, 49, 50, 55],
+                        type: "scroll",
+                    },
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "off",
+                    stopAfterLoops: -1,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            }
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

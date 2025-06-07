@@ -34,14 +34,20 @@ namespace SmartCookFinal.Controllers
             return View(fixedMonAnList);
         }
 
-        public IActionResult Index1()
-        {
-            return View();
-        }
+		public IActionResult Index1()
+		{
+			ViewBag.IsHomePage = true;
+			var saladMonAnList = _context.MonAns
+			   .Include(m => m.DanhMuc)
+			   .Where(m => m.TenMon.Contains("Salad"))
+			   .OrderBy(m => m.Id)
+			   .ToList();
+			return View(saladMonAnList);
+		}
 
 
 
-        [HttpGet]
+		[HttpGet]
         public IActionResult Login()
         {
             ViewBag.SuccessMessage = TempData["SuccessMessage"];
@@ -90,7 +96,7 @@ namespace SmartCookFinal.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index1", "Home");
             }
         }
 
@@ -104,7 +110,7 @@ namespace SmartCookFinal.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index1");
         }
         public IActionResult Privacy()
         {
